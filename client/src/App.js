@@ -1,25 +1,89 @@
-import logo from './logo.svg';
+import React, {Component} from 'react';
+import logo from './resources/noBngLogo.svg';
 import './App.css';
+import LoginPage from './components/LoginPage';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
+class App extends Component{
+  constructor(props){
+    super(props);
+    this.state = {apiResponse: ["test failed no API"], value: "" };
+    this.handleValueChange = this.handleValueChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount(){
+    this.callAPI();
+  }
+
+  callAPI(){
+    fetch("http://localhost:9000/test")
+      .then(res => res.text())
+      .then(res => this.setState({apiResponse: JSON.parse(res)}))
+      .catch(err => err);
+  }
+
+  handleSubmit(event){
+    fetch("http://localhost:9000/test", { method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(this.state)
+      }).then(function(response) {
+        console.log(response)
+        return response.json();
+      });
+
+  }
+
+
+  getTestValues(){
+    return this.state.apiResponse.map(item => {return <p> {item.value} </p>;});
+  }
+
+  handleValueChange(event){
+    this.setState({value: event.target.value});
+  }
+  render() {
+    return(
+      <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <p> header goes here</p>
+        <img src={logo} />
+
       </header>
-    </div>
-  );
+
+        <Router>
+          <div>
+
+
+            <Switch>
+              <Route path="/Login">
+                <LoginPage />
+              </Route>
+              <Route path="/">
+
+              <ul> {this.getTestValues()} </ul>
+
+              <form onSubmit = {this.handleSubmit}>
+                  <label for="fname">Test Database: </label>
+                  <input type="text" id="fname" name="fname"onChange={this.handleValueChange} />
+                  <input type="submit" value="Submit" />
+              </form>
+
+              </Route>
+
+            </Switch>
+          </div>
+        </Router>
+        <p> footer goes here </p>
+      </div>
+    );
+  }
 }
+
 
 export default App;
