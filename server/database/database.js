@@ -1,9 +1,9 @@
 const mysql = require('mysql');
 const util = require('util');
 const conn = mysql.createConnection({
-    host: "127.0.0.1",
-    user: "root",
-    password: "toor"
+    host: "database-1.cwsrx6jlceko.us-east-1.rds.amazonaws.com",
+    user: "producedev",
+    password: "freshtomatoes"
 });
 
 const tables = ["test(id int NOT NULL AUTO_INCREMENT, value varchar(20), PRIMARY KEY(id))"];
