@@ -1,3 +1,75 @@
 .App {
   text-align: center;
 }
+
+.navbar{
+  background-color: #78B244;
+  height: 65px;
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.header-right{
+  width:33%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.header-left{
+  width:33%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.header-item{
+  color:white;
+  margin-left:22px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 28px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration-line: none;
+}
+
+.header-item:hover{
+  text-decoration-line: underline !important;
+}
+
+.header-center{
+  color: white;
+  width:33%;
+  display: flex;
+  justify-content: center;
+}
+
+.header-logo{
+  position: absolute;
+  top: -53px;
+  height: 260px;
+}
+
+.header-button{
+  color: white;
+  margin-left:22px;
+  margin-right:22px;
+  margin:11px;
+  background-color: #78B244;
+  border: 4px solid #FFFFFF;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 28px;
+  border-radius: 50px;
+  padding: 2px 12px;
+  font-weight: bold;
+  outline: none;
+  cursor: pointer;
+
+}
+
+.header-button:active {
+  transform: translateY(4px);
+}

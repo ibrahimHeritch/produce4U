@@ -2,12 +2,16 @@ import React, {Component} from 'react';
 import logo from './resources/noBngLogo.svg';
 import './App.css';
 import LoginPage from './components/LoginPage';
+import Header from './components/Header.js'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
+
+
+
 
 class App extends Component{
   constructor(props){
@@ -50,12 +54,8 @@ class App extends Component{
   render() {
     return(
       <div className="App">
-      <header className="App-header">
-        <p> header goes here</p>
+        <Header/>
         <img src={logo} />
-
-      </header>
-
         <Router>
           <div>
 

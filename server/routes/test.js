@@ -6,7 +6,7 @@ var database = require("../database/database.js");
 router.get("/", function(req, res, next) {
     database.executeQuery("Select * From test;").then(value => {res.json(value);});
 
-    //console.log(response);
+
 });
 
 //adds new row to test table;
