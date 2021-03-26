@@ -73,3 +73,46 @@
 .header-button:active {
   transform: translateY(4px);
 }
+
+
+.footer{
+  background-color: #78B244;
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.footer-left{
+  width:38%;
+  color: White;
+  font-size: 23px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.footer-right{
+  width:38%;
+  color: White;
+  font-size: 14px;
+  text-align: left;
+  text-decoration-line: underline;
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-icon{
+  margin-left: 10px;
+  cursor:pointer;
+}
+
+.footer-copyright{
+  position: absolute;
+  right: 5px;
+  bottom: 2px;
+  color: White;
+  font-size: 12px;
+}

@@ -3,6 +3,8 @@ import logo from './resources/noBngLogo.svg';
 import './App.css';
 import LoginPage from './components/LoginPage';
 import Header from './components/Header.js'
+import Footer from './components/Footer.js'
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -79,7 +81,7 @@ class App extends Component{
             </Switch>
           </div>
         </Router>
-        <p> footer goes here </p>
+        <Footer />
       </div>
     );
   }
