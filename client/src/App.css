@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  position: relative;
+  min-height: 100vh;
 }
 
 .navbar{
@@ -82,7 +84,8 @@
   justify-content: space-between;
   padding: 20px 0px;
   margin-top: 20px;
-  position: relative;
+  position:absolute;
+  bottom: 0;
 }
 
 .footer-left{
