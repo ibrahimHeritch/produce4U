@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import '../App.css';
+
 
 
 class PostProductPage extends Component {
@@ -28,6 +30,8 @@ class PostProductPage extends Component {
 
     render() {
         return (
+            <div className="App">
+            <p className="App-intro">Edit components/PostProductPage.js to change</p>
 
             <form onSubmit={this.handleSubmit}>
                 <label> Product Title:
@@ -105,7 +109,7 @@ class PostProductPage extends Component {
                 <button>Submit</button>
             </form>
 
-           // <p className="App-intro">Edit components/PostProductPage.js to change</p>
+            </div>
 
         );
     }
