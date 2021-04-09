@@ -6,6 +6,8 @@ import Header from './components/Header.js';
 import Footer from './components/Footer.js';
 import ProductPage from './components/ProductPage.js';
 import ReservePage from './components/ReservePage.js';
+import ConfirmationPage from './components/ConfirmationPage.js';
+
 
 import {
   BrowserRouter as Router,
@@ -74,6 +76,10 @@ class App extends Component{
 
               <Route path="/Product">
                   <ProductPage />
+              </Route>
+
+              <Route path="/Confirmation">
+                  <ConfirmationPage />
               </Route>
 
               <Route path="/">
