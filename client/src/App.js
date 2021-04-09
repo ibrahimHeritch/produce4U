@@ -3,6 +3,7 @@ import logo from './resources/noBngLogo.svg';
 import './App.css';
 import LoginPage from './components/LoginPage';
 import PostProductPage from './components/PostProductPage';
+import myproductsPage from './components/myproductsPage';
 import Header from './components/Header.js'
 import Footer from './components/Footer.js'
 
@@ -69,6 +70,9 @@ class App extends Component{
               </Route>
               <Route path="/PostProduct">
                             <PostProductPage />
+              </Route>
+              <Route path="/MyProduct">
+                            <myproductsPage />
               </Route>
               <Route path="/">
 
