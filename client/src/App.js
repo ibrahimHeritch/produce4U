@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import logo from './resources/noBngLogo.svg';
 import './App.css';
 import LoginPage from './components/LoginPage';
+import PostProductPage from './components/PostProductPage';
 import Header from './components/Header.js'
 import Footer from './components/Footer.js'
 
@@ -65,6 +66,9 @@ class App extends Component{
             <Switch>
               <Route path="/Login">
                 <LoginPage />
+              </Route>
+              <Route path="/PostProduct">
+                            <PostProductPage />
               </Route>
               <Route path="/">
 
