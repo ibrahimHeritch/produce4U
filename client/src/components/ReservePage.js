@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import Datetime from "react-datetime";
 import "react-datetime/css/react-datetime.css";
 import moment from 'moment';
+import '../styles/reservation.css';
+
 
 
 

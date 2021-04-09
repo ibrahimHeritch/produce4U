@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import '../styles/product.css';
 
 
 class ProductPage extends Component{
