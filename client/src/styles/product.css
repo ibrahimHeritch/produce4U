@@ -24,6 +24,10 @@
   max-width: 350px;
 }
 
+.product-producer{
+  max-width: 130px;
+}
+
 .product-title{
   font-weight: bold;
   font-size: 19px;
@@ -36,15 +40,6 @@
   margin: 6%;
 }
 
-.product-by{
-  background: #78B244;
-  border-radius: 15px;
-  color: white;
-  font-size: 14px;
-  margin-left: 25%;
-  margin-right:25%;
-  padding: 3px;
-}
 
 .product-left{
    margin: 10px;

@@ -128,7 +128,7 @@ class ReservePage extends Component{
                 </label>
           </div>
           <a href="/confirmation">
-             <button className="produce-button">
+             <button className="produce4U-green-button">
                 Confirm Pick up
              </button>
           </a>

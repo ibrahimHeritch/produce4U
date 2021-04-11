@@ -1,0 +1,50 @@
+.table{
+  display: flex;
+  justify-content:space-around;
+  margin: auto;
+  margin-top: 20px;
+
+  border: 1px solid #E5E5E5;
+}
+
+.table-header{
+  border-radius: 10px;
+}
+
+.table-row{
+  border-radius: 33px;
+
+}
+
+.table-row-product{
+    text-decoration: underline;
+    cursor:pointer;
+}
+
+.table-header-item{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+
+.table-actions{
+  display: flex;
+  justify-content: space-around;
+}
+
+.table-edit{
+  padding: 5px 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.table-delete{
+  padding: 5px 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.myReservations{
+  margin-top: 50px;
+  margin-bottom: 100px;
+}

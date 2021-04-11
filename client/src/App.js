@@ -7,7 +7,7 @@ import Footer from './components/Footer.js';
 import ProductPage from './components/ProductPage.js';
 import ReservePage from './components/ReservePage.js';
 import ConfirmationPage from './components/ConfirmationPage.js';
-
+import MyReservationsPage from './components/MyReservationsPage.js'
 
 import {
   BrowserRouter as Router,
@@ -62,7 +62,7 @@ class App extends Component{
       <div className="App">
         <Header/>
         <Router>
-          <div style={{paddingBottom:"180px", paddingTop:"50px"}}>
+          <div style={{minHeight:"90vh", paddingBottom:"180px", paddingTop:"50px"}}>
 
 
             <Switch>
@@ -80,6 +80,10 @@ class App extends Component{
 
               <Route path="/Confirmation">
                   <ConfirmationPage />
+              </Route>
+
+              <Route path="/myReservations">
+                  <MyReservationsPage />
               </Route>
 
               <Route path="/">

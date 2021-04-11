@@ -11,9 +11,9 @@ class ProductPage extends Component{
               <div className=" product-info ">
                   <p className="product-title">Fresh Organic Strawberries</p>
                   <p className="product-describtion">These Strawberries are feash and organic. They taste mostly like Strawberries. Which is not that surprising. Anyway please buy my strawberries. Cash Only. IRS not welcome</p>
-                  <p className=" product-by">
+                  <div className=" produce4U-producer product-producer">
                     By Perdu Farms
-                  </p>
+                  </div>
                   <div>
                     <p> 22 miles away </p>
                     <p> $ 3.50 per Oz. </p>
@@ -28,7 +28,7 @@ class ProductPage extends Component{
               </div>
 
               <a href="/reserve">
-                 <button className="produce-button">
+                 <button className="produce4U-green-button">
                     Schedule Pick up
                  </button>
               </a>

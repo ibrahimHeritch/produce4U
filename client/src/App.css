@@ -4,7 +4,7 @@
   min-height: 100vh;
 }
 
-.produce-button{
+.produce4U-green-button{
   color: white;
   margin-top:20px;
   background-color: #78B244;
@@ -16,5 +16,46 @@
   padding: 10px 17px;
   outline: none;
   border: none;
+  cursor: pointer;
+}
+
+.produce4U-red-button{
+  color: white;
+  margin-top:20px;
+  background-color: #EB5D3A;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 28px;
+  border-radius: 50px;
+  padding: 10px 17px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+
+.produce4U-tile{
+  border: 4px solid #E5E5E5;
+  border-radius: 33px;
+  background-color: white;
+}
+
+.produce4U-greentext{
+    color:#78B244;
+}
+
+.produce4U-bluetext{
+    color:#508EC8;
+}
+
+.produce4U-producer{
+  background: #78B244;
+  border-radius: 15px;
+  color: white;
+  font-size: 14px;
+  margin: auto;
+  margin-top: 15px;
+  padding: 3px;
   cursor: pointer;
 }
