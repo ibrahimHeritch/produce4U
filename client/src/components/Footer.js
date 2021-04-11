@@ -3,6 +3,7 @@ import logo from '../resources/footerLogo.svg';
 import insta from '../resources/Icons/insta.svg'
 import twitter from '../resources/Icons/twitter.svg'
 import youtube from '../resources/Icons/youtube.svg'
+import '../styles/footer.css';
 //import insta from '../resources/Icons/insta.svg'
 
 class Footer extends Component{

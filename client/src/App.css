@@ -4,79 +4,38 @@
   min-height: 100vh;
 }
 
-.navbar{
-  background-color: #78B244;
-  height: 65px;
-  width:100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.header-right{
-  width:33%;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.header-left{
-  width:33%;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.header-item{
-  color:white;
-  margin-left:22px;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 28px;
-  text-align: center;
-  cursor: pointer;
-  text-decoration-line: none;
-}
-
-.header-item:hover{
-  text-decoration-line: underline !important;
-}
-
-.header-center{
+.produce4U-green-button{
   color: white;
-  width:33%;
-  display: flex;
-  justify-content: center;
-}
-
-.header-logo{
-  position: absolute;
-  top: -53px;
-  height: 260px;
-}
-
-.header-button{
-  color: white;
-  margin-left:22px;
-  margin-right:22px;
-  margin:11px;
+  margin-top:20px;
   background-color: #78B244;
-  border: 4px solid #FFFFFF;
   text-align: center;
   text-decoration: none;
   font-size: 18px;
   line-height: 28px;
   border-radius: 50px;
-  padding: 2px 12px;
-  font-weight: bold;
+  padding: 10px 17px;
   outline: none;
+  border: none;
   cursor: pointer;
-
 }
 
-.header-button:active {
-  transform: translateY(4px);
+.produce4U-red-button{
+  color: white;
+  margin-top:20px;
+  background-color: #EB5D3A;
+  text-align: center;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 28px;
+  border-radius: 50px;
+  padding: 10px 17px;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 
 
+<<<<<<< HEAD
 .footer{
   background-color: #78B244;
   width:100%;
@@ -94,28 +53,29 @@
   font-size: 23px;
   font-weight: bold;
   margin-top: 20px;
+=======
+.produce4U-tile{
+  border: 4px solid #E5E5E5;
+  border-radius: 33px;
+  background-color: white;
+>>>>>>> reserveProduct
 }
 
-.footer-right{
-  width:38%;
-  color: White;
+.produce4U-greentext{
+    color:#78B244;
+}
+
+.produce4U-bluetext{
+    color:#508EC8;
+}
+
+.produce4U-producer{
+  background: #78B244;
+  border-radius: 15px;
+  color: white;
   font-size: 14px;
-  text-align: left;
-  text-decoration-line: underline;
-  margin-top: 40px;
-  display: flex;
-  justify-content: center;
-}
-
-.footer-icon{
-  margin-left: 10px;
-  cursor:pointer;
-}
-
-.footer-copyright{
-  position: absolute;
-  right: 5px;
-  bottom: 2px;
-  color: White;
-  font-size: 12px;
+  margin: auto;
+  margin-top: 15px;
+  padding: 3px;
+  cursor: pointer;
 }

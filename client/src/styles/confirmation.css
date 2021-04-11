@@ -1,0 +1,14 @@
+.confirmation{
+  margin-top: 50px;
+  margin-bottom: 100px;
+  margin-left: 50px;
+  margin-right: 50px;
+  font-size: 34px;
+}
+
+.confirmation-page-buttons{
+    display: flex;
+    justify-content: space-around;
+    width: 500px;
+    margin: auto;
+}

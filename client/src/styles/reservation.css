@@ -1,0 +1,114 @@
+.reservation-step{
+    margin: 0 auto;
+    max-width: 1000px;
+    border: 4px solid #E5E5E5;
+    border-radius: 33px;
+    color: black;
+    margin-bottom:20px;
+    text-align: left;
+    font-size: 20px;
+    padding: 20px;
+}
+
+.reservation-product{
+  color: #78B244;
+  font-weight: bold;
+
+}
+
+.reserve{
+  margin-top: 50px;
+  margin-bottom: 100px;
+  margin-left: 50px;
+  margin-right: 50px;
+
+}
+
+.reservation-datetime{
+  text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.rdtPicker td.rdtActive,
+.rdtPicker td.rdtActive:hover {
+  background-color: #78B244 !important;
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.rdtPicker td.rdtToday:before {
+  border-bottom: 7px solid #78B244 !important;
+}
+
+.available-times{
+  height: 250px;
+  overflow-y: scroll;
+  padding-right: 20px;
+}
+
+.time_inactive{
+  cursor: pointer;
+}
+
+
+.time_active{
+    color: #78B244 !important;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.quantity-form-item{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.quantity-form-input{
+  border-radius: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  outline: none;
+  border: 2px solid #E5E5E5;
+  width: 80px;
+  height: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 14px;
+  text-align: left;
+
+}
+
+.reservation-product-name{
+  color: #78B244;
+  font-weight: bold;
+  width:50%;
+
+}
+
+.quantity-line{
+  margin: 20px;
+  max-width: 100%;
+  height: 2px;
+  background-color: #E5E5E5;
+  border: none;
+}
+
+.totalPrice{
+  width: 50%;
+}
+
+.input-error{
+  border: 3px solid #eb5454;
+}
+
+.cancel-product-button{
+  background-color: #E5E5E5;
+  border-radius: 50%;
+  font-weight:bolder;
+  color: white;
+  border: 3px solid #E5E5E5;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  outline: none;
+  cursor: pointer;
+}

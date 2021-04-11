@@ -2,6 +2,15 @@ import React, {Component} from 'react';
 import logo from './resources/noBngLogo.svg';
 import './App.css';
 import LoginPage from './components/LoginPage';
+<<<<<<< HEAD
+=======
+import Header from './components/Header.js';
+import Footer from './components/Footer.js';
+import ProductPage from './components/ProductPage.js';
+import ReservePage from './components/ReservePage.js';
+import ConfirmationPage from './components/ConfirmationPage.js';
+import MyReservationsPage from './components/MyReservationsPage.js'
+>>>>>>> reserveProduct
 import PostProductPage from './components/PostProductPage';
 import myproductsPage from './components/myproductsPage';
 import Header from './components/Header.js'
@@ -59,9 +68,8 @@ class App extends Component{
     return(
       <div className="App">
         <Header/>
-        <img src={logo} />
         <Router>
-          <div>
+          <div style={{minHeight:"90vh", paddingBottom:"180px", paddingTop:"50px"}}>
 
 
             <Switch>
@@ -76,14 +84,32 @@ class App extends Component{
               </Route>
               <Route path="/">
 
-              <ul> {this.getTestValues()} </ul>
+              <Route path="/reserve">
+                <ReservePage />
+              </Route>
 
-              <form onSubmit = {this.handleSubmit}>
-                  <label for="fname">Test Database: </label>
-                  <input type="text" id="fname" name="fname"onChange={this.handleValueChange} />
-                  <input type="submit" value="Submit" />
-              </form>
+              <Route path="/Product">
+                  <ProductPage />
+              </Route>
 
+              <Route path="/Confirmation">
+                  <ConfirmationPage />
+              </Route>
+
+              <Route path="/myReservations">
+                  <MyReservationsPage />
+              </Route>
+
+              <Route path="/">
+              <div>
+                <ul> {this.getTestValues()} </ul>
+
+                <form onSubmit = {this.handleSubmit}>
+                    <label for="fname">Test Database: </label>
+                    <input type="text" id="fname" name="fname"onChange={this.handleValueChange} />
+                    <input type="submit" value="Submit" />
+                  </form>
+              </div>
               </Route>
 
             </Switch>
