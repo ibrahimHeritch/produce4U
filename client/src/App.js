@@ -2,19 +2,15 @@ import React, {Component} from 'react';
 import logo from './resources/noBngLogo.svg';
 import './App.css';
 import LoginPage from './components/LoginPage';
-<<<<<<< HEAD
-=======
 import Header from './components/Header.js';
 import Footer from './components/Footer.js';
 import ProductPage from './components/ProductPage.js';
 import ReservePage from './components/ReservePage.js';
 import ConfirmationPage from './components/ConfirmationPage.js';
 import MyReservationsPage from './components/MyReservationsPage.js'
->>>>>>> reserveProduct
 import PostProductPage from './components/PostProductPage';
 import myproductsPage from './components/myproductsPage';
-import Header from './components/Header.js'
-import Footer from './components/Footer.js'
+
 
 import {
   BrowserRouter as Router,
@@ -82,7 +78,6 @@ class App extends Component{
               <Route path="/MyProduct">
                             <myproductsPage />
               </Route>
-              <Route path="/">
 
               <Route path="/reserve">
                 <ReservePage />
@@ -102,6 +97,7 @@ class App extends Component{
 
               <Route path="/">
               <div>
+
                 <ul> {this.getTestValues()} </ul>
 
                 <form onSubmit = {this.handleSubmit}>
@@ -109,6 +105,16 @@ class App extends Component{
                     <input type="text" id="fname" name="fname"onChange={this.handleValueChange} />
                     <input type="submit" value="Submit" />
                   </form>
+
+                  <ul>
+                    <li><a href="/Login">Login</a></li>
+                    <li><a href="/PostProduct">Post Product</a></li>
+                    <li><a href="/MyProduct">My Products</a></li>
+                    <li><a href="/reserve">Reserve a Product</a></li>
+                    <li><a href="/Product">View a Product</a></li>
+                    <li><a href="/Confirmation">Confirmation Page</a></li>
+                    <li><a href="/myReservations">my Reservations</a></li>
+                  </ul>
               </div>
               </Route>
 
