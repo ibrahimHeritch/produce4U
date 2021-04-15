@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt');
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
+
+.produce4U-producer{
+    background: #78B244;
+    border-radius: 15px;
+    color: white;
+    font-size: 14px;
+    margin: auto;
+    margin-top: 15px;
+    padding: 3px;
+    cursor: pointer;
+}
+.produce4U-producerWelcome{
+    color: #78B244;
+    font-family: 'Rock Salt', cursive;
+    font-size: 42px;
+    margin: auto;
+    margin-top: 15px;
+    padding: 3px;
+}
+
+.produce4U-producerText{
+    float:right;
+    color: black;
+    font-family: Roboto;
+    font-size: 34px;
+    height: 531px;
+    width: 499px;
+    text-align: left;
+}
+
+.produce4U-producerName{
+    float: right;
+    color: #78B244;
+    font-size: 48px;
+    font-style: italic;
+    font-family: Roboto;
+    font-weight: bold;
+    text-align: center;
+}
+
+.produce4U-producerPhoto{
+    height: 531px;
+    width: 499px;
+    float:left;
+    padding: 5px;
+}
+
+.produce4U-producerLocation{
+    float: left;
+    color: #78B244;
+    font-size: 48px;
+    font-style: italic;
+    font-family: Roboto;
+    font-weight: bold;
+    text-align: left;
+}

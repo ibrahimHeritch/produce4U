@@ -10,6 +10,7 @@ import ConfirmationPage from './components/ConfirmationPage.js';
 import MyReservationsPage from './components/MyReservationsPage.js'
 import PostProductPage from './components/PostProductPage';
 import myproductsPage from './components/myproductsPage';
+import ProducerProfilePage from './components/ProducerProfilePage.js';
 
 
 import {
@@ -95,6 +96,10 @@ class App extends Component{
                   <MyReservationsPage />
               </Route>
 
+              <Route path="/ProducerProfilePage">
+                <ProducerProfilePage />
+              </Route>
+
               <Route path="/">
               <div>
 
@@ -114,6 +119,7 @@ class App extends Component{
                     <li><a href="/Product">View a Product</a></li>
                     <li><a href="/Confirmation">Confirmation Page</a></li>
                     <li><a href="/myReservations">my Reservations</a></li>
+                    <li><a href="/ProducerProfilePage">My Profile</a></li>
                   </ul>
               </div>
               </Route>
