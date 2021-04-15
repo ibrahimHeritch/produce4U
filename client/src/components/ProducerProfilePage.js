@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import '../ProducerProfile.css';
+import '../styles/ProducerProfile.css';
 
 
 class ProducerProfilePage extends Component{
@@ -24,15 +24,26 @@ class ProducerProfilePage extends Component{
 
         return(
 
-
+                <div>
             <div>
-                <p id="p1" className="produce4U-producerWelcome">Know<span className="produce4U-blacktext"> Your Farmer</span></p>
-                <p id = "p2" className="produce4U-producerWelcome"> Love<span className="produce4U-blacktext"> Your Food</span><br></br></p>
-                <img className="produce4U-producerPhoto" src={this.state.producer.image}></img><br></br>
-                <p id = "p3" className="produce4U-producerName">{this.state.producer.name} <br></br><br></br><span className="produce4U-producerText">{this.state.producer.description}</span></p>
-                <p id = "p4" className = "produce4U-producerLocation"> Location</p>
-
+            <h1 className="produce4U-producerWelcome">Know<span className="produce4U-blacktext"> Your Farmer</span></h1>
+             <h2 className="produce4U-producerWelcome"> Love<span className="produce4U-blacktext"> Your Food</span><br></br></h2>
             </div>
+
+
+
+         <div className="producer-info">
+                <img className="produce4U-producerPhoto" src={this.state.producer.image}/>
+                <p className="produce4U-producerName">{this.state.producer.name} <br></br><br></br><span className="produce4U-producerText">{this.state.producer.description}</span></p>
+         </div>
+
+                    <div className="location-info">
+                        <p className= "produce4U-producerLocation"> Location</p>
+                        <p className="produce4U-locationText">{this.state.producer.name} is located at {this.state.producer.location}</p>
+                    </div>
+
+
+</div>
 
 
 
