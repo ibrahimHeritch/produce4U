@@ -3,7 +3,7 @@ import '../styles/ProducerProfile.css';
 import GoogleMapReact from 'google-map-react';
 
 
-
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 class ProducerProfilePage extends Component{
     static defaultProps = {
