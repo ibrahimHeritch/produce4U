@@ -24,7 +24,13 @@ class PostProductPage extends Component {
 
 
     }
-
+    
+    componentDidMount() {
+        fetch("http://localhost:3000/postProduct")
+            .then(res => res.text())
+            .then(res => this.setState({ reservations: JSON.parse(res) }))
+            .catch(err => err);
+    }
 
     handleChange(event) {
         this.setState({
