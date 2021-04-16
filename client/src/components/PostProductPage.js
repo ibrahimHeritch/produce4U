@@ -21,6 +21,8 @@ class PostProductPage extends Component {
         this.handleChange = this.handleChange.bind(this)
 
 
+
+
     }
 
 
@@ -28,6 +30,10 @@ class PostProductPage extends Component {
         this.setState({
             [event.target.name]: event.target.value
         })
+    }
+
+    handleChange(event) {
+        this.setState({ textAreaValue: event.target.value });
     }
 
     render() {
@@ -56,9 +62,12 @@ class PostProductPage extends Component {
                     <label className="post-info"> Description:
                     <br />
                     <textarea
-                    value={"Description of your product"}
-                            onChange={this.handleChange}
-                            className="post-border"
+                                value={this.state.textAreaValue}
+                                onChange={this.handleChange}
+                                rows={5}
+                                cols={5}
+                                placeholder="Descripe Your Product"
+                                className="post-border"
                     />
                     </label>
                     <br />
