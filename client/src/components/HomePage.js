@@ -21,21 +21,19 @@ class HomePage extends Component{
        distance: 30,
        stars: 3.5,
        producer: "Perdu Farms",
-       dir: "left"
       },
       {imageSrc: "https://www.arabind.com/app/f/m/e/pimage/r_0/A108885/62104/FRESH@1%20500g%20SEA%20BASS.JPG",
        name: "Fresh Fish",
        price: 5.5,
-       pricingType: " Each",
+       pricingType: "Each",
        distance: 55,
        stars: 5,
        producer: "Farma Fish",
-       dir: "right"
       },
       {imageSrc: "https://previews.123rf.com/images/andreadonetti/andreadonetti1209/andreadonetti120900057/15471596-a-glass-jar-of-fresh-healthy-golden-honey-being-dispensed-with-a-metal-dipper-or-drizzler.jpg",
        name: "Golden Honey",
        price: 45.5,
-       pricingType: " per Oz",
+       pricingType: "per Oz",
        distance: 23,
        stars: 5,
        producer:"Buzn'BeeZ"
@@ -43,7 +41,7 @@ class HomePage extends Component{
       {imageSrc: "https://image.sciencenordic.com/1440035.jpg?imageId=1440035&panow=0&panoh=0&panox=0&panoy=0&heightw=0&heighth=0&heightx=0&heighty=0&width=1200&height=630",
        name: "Organic Corn",
        price: 1.5,
-       pricingType: " per Lb",
+       pricingType: "per Lb",
        distance: 30,
        stars: 3.5,
        producer: "Perdu Farms"
@@ -51,7 +49,7 @@ class HomePage extends Component{
       {imageSrc: "https://www.arabind.com/app/f/m/e/pimage/r_0/A108885/62104/FRESH@1%20500g%20SEA%20BASS.JPG",
        name: "Fresh Fish",
        price: 5.5,
-       pricingType: " Each",
+       pricingType: "Each",
        distance: 55,
        stars: 5,
        producer: "Farma Fish"
@@ -59,7 +57,7 @@ class HomePage extends Component{
       {imageSrc: "https://previews.123rf.com/images/andreadonetti/andreadonetti1209/andreadonetti120900057/15471596-a-glass-jar-of-fresh-healthy-golden-honey-being-dispensed-with-a-metal-dipper-or-drizzler.jpg",
        name: "Golden Honey",
        price: 45.5,
-       pricingType: " per Oz",
+       pricingType: "per Oz",
        distance: 23,
        stars: 5,
        producer:"Buzn'BeeZ"

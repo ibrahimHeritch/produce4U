@@ -24,7 +24,7 @@ function ProduceCard(props){
     <br />
     <img src={props.product.imageSrc} style={image}/>
     <p>{props.product.name}</p>
-    <p>${props.product.price}{props.product.pricingType} </p>
+    <p>${props.product.price} {props.product.pricingType} </p>
     <p>{props.product.distance} miles away</p>
     <p>{props.product.stars}</p>
     <p>{props.product.producer}</p>
