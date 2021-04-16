@@ -125,7 +125,7 @@ class PostProductPage extends Component {
                     </label>
                     <br />
 
-                    <input type="file" onChange={this.fileSelectedHandler} />
+                    <input type="file" onChange={this.fileSelectedHandler} className="produce4U-font"/>
                     <br />
                         <button className="produce4U-green-button">Submit</button>
                         </section>
