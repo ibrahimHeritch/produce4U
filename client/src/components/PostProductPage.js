@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
+import '../styles/PostProductPage.css';
 
 
 
@@ -19,6 +20,7 @@ class PostProductPage extends Component {
         }
         this.handleChange = this.handleChange.bind(this)
 
+
     }
 
 
@@ -31,33 +33,42 @@ class PostProductPage extends Component {
     render() {
         return (
             <div className="App">
-            <p className="App-intro">Edit components/PostProductPage.js to change</p>
+                <form onSubmit={this.handleSubmit}>
+                    <section className="post-out-border">
+                    <label className="post-top">Post Your Product</label>
+                    <br />
+                    <br />
+                    <br />
 
-            <form onSubmit={this.handleSubmit}>
-                <label> Product Title:
+                    <label className="post-info"> Product Title:
                     <br />
                     <input
                     type="text"
                     value={this.state.productTitle}
                     name="productTitle"
                     placeholder="Product Title"
-                    onChange={this.handleChange}
+                            onChange={this.handleChange}
+                            className="post-border"
                     />
-                </label>
-                <br />
-                <label> Description:
+                    </label>
+                    <br />
+
+                    <label className="post-info"> Description:
                     <br />
                     <textarea
                     value={"Description of your product"}
-                    onChange={this.handleChange}
+                            onChange={this.handleChange}
+                            className="post-border"
                     />
-                </label>
-                <br />
-                <label>Select a Product Category:</label>
-                <br />
-                <select
-                    value={this.state.selectProductCategory}
-                    onChange={this.handleChange}
+                    </label>
+                    <br />
+
+                    <label className="post-info">Select a Product Category:</label>
+                    <br />
+                     <select
+                        value={this.state.selectProductCategory}
+                        onChange={this.handleChange}
+                        className="post-border"
                     name="selectProductCategory"
                 >
                     <option value="allProduct">All Product</option>
@@ -66,48 +77,59 @@ class PostProductPage extends Component {
                     <option value="bread">Bread</option>
                     <option value="juices">Juices</option>
                     <option value="tea">Tea</option>
-                </select>
-                <br />
-                <label>Product Price:
+
+                     </select>
+                    <br />
+
+                    <label className="post-info">Product Price:
                     <br />
                     <input
                     type="text"
                     name="productPrice"
-                    placeholder="Product Price"
+                            placeholder="Product Price"
+                            className="post-border"
                     onChange={this.handleChange} />
-                </label>
-                <br />
-                <label>Quantity:
+                    </label>
+                    <br />
+
+                    <label className="post-info">Quantity:
                     <br />
                     <input
                     type="text"
                     name="quantity"
-                    placeholder="Quantity"
+                            placeholder="Quantity"
+                            className="post-border"
                         onChange={this.handleChange} />
-                </label>
-                <br />
-                <label>Location:
+                    </label>
+                    <br />
+
+                    <label className="post-info">Location:
                     <br />
                     <input
                     type="text"
                     name="location"
-                    placeholder="Location"
+                            placeholder="Location"
+                            className="post-border"
                     onChange={this.handleChange} />
-                </label>
-                <br />
-                <label>Phone:
+                    </label>
+                    <br />
+
+                    <label className="post-info">Phone:
                     <br />
                     <input
                     type="text"
                     name="phone"
-                    placeholder="Phone"
+                            placeholder="Phone"
+                            className="post-border"
                     onChange={this.handleChange} />
-                </label>
-                <br />
-                <input type="file" onChange={this.fileSelectedHandler} />
-                <br />
-                <button>Submit</button>
-            </form>
+                    </label>
+                    <br />
+
+                    <input type="file" onChange={this.fileSelectedHandler} className="produce4U-font"/>
+                    <br />
+                        <button className="produce4U-green-button">Submit</button>
+                        </section>
+                </form>
 
             </div>
 
