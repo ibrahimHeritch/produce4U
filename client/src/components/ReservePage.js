@@ -6,16 +6,18 @@ import '../styles/reservation.css';
 
 
 
-
 class ReservePage extends Component{
 
   constructor(props){
     super(props);
     this.state = {times: ["8:00 AM","8:15 AM","9:30 AM","9:45 AM","2:00 PM","2:15 PM","2:30 PM","2:45 PM","3:15 PM","4:00 PM"],
-                  selectedTime: -1,
-                  selectedProducts: [{name: "Fresh Organic Strawberries", price: 3.50, quantity: 0},{name: "Hybrid Corn", price: 2.60, quamtity:0}],
+                  pickupDate:null,
+                  selectedTime: 0,
+                  selectedProducts: [{name: "Fresh Organic Strawberries", price: 3.50, quantity: 0, total:0},{name: "Hybrid Corn", price: 2.60, quantity:0,total:0}],
                   error: [false,false],
                   };
+    this.confirmReservation = this.confirmReservation.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
   }
 
   getTimes(){
@@ -75,6 +77,30 @@ class ReservePage extends Component{
     );
   }
 
+  confirmReservation(){
+    this.state.selectedProducts.forEach((item, i) => {
+      item.total = item.quantity * item.price
+      item.date = this.state.pickupDate +' '+this.state.times[this.state.selectedTime]
+      if(item.total > 0){
+        fetch("http://localhost:9000/reservation", { method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(item)
+          }).then(function(response) {
+            console.log(response)
+            return response.json();
+          });
+      }
+
+    });
+  }
+
+    handleDateChange(mnt){
+      this.setState({pickupDate : mnt.toISOString().split('T').shift()})
+
+
+    }
+
+
   render() {
     var yesterday = moment().subtract( 1, 'day' );
     var valid = function( current ){
@@ -86,6 +112,7 @@ class ReservePage extends Component{
     return(
         <div className="reserve">
           <div className=" reservation-step ">
+
                 <p>
                 <span>Choose a convenient time to pick-up your</span>
                  <span className="reservation-product"> Fresh Organic Strawberries</span>
@@ -94,7 +121,7 @@ class ReservePage extends Component{
                 <div className="reservation-datetime">
                   <div>
                     <p>Date:</p>
-                    <Datetime input={false} timeFormat={false} isValidDate={ valid }/>
+                    <Datetime input={false} timeFormat={false} isValidDate={ valid } onChange={this.handleDateChange}/>
                   </div>
                   <div width="50%">
                     <p>Time:</p>
@@ -127,7 +154,7 @@ class ReservePage extends Component{
                           <p style={{color:"white"}}> Oz x $3.50 </p>
                 </label>
           </div>
-          <a href="/confirmation">
+          <a onClick={this.confirmReservation} href="/Confirmation" >
              <button className="produce4U-green-button">
                 Confirm Pick up
              </button>

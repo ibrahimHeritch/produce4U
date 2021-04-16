@@ -31,21 +31,26 @@ class MyReservationsPage extends Component{
 
                   ],
                   header: ["Producer","Quantity","Total","Pick Up Time","Status","Actions"],
-                  widths: [200,100,50,50,150,80,190]
+                  widths: [200,100,60,50,160,80,190]
     };
 
 
   }
-
+  componentDidMount(){
+    fetch("http://localhost:9000/reservation")
+      .then(res => res.text())
+      .then(res => this.setState({reservations: JSON.parse(res)}))
+      .catch(err => err);
+  }
   getReservations(){
     return(
       this.state.reservations.map((item)=>(this.getRow(
-              [<a href="/product"><p className=" table-row-product produce4U-greentext ">{item.product}</p></a>,
-               <p className="produce4U-producer">{item.producer}</p>,
+              [<a href="/product"><p className=" table-row-product produce4U-greentext ">{item.product_name}</p></a>,
+               <p className="produce4U-producer">{item.producer_name}</p>,
                <p>{item.quantity}</p>,
-               <p>{item.total}</p>,
-               <p>{item.date}</p>,
-               <p>{item.status}</p>,
+               <p>${parseFloat(item.price).toFixed(2)}</p>,
+               <p>{item.niceDate}</p>,
+               <p>{item.order_status}</p>,
                <div className="table-actions">
                     <a href="/confirmation"><p className="produce4U-bluetext table-row-product">View</p></a>
                     <a href="/reserve"><button className="produce4U-green-button table-edit">Edit</button></a>

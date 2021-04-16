@@ -2,6 +2,7 @@
   text-align: center;
   position: relative;
   min-height: 100vh;
+  min-width: 900px !important;
 }
 
 .produce4U-green-button{

@@ -57,12 +57,14 @@ const tables = ["test(id int NOT NULL AUTO_INCREMENT, value varchar(20), PRIMARY
                 )`,
                 `reservation(
                   id INT NOT NULL AUTO_INCREMENT,
+                  product_name VARCHAR(180) NOT NULL,
+                  producer_name VARCHAR(100) NOT NULL,
                   pickup_datetime DATETIME NOT NULL,
                   reserver VARCHAR(26) NOT NULL,
                   order_status ENUM('INCOMPLETE','CONFIRMED','COMPLETED','CANCELLED') NOT NULL,
                   item_id INT NOT NULL,
-                  quantity DECIMAL NOT NULL,
-                  price DECIMAL NOT NULL,
+                  quantity DECIMAL(10,2) NOT NULL,
+                  price DECIMAL(10,2) NOT NULL,
                   PRIMARY KEY (id),
                   FOREIGN KEY (item_id) REFERENCES product(id),
                   FOREIGN KEY (reserver) REFERENCES user(username)
