@@ -8,8 +8,9 @@ import ProductPage from './components/ProductPage.js';
 import ReservePage from './components/ReservePage.js';
 import ConfirmationPage from './components/ConfirmationPage.js';
 import MyReservationsPage from './components/MyReservationsPage.js'
-import PostProductPage from './components/PostProductPage';
-import myproductsPage from './components/myproductsPage';
+import PostProductPage from './components/PostProductPage.js';
+import myproductsPage from './components/myproductsPage.js'
+import HomePage from './components/HomePage.js';
 
 
 import {
@@ -69,6 +70,9 @@ class App extends Component{
 
 
             <Switch>
+              <Route path ="/home">
+                <HomePage />
+              </Route>
               <Route path="/Login">
                 <LoginPage />
               </Route>
@@ -107,6 +111,7 @@ class App extends Component{
                   </form>
 
                   <ul>
+                    <li><a href="/home">Home</a></li>
                     <li><a href="/Login">Login</a></li>
                     <li><a href="/PostProduct">Post Product</a></li>
                     <li><a href="/MyProduct">My Products</a></li>
