@@ -1,20 +1,12 @@
 import React, {Component} from 'react';
 import '../styles/ProducerProfile.css';
-import GoogleMapReact from "google-map-react";
+import MapCreator from '../components/MapCreator.js'
 
-
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 
 
 class ProducerProfilePage extends Component{
-    static defaultProps = {
-        center: {
-            lat: 59.95,
-            lng: 30.33
-        },
-        zoom: 11
-    };
+
     constructor(props){
         super(props);
         this.state = {
@@ -52,22 +44,12 @@ class ProducerProfilePage extends Component{
                         <p className= "produce4U-producerLocation"> Location</p>
                         <p className="produce4U-locationText">{this.state.producer.name} is located at {this.state.producer.location}</p>
                     </div>
-                    <div style={{ height: '100vh', width: '100%' }}>
-                        <GoogleMapReact
-                            bootstrapURLKeys={{ key: AIzaSyBDEqcsP_eggZpfR5pJHumFVtlAYmNuiTQ}}
-                            defaultCenter={this.state.producer.longitude}
-                            defaultZoom={this.state.producer.latitude}
-                        >
-                            <AnyReactComponent
-                                lat={this.state.producer.latitude}
-                                lng={this.state.producer.longitude}
-                                text={this.state.producer.name}
-                            />
-                        </GoogleMapReact>
+                    <div style={{width: '100%', height: '400px'}}>
+                        <MapCreator/>
                     </div>
 
 
-</div>
+                </div>
 
 
 
@@ -76,6 +58,8 @@ class ProducerProfilePage extends Component{
 
         );
     }
+
+
 }
 
 
