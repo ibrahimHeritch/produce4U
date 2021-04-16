@@ -9,6 +9,14 @@ const divStyle = {
   color:"#78B244",
   padding:"20px"
 }
+
+const image = {
+  borderRadius: "60%",
+  height: "auto",
+  width: "auto",
+  maxWidth: "150px",
+  maxHeight: "150px"
+}
 function ProduceCard(props){
   console.log(props)
   return (
