@@ -55,6 +55,7 @@
     font-family: Roboto;
     font-weight: bold;
     text-align: left;
+    margin:auto;
 }
 
 .producer-info{
@@ -69,8 +70,10 @@
 }
 
 .location-info{
-    justify-content: space-evenly;
     margin-top: 10px;
+    height: 800px;
+    width: 700px;
+    padding: 20px;
     margin-bottom: 50px;
     margin-left: 25px;
     margin-right: 10px;
@@ -81,10 +84,8 @@
 
 .produce4U-locationText{
     color: black;
-    height: 914px;
-    width: 658px;
+    margin: auto;
     font-family: Roboto;
     font-size: 34px;
     text-align: left;
-    float:left;
 }

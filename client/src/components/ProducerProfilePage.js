@@ -10,8 +10,8 @@ const AnyReactComponent = ({ text }) => <div>{text}</div>;
 class ProducerProfilePage extends Component{
     static defaultProps = {
         center: {
-            lat: 59.95,
-            lng: 30.33
+            lat: 35.308076,
+            lng: -80.733726,
         },
         zoom: 11
     };
@@ -51,19 +51,20 @@ class ProducerProfilePage extends Component{
                     <div className="location-info">
                         <p className= "produce4U-producerLocation"> Location</p>
                         <p className="produce4U-locationText">{this.state.producer.name} is located at {this.state.producer.location}</p>
-                    </div>
-                    <div style={{ height: '100vh', width: '100%' }}>
-                        <GoogleMapReact
-                            bootstrapURLKeys={{ key: AIzaSyBDEqcsP_eggZpfR5pJHumFVtlAYmNuiTQ}}
-                            defaultCenter={this.state.producer.longitude}
-                            defaultZoom={this.state.producer.latitude}
-                        >
-                            <AnyReactComponent
-                                lat={this.state.producer.latitude}
-                                lng={this.state.producer.longitude}
-                                text={this.state.producer.name}
-                            />
-                        </GoogleMapReact>
+                        <div style={{ height: '600px', width: '90%', margin:"auto"}}>
+                          <GoogleMapReact
+                              bootstrapURLKeys={{ key: 'AIzaSyDiAVMs1DJpi5C8bkFHY2WZ6DTDq7K0pU0'}}
+                              defaultCenter={this.props.center}
+                              defaultZoom={this.props.zoom}
+                              >
+                              <AnyReactComponent
+                                  lat={this.state.producer.latitude}
+                                  lng={this.state.producer.longitude}
+                                  text={this.state.producer.name}
+                                />
+                            </GoogleMapReact>
+                          </div>
+
                     </div>
 
 
