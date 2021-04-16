@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import '../styles/ProducerProfile.css';
 import GoogleMapReact from 'google-map-react';
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
-
 
 
 
