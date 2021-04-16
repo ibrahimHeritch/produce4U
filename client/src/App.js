@@ -8,15 +8,10 @@ import ProductPage from './components/ProductPage.js';
 import ReservePage from './components/ReservePage.js';
 import ConfirmationPage from './components/ConfirmationPage.js';
 import MyReservationsPage from './components/MyReservationsPage.js'
-<<<<<<< HEAD
 import PostProductPage from './components/PostProductPage.js';
 import myproductsPage from './components/myproductsPage.js'
 import HomePage from './components/HomePage.js';
-=======
-import PostProductPage from './components/PostProductPage';
-import myproductsPage from './components/myproductsPage';
 import ProducerProfilePage from './components/ProducerProfilePage.js';
->>>>>>> 562ffc16c8513eb7c5b4e2adb60a75369e1906e8
 
 
 import {

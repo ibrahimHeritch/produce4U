@@ -70,7 +70,7 @@ class HomePage extends Component{
 
   render() {
     return(
-      <div>
+      <div style={{marginTop: "-50px"}}>
         <img src = {image} alt="freshproduce" style ={{width: "100%",height: "100%"}} />
         <br /><br />
         <Search />Browse Available Produce{'   '}<Schedule />Schedule a pick up time{'   '}<Commute />Pick up your Produce{'   '}<Eat />Enjoy your fresh local Produce
