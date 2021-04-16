@@ -2,6 +2,7 @@
   text-align: center;
   position: relative;
   min-height: 100vh;
+  min-width: 900px !important;
 }
 
 .produce4U-green-button{
@@ -52,4 +53,45 @@
 
 .produce4U-blacktext{
   color:black;
+}
+
+.produce4U-font {
+    font-size: 20px;
+    font-family: Roboto;
+}
+
+.produce4U-roundImage{
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+
+}
+
+.produce4U-form-input{
+  border-radius: 50px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  outline: none;
+  border: 2px solid #E5E5E5;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 14px;
+  text-align: left;
+
+}
+
+.homepage-dropdown-input{
+  border-radius: 50px;
+  color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  outline: none;
+  background-color: #78B244;
+  border: 2px solid #78B244;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 14px;
+  text-align: left;
+
 }
