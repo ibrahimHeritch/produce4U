@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt');
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
+
+.produce4U-producer{
+    background: #78B244;
+    border-radius: 15px;
+    color: white;
+    font-size: 14px;
+    margin: auto;
+    margin-top: 15px;
+    padding: 3px;
+    cursor: pointer;
+}
+.produce4U-producerWelcome{
+    color: #78B244;
+    font-family: 'Rock Salt', cursive;
+    font-size: 42px;
+    margin: auto;
+    margin-top: 15px;
+    padding: 3px;
+}
+
+.produce4U-producerText{
+    float:right;
+    color: black;
+    font-family: Roboto;
+    font-size: 34px;
+    height: 531px;
+    width: 499px;
+    text-align: left;
+}
+
+.produce4U-producerName{
+    float: right;
+    color: #78B244;
+    font-size: 48px;
+    font-style: italic;
+    font-family: Roboto;
+    font-weight: bold;
+    text-align: center;
+}
+
+.produce4U-producerPhoto{
+    height: 531px;
+    width: 499px;
+    float:left;
+    padding: 10px;
+    padding-top: 50px;
+}
+
+.produce4U-producerLocation{
+    color: #78B244;
+    font-size: 48px;
+    font-style: italic;
+    font-family: Roboto;
+    font-weight: bold;
+    text-align: left;
+}
+
+.producer-info{
+    margin-top: 75px;
+    margin-bottom: 75px;
+    margin-left: 25px;
+    margin-right: 25px;
+    display: flex;
+    border-radius: 25px;
+    justify-content: space-evenly;
+    border: 4px solid #E5E5E5;
+}
+
+.location-info{
+    justify-content: space-evenly;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    margin-left: 25px;
+    margin-right: 10px;
+    border: 4px solid #E5E5E5;
+    border-radius: 25px;
+    float: left;
+}
+
+.produce4U-locationText{
+    color: black;
+    height: 914px;
+    width: 658px;
+    font-family: Roboto;
+    font-size: 34px;
+    text-align: left;
+    float:left;
+}
