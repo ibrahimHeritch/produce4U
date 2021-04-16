@@ -1,33 +1,27 @@
 import React from 'react'
-const image = {
-  borderRadius: "60%",
-  height: "auto",
-  width: "auto",
-  maxWidth: "150px",
-  maxHeight: "150px"
-}
+
 const divStyle = {
   margin: "auto",
-  borderWidth: "2px",
-  borderStyle: "solid",
-  borderColor: "gray",
-  borderRadius: "25px",
   width: "300px",
-  height: "360px",
+  height: "460px",
   float: "left",
-  margin: "50px"
+  margin: "50px",
+  color:"#78B244",
+  padding:"20px"
 }
 function ProduceCard(props){
   console.log(props)
   return (
-    <div style = {divStyle}>
+    <div className="produce4U-tile" style={divStyle}>
     <br />
-    <img src={props.product.imageSrc} style={image}/>
-    <p>{props.product.name}</p>
-    <p>${props.product.price}{props.product.pricingType} </p>
-    <p>{props.product.distance} miles away</p>
-    <p>{props.product.stars}</p>
-    <p>{props.product.producer}</p>
+    <img src={props.product.imageSrc} className="produce4U-roundImage"/>
+    <p className="product-title">{props.product.name}</p>
+    <div className="quantity-form-item">
+      <p>${props.product.price.toFixed(2)}{" "}{props.product.pricingType} </p>
+      <p>{props.product.distance} miles away</p>
+    </div>
+    <p>Stars: {props.product.stars}</p>
+    <p className="produce4U-producer product-producer">{props.product.producer}</p>
     </div>
   )
 }
