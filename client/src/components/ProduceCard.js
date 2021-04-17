@@ -4,7 +4,6 @@ const divStyle = {
   margin: "auto",
   width: "300px",
   height: "460px",
-  float: "left",
   margin: "50px",
   color:"#78B244",
   padding:"20px"
@@ -14,7 +13,7 @@ function ProduceCard(props){
   return (
     <div className="produce4U-tile" style={divStyle}>
     <br />
-    <img src={props.product.imageSrc} className="produce4U-roundImage"/>
+    <a href="/product"><img src={props.product.imageSrc} className="produce4U-roundImage"/></a>
     <p className="product-title">{props.product.name}</p>
     <div className="quantity-form-item">
       <p>${props.product.price.toFixed(2)}{" "}{props.product.pricingType} </p>

@@ -13,7 +13,7 @@ class ReservePage extends Component{
     this.state = {times: ["8:00 AM","8:15 AM","9:30 AM","9:45 AM","2:00 PM","2:15 PM","2:30 PM","2:45 PM","3:15 PM","4:00 PM"],
                   pickupDate:null,
                   selectedTime: 0,
-                  selectedProducts: [{name: "Fresh Organic Strawberries", price: 3.50, quantity: 0, total:0},{name: "Hybrid Corn", price: 2.60, quantity:0,total:0}],
+                  selectedProducts: [{name: "Fresh Organic Strawberries", price: 3.50, quantity: 0, total:0}],
                   error: [false,false],
                   };
     this.confirmReservation = this.confirmReservation.bind(this);

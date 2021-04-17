@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../styles/product.css';
 
-
+/////TODO: make this get information from database
 class ProductPage extends Component{
   render() {
     return(
@@ -12,9 +12,11 @@ class ProductPage extends Component{
               <div className=" product-info ">
                   <p className="product-title">Fresh Organic Strawberries</p>
                   <p className="product-describtion">These Strawberries are fresh and organic. They taste mostly like Strawberries. Which is not that surprising. Anyway please buy my strawberries. Cash Only. IRS not welcome</p>
+                  <a href="/ProducerProfilePage">
                   <div className=" produce4U-producer product-producer">
                     By Perdu Farms
                   </div>
+                  </a>
                   <div>
                     <p> 22 miles away </p>
                     <p> $ 3.50 per Oz. </p>

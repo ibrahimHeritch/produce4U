@@ -1,9 +1,9 @@
 const mysql = require('mysql');
 const util = require('util');
 const conn = mysql.createConnection({
-    host: "database-1.cwsrx6jlceko.us-east-1.rds.amazonaws.com",
-    user: "producedev",
-    password: "freshtomatoes"
+    host: "localhost",
+    user: "root",
+    password: "fresh_Tomatoes23"
 
 });
 
@@ -20,10 +20,12 @@ const tables = ["test(id int NOT NULL AUTO_INCREMENT, value varchar(20), PRIMARY
                 longitude DECIMAL(11, 7) DEFAULT NULL,
                 PRIMARY KEY (id)
                 )`,
-                `user(username VARCHAR(26) NOT NULL, password varchar(120) NOT NULL,
+                `user(
+                  username VARCHAR(26) NOT NULL,
                   first_name VARCHAR(40) NOT NULL,
                   last_name VARCHAR(40) NOT NULL,
                   email VARCHAR(100) NOT NULL,
+                  password BINARY(60) NOT NULL,
                   account_type ENUM ('USER','PRODUCER','ADMIN') NOT NULL,
                   profile_picture VARCHAR(100) DEFAULT NULL,
                   date_joined DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -84,7 +86,7 @@ class Database{
     for( x in tables){
         this.executeQuery("CREATE TABLE IF NOT EXISTS " + tables[x]+";");
     }
-    console.log(" Database Setup Completed");
+    console.log("Setting up Database");
 
   }
 
@@ -97,7 +99,21 @@ class Database{
 
     }catch (err){
       console.log(err);
+      return(err.sqlMessage);
     }
+  }
+
+  static async executeInsertQueries(qrys){
+    try {
+      for( var x in qrys){
+          await query(qrys[x]);
+      }
+
+    }catch (err){
+      console.log(err.sqlMessage);
+      return(err.sqlMessage);
+    }
+    return("ALL OK");
   }
 
 

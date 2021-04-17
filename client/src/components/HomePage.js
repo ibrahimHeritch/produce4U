@@ -13,7 +13,10 @@ class HomePage extends Component{
 
   constructor(props){
     super(props);
-    this.state = {product:[
+    this.handleClick = this.handleClick.bind(this)
+    this.getProduceCards = this.getProduceCards.bind(this)
+    ////TODO: have products come from database and not be hardcoded
+    this.state = {produce:[
       {imageSrc: "https://modernfarmer.com/wp-content/uploads/2018/07/how-to-grow-strawberries-1200x900.jpg",
        name: "Fresh Organic Strawberries",
        price: 3.6,
@@ -65,41 +68,43 @@ class HomePage extends Component{
       }
     ]};
   }
+  ////TODO: Filtering functionality
+  handleClick(event){
 
+  }
+////This function maps produce to the cards and returns a list of produce cards
+  getProduceCards(){
+    return this.state.produce.map(item => {return <ProduceCard product = {item} /> ;});
+
+  }
 
   render() {
-    return(
-      <div style={{marginTop: "-50px", marginBottom:"-100px"}}>
-        <img src = {image} alt="freshproduce" style ={{width: "100%",height: "600px",objectFit:"cover"}} />
-        <br /><br />
-        <Search />Browse Available Produce{'   '}<Schedule />Schedule a pick up time{'   '}<Commute />Pick up your Produce{'   '}<Eat />Enjoy your fresh local Produce
-        <br /><br />
-        <form ><input className="produce4U-form-input" type ='text' name ="search" placeholder="Search"/>{' '}<select className="homepage-dropdown-input" name="distance"><option value = "50">50 miles</option></select>{' '}<input className="produce4U-form-input" type ='text' name ="location" placeholder="Location"/></form>
-        <br />
-        <div>
-          <button type="button">All Products</button> {' '}
-          <button type="button">Vegetables</button> {' '}
-          <button type="button">Fruits</button> {' '}
-          <button type="button">Bread</button> {' '}
-          <button type="button">Juices</button> {' '}
-          <button type="button">Tea</button>
+      return(
+        <div style={{marginTop: "-50px", marginBottom:"-100px"}}>
+          <img src = {image} alt="freshproduce" style ={{width: "100%",height: "600px",objectFit:"cover"}} />
+          <br /><br />
+          <Search />Browse Available Produce{'   '}<Schedule />Schedule a pick up time{'   '}<Commute />Pick up your Produce{'   '}<Eat />Enjoy your fresh local Produce
+          <br /><br />
+          <form ><input className="produce4U-form-input" type ='text' name ="search" placeholder="Search"/>{' '}<select className="homepage-dropdown-input" name="distance"><option value = "50">50 miles</option></select>{' '}<input className="produce4U-form-input" type ='text' name ="location" placeholder="Location"/></form>
+          <br />
+          <div>
+            <button type="button" onClick={this.handleClick}>All Products</button> {' '}
+            <button type="button" onClick={this.handleClick}>Vegetables</button> {' '}
+            <button type="button" onClick={this.handleClick}>Fruits</button> {' '}
+            <button type="button" onClick={this.handleClick}>Bread</button> {' '}
+            <button type="button" onClick={this.handleClick}>Juices</button> {' '}
+            <button type="button" onClick={this.handleClick}>Tea</button>
+          </div>
+          <br />
+          <div style = {{ display: "grid", gridTemplateColumns: "400px 400px 400px", justifyContent:"space-evenly"}}>
+            {this.getProduceCards()}
+          </div>
+          <br />
+          <button className="produce4U-green-button"type="button">More</button>
         </div>
-        <br />
-        <div style = {{display: "inline-block"}}>
-        <ProduceCard product = {this.state.product[0]} />
-        <ProduceCard product = {this.state.product[1]} />
-        <ProduceCard product = {this.state.product[2]} />
-        </div>
-        <br />
-        <div style = {{display: "inline-block"}}>
-        <ProduceCard product = {this.state.product[3]} />
-        <ProduceCard product = {this.state.product[4]} />
-        <ProduceCard product = {this.state.product[5]} />
-        </div>
-        <br />
-        <button className="produce4U-green-button"type="button">More</button>
-      </div>
-    );
+      );
+
+
   }
 }
 

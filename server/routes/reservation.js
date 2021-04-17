@@ -1,15 +1,15 @@
 var express = require("express");
 var router = express.Router();
 var database = require("../database/database.js");
-
-//returns all rows in test table
+/////TODO: make it so that the user can only see their own reservations
+//gets products for myReservations page
 router.get("/", function(req, res, next) {
     database.executeQuery("Select *, DATE_FORMAT(pickup_datetime,'%d/%m/%Y %h:%i %p') AS niceDate From reservation ORDER BY pickup_datetime DESC;").then(value => {res.json(value);});
 
 
 });
 
-//adds new row to test table;
+//adds new reservation to my reservations page
 router.post("/", function(req, res, next) {
 
     //console.log("recived: "+req.body.name);

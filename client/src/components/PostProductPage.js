@@ -16,21 +16,26 @@ class PostProductPage extends Component {
             quantity: "",
             location: "",
             phone: "",
-            postPic: null
+            postPic: null,
+            product_owner: this.props.user.username
         }
         this.handleChange = this.handleChange.bind(this)
-
+        this.addProduct = this.addProduct.bind(this);
 
 
 
     }
-    
-    componentDidMount() {
-        fetch("http://localhost:3000/postProduct")
-            .then(res => res.text())
-            .then(res => this.setState({ reservations: JSON.parse(res) }))
-            .catch(err => err);
+/////TODO: more input validiation
+    addProduct(){
+          fetch("http://localhost:9000/postProduct", { method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(this.state)
+            }).then(function(response) {
+              console.log(response)
+              return response.json();
+            });
     }
+
 
     handleChange(event) {
         this.setState({
@@ -38,14 +43,12 @@ class PostProductPage extends Component {
         })
     }
 
-    handleChange(event) {
-        this.setState({ textAreaValue: event.target.value });
-    }
 
+//////////TODO: Remove location anf phone and replace it with date_harversted and pricing_type
     render() {
         return (
             <div className="App">
-                <form onSubmit={this.handleSubmit}>
+                <form action="http://localhost:3000/myProduct" onSubmit={this.addProduct}>
                     <section className="post-out-border">
                     <label className="post-top">Post Your Product</label>
                     <br />

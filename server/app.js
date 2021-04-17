@@ -8,6 +8,8 @@ var indexRouter = require('./routes/index');
 var addTestRouter = require('./routes/test');
 var reservationRouter = require('./routes/reservation')
 var postProductRouter = require('./routes/postProduct')
+var signupRouter = require('./routes/signup')
+var loginRouter = require('./routes/login')
 
 var cors = require("cors");
 
@@ -34,7 +36,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Add routes here
 app.use('/', indexRouter);
 app.use('/test', addTestRouter);
-
+app.use('/signup', signupRouter);
+app.use('/login', loginRouter);
 app.use('/reservation',reservationRouter);
 app.use('/postProduct', postProductRouter);
 

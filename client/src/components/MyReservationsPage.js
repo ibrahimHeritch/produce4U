@@ -6,42 +6,22 @@ class MyReservationsPage extends Component{
 
   constructor(props){
     super(props);
-    this.state = {reservations: [
-                          {product:"Apples",
-                           producer:"Credit Farms",
-                           quantity:"10 Lb.",
-                           total: "$50",
-                           date:"5/10/2021 11:00 AM",
-                           status:"Incomplete",
-                           },
-                           {product:"Fresh Organic Strawberries",
-                            producer:"Perdu Farms",
-                            quantity:"11 Oz.",
-                            total: "$4",
-                            date:"5/11/2021  1:30 PM",
-                            status:"Confirmed",
-                            },
-                            {product:"Hybrid Corn",
-                             producer:"CornRus",
-                             quantity:"12 Lb.",
-                             total: "$24",
-                             date:"3/11/2021 03:00 PM",
-                             status:"Completed",
-                             },
-
-                  ],
+    this.state = {reservations: [],
                   header: ["Producer","Quantity","Total","Pick Up Time","Status","Actions"],
                   widths: [200,100,60,50,160,80,190]
     };
 
 
   }
+
+///this method gets called and it populates the reservations array
   componentDidMount(){
     fetch("http://localhost:9000/reservation")
       .then(res => res.text())
       .then(res => this.setState({reservations: JSON.parse(res)}))
       .catch(err => err);
   }
+  
   getReservations(){
     return(
       this.state.reservations.map((item)=>(this.getRow(

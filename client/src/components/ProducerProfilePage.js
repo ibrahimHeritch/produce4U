@@ -6,6 +6,8 @@ import GoogleMapReact from 'google-map-react';
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 class ProducerProfilePage extends Component{
+  /////TODO: make this get information from database
+
     static defaultProps = {
         center: {
             lat: 35.308076,
@@ -28,7 +30,7 @@ class ProducerProfilePage extends Component{
         };
 
     }
-
+/////BUG: Label doesn't show 
     render() {
 
         return(
