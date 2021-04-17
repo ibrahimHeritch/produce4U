@@ -9,9 +9,10 @@ import ReservePage from './components/ReservePage.js';
 import ConfirmationPage from './components/ConfirmationPage.js';
 import MyReservationsPage from './components/MyReservationsPage.js'
 import PostProductPage from './components/PostProductPage.js';
-import myproductsPage from './components/myproductsPage.js'
+import MyproductsPage from './components/myproductsPage.js'
 import HomePage from './components/HomePage.js';
 import ProducerProfilePage from './components/ProducerProfilePage.js';
+import SignupPage from './components/Signup.js';
 
 
 import {
@@ -27,7 +28,7 @@ import {
 class App extends Component{
   constructor(props){
     super(props);
-    this.state = {apiResponse: ["test failed no API"], value: "" };
+    this.state = {apiResponse: ["test failed no API"], value: "", userAccount:JSON.parse(localStorage.getItem('user'))};
     this.handleValueChange = this.handleValueChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -65,46 +66,49 @@ class App extends Component{
   render() {
     return(
       <div className="App">
-        <Header/>
+        <Header user={this.state.userAccount}/>
         <Router>
           <div style={{minHeight:"90vh", paddingBottom:"180px", paddingTop:"50px"}}>
 
 
             <Switch>
               <Route path ="/home">
-                <HomePage />
+                <HomePage user={this.state.userAccount}/>
               </Route>
               <Route path="/Login">
-                <LoginPage />
+                <LoginPage user={this.state.userAccount} onLogin={(user)=>{this.setState({userAccount:user})}}/>
+              </Route>
+              <Route path="/Signup">
+                <SignupPage user={this.state.userAccount} onLogin={(user)=>{this.setState({userAccount:user})}}/>
               </Route>
               <Route path="/PostProduct">
-                            <PostProductPage />
+                            <PostProductPage user={this.state.userAccount}/>
               </Route>
               <Route path="/MyProduct">
-                            <myproductsPage />
+                            <MyproductsPage user={this.state.userAccount}/>
               </Route>
 
               <Route path="/reserve">
-                <ReservePage />
+                <ReservePage user={this.state.userAccount}/>
               </Route>
 
               <Route path="/Product">
-                  <ProductPage />
+                  <ProductPage user={this.state.userAccount}/>
               </Route>
 
               <Route path="/Confirmation">
-                  <ConfirmationPage />
+                  <ConfirmationPage user={this.state.userAccount}/>
               </Route>
 
               <Route path="/myReservations">
-                  <MyReservationsPage />
+                  <MyReservationsPage user={this.state.userAccount}/>
               </Route>
 
               <Route path="/ProducerProfilePage">
-                <ProducerProfilePage />
+                <ProducerProfilePage user={this.state.userAccount}/>
               </Route>
 
-              <Route path="/">
+              <Route path="/Debug">
               <div>
 
                 <ul> {this.getTestValues()} </ul>
@@ -127,6 +131,9 @@ class App extends Component{
                     <li><a href="/ProducerProfilePage">My Profile</a></li>
                   </ul>
               </div>
+              </Route>
+              <Route path="/">
+                <HomePage user={this.state.userAccount}/>
               </Route>
 
             </Switch>
