@@ -1,21 +1,19 @@
 import React, {Component} from 'react';
 import logo from '../resources/noTextLogo.svg';
 import '../App.css';
-
+import { Redirect } from 'react-router-dom';
 
 class LoginPage extends Component{
   constructor(props){
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    if(this.props.user != null){
-      localStorage.removeItem('user')
-      this.props.onLogin(null)
-    }
+
     this.state = {
         username:'',
         password:'',
         user : null,
+        error: "ALL OK"
     }
   }
 
@@ -28,11 +26,12 @@ class LoginPage extends Component{
     return fetch("http://localhost:9000/login?username=" +this.state.username+"&password="+this.state.password)
         .then(res => res.text())
         .then(res => this.setState({user:JSON.parse(res)}))
-        .then(res => JSON.parse(res) != null)
+        .then(res => this.state.user != null)
         .catch(err => err);
   }
 
   async handleSubmit(event){
+    event.preventDefault()
     if(this.isValidInput()){
       var isLoggedin = await this.tryLogin()
       if(isLoggedin){
@@ -40,11 +39,11 @@ class LoginPage extends Component{
         localStorage.setItem('user',JSON.stringify({username:this.state.user.username,type:this.state.user.account_type,token:null}))
         this.props.onLogin({username:this.state.user.username,type:this.state.user.account_type,token:null})
       }else{
-        event.preventDefault()
+        this.setState({error:"Username or Password Are worng"})
       }
     }else{
       //// TODO: Display a message to tell user what they did wrong
-      event.preventDefault()
+
     }
 
   }
@@ -55,21 +54,27 @@ class LoginPage extends Component{
       })
   }
 
-
+/////TODO: CSS it up
   render() {
-    return(
-      <div className="App">
-        <p className="App-intro">Edit components/LoginPage.js to change</p>
-        <p className="App-intro">Log In:</p>
-        <form  action="http://localhost:3000/Home" >
-            <label>Username:</label>
-            <input type="text" name="username" onChange={this.handleChange} value={this.state.username} />
-            <label>Password:</label>
-            <input type="Password" name="password" onChange={this.handleChange} value={this.state.password} />
-            <input type="submit" value="Submit" onClick = {this.handleSubmit}/>
-        </form>
-      </div>
-    );
+    if(this.props.user!=null){
+        return <Redirect to='/Home' />
+    }else{
+      return(
+        <div className="App">
+          <p className="App-intro">Edit components/LoginPage.js to change</p>
+          <p className="App-intro">Log In:</p>
+          <form onSubmit = {this.handleSubmit} >
+              <label>Username:</label>
+              <input type="text" name="username" onChange={this.handleChange} value={this.state.username} />
+              <label>Password:</label>
+              <input type="Password" name="password" onChange={this.handleChange} value={this.state.password} />
+              <input type="submit" value="Submit" onClick = {this.handleSubmit}/>
+          </form>
+          <p style={{color:'red'}}>{this.state.error == "ALL OK"? '':this.state.error}</p>
+        </div>
+      );
+    }
+
   }
 }
 
