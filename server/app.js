@@ -10,6 +10,7 @@ var reservationRouter = require('./routes/reservation')
 var postProductRouter = require('./routes/postProduct')
 var signupRouter = require('./routes/signup')
 var loginRouter = require('./routes/login')
+var searchRouter = require('./routes/search')
 
 var cors = require("cors");
 
@@ -40,6 +41,7 @@ app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
 app.use('/reservation',reservationRouter);
 app.use('/postProduct', postProductRouter);
+app.use('/Search', searchRouter);
 
 
 // catch 404 and forward to error handler

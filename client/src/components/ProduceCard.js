@@ -17,18 +17,17 @@ const image = {
   maxHeight: "150px"
 }
 function ProduceCard(props){
-  console.log(props)
   return (
     <div className="produce4U-tile" style={divStyle}>
     <br />
-    <a href="/product"><img src={props.product.imageSrc} className="produce4U-roundImage"/></a>
+    <a href="/product"><img src={props.product.picture} className="produce4U-roundImage"/></a>
     <p className="product-title">{props.product.name}</p>
     <div className="quantity-form-item">
-      <p>${props.product.price.toFixed(2)}{" "}{props.product.pricingType} </p>
+      <p>${props.product.price.toFixed(2)}{" Per "}{props.product.pricing_type} </p>
       <p>{props.product.distance} miles away</p>
     </div>
-    <p>Stars: {props.product.stars}</p>
-    <p className="produce4U-producer product-producer">{props.product.producer}</p>
+    <p>Stars: {props.product.rating}</p>
+    <p className="produce4U-producer product-producer">{props.product.owner_username}</p>
     </div>
   )
 }
