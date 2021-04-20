@@ -28,41 +28,12 @@ import {
 class App extends Component{
   constructor(props){
     super(props);
-    this.state = {apiResponse: ["test failed no API"], value: "", userAccount:JSON.parse(localStorage.getItem('user'))};
-    this.handleValueChange = this.handleValueChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentDidMount(){
-    this.callAPI();
-  }
-
-  callAPI(){
-    fetch("http://localhost:9000/test")
-      .then(res => res.text())
-      .then(res => this.setState({apiResponse: JSON.parse(res)}))
-      .catch(err => err);
-  }
-
-  handleSubmit(event){
-    fetch("http://localhost:9000/test", { method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(this.state)
-      }).then(function(response) {
-        console.log(response)
-        return response.json();
-      });
+    this.state = { userAccount:JSON.parse(localStorage.getItem('user'))};
 
   }
 
 
-  getTestValues(){
-    return this.state.apiResponse.map(item => {return <p> {item.value} </p>;});
-  }
 
-  handleValueChange(event){
-    this.setState({value: event.target.value});
-  }
   render() {
     return(
       <div className="App">
@@ -84,17 +55,13 @@ class App extends Component{
               <Route path="/PostProduct">
                             <PostProductPage user={this.state.userAccount}/>
               </Route>
-              <Route path="/MyProduct">
+              <Route path="/MyProduct" >
                             <MyproductsPage user={this.state.userAccount}/>
               </Route>
+              
+              <Route path="/reserve/:id" component={ReservePage} />
 
-              <Route path="/reserve">
-                <ReservePage user={this.state.userAccount}/>
-              </Route>
-
-              <Route path="/Product">
-                  <ProductPage user={this.state.userAccount}/>
-              </Route>
+              <Route path="/product/:id" component={ProductPage} />
 
               <Route path="/Confirmation">
                   <ConfirmationPage user={this.state.userAccount}/>
@@ -110,14 +77,6 @@ class App extends Component{
 
               <Route path="/Debug">
               <div>
-
-                <ul> {this.getTestValues()} </ul>
-
-                <form onSubmit = {this.handleSubmit}>
-                    <label for="fname">Test Database: </label>
-                    <input type="text" id="fname" name="fname"onChange={this.handleValueChange} />
-                    <input type="submit" value="Submit" />
-                  </form>
 
                   <ul>
                     <li><a href="/home">Home</a></li>
