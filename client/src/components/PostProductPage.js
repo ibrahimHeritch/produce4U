@@ -9,15 +9,17 @@ class PostProductPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            productTitle: "",
+            owner_username: "",
+            name: "",
             description: "",
-            selectProductCategory: "",
-            productPrice: "",
             quantity: "",
-            location: "",
-            phone: "",
-            postPic: null,
-            product_owner: this.props.user.username
+            price: "",
+            rating: "",
+            product_type: "",
+            pricing_type: "",
+            date_harversted: "",
+            picture: null,
+            //product_owner: this.props.user.username
         }
         this.handleChange = this.handleChange.bind(this)
         this.addProduct = this.addProduct.bind(this);
@@ -44,7 +46,7 @@ class PostProductPage extends Component {
     }
 
 
-//////////TODO: Remove location anf phone and replace it with date_harversted and pricing_type
+
     render() {
         return (
             <div className="App">
@@ -59,11 +61,11 @@ class PostProductPage extends Component {
                     <br />
                     <input
                     type="text"
-                    value={this.state.productTitle}
-                    name="productTitle"
+                    value={this.state.name}
+                    name="name"
                     placeholder="Product Title"
-                            onChange={this.handleChange}
-                            className="post-border"
+                    onChange={this.handleChange}
+                    className="post-border"
                     />
                     </label>
                     <br />
@@ -79,65 +81,76 @@ class PostProductPage extends Component {
                                 className="post-border"
                     />
                     </label>
+                        <br />
+                        <label className="post-info">Quantity:
                     <br />
+                            <input
+                                type="text"
+                                name="quantity"
+                                placeholder="Quantity"
+                                className="post-border"
+                                onChange={this.handleChange} />
+                        </label>
+                        <br />
+
+
+                    <label className="post-info">Product Price:
+                    <br />
+                            <input
+                                type="text"
+                                name="price"
+                                className="post-border"
+                                defaultValue="0.0"
+                                onChange={this.handleChange} />
+                    </label>
+                        <br />
+
+                        <label className="post-info">Rating:
+                    <br />
+                            <input
+                                type="text"
+                                name="rating"
+                                className="post-border"
+                                defaultValue="5.0"
+                                onChange={this.handleChange} />
+                        </label>
+                        <br />
 
                     <label className="post-info">Select a Product Category:</label>
                     <br />
                      <select
-                        value={this.state.selectProductCategory}
+                            value={this.state.product_type}
                         onChange={this.handleChange}
                         className="post-border"
-                    name="selectProductCategory"
+                            name="product_type"
                 >
                     <option value="allProduct">All Product</option>
                     <option value="vegtable">Vegtable</option>
                     <option value="fruits">Fruits</option>
                     <option value="bread">Bread</option>
                     <option value="juices">Juices</option>
-                    <option value="tea">Tea</option>
+                            <option value="tea">Tea</option>
+                            <option value="other">Other</option>
 
                      </select>
+                        <br />
+                    <label className="post-info">Pricing Type:
                     <br />
-
-                    <label className="post-info">Product Price:
-                    <br />
-                    <input
-                    type="text"
-                    name="productPrice"
-                            placeholder="Product Price"
+                        <input
+                            type="text"
+                            name="pricing_type"
+                                placeholder="pricing type: (e.g., 'Lb','Oz','Pc','Dz','Pkg')"
                             className="post-border"
-                    onChange={this.handleChange} />
+                            onChange={this.handleChange} />
                     </label>
                     <br />
 
-                    <label className="post-info">Quantity:
+                        <label className="post-info">Date Harversted:
                     <br />
                     <input
                     type="text"
-                    name="quantity"
-                            placeholder="Quantity"
-                            className="post-border"
-                        onChange={this.handleChange} />
-                    </label>
-                    <br />
-
-                    <label className="post-info">Location:
-                    <br />
-                    <input
-                    type="text"
-                    name="location"
-                            placeholder="Location"
-                            className="post-border"
-                    onChange={this.handleChange} />
-                    </label>
-                    <br />
-
-                    <label className="post-info">Phone:
-                    <br />
-                    <input
-                    type="text"
-                    name="phone"
-                            placeholder="Phone"
+                                name="date_harversted"
+                                placeholder="Date Harversted"
                             className="post-border"
                     onChange={this.handleChange} />
                     </label>
