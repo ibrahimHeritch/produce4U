@@ -18,8 +18,7 @@ class PostProductPage extends Component {
             product_type: "OTHER",
             pricing_type: "Pc",
             date_harversted: "",
-            picture: null,
-            //product_owner: this.props.user.username
+            picture_url: null, //temporary
         }
         this.handleChange = this.handleChange.bind(this)
         this.addProduct = this.addProduct.bind(this);
@@ -109,13 +108,12 @@ class PostProductPage extends Component {
                     </label>
                         <br />
 
-                        <label className="post-info">Rating:
+                        <label className="post-info">Picture Url (temp will change later):
                     <br />
                             <input
                                 type="text"
-                                name="rating"
+                                name="picture_url"
                                 className="post-border"
-                                defaultValue="5.0"
                                 onChange={this.handleChange} />
                         </label>
                         <br />

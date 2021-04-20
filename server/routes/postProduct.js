@@ -15,7 +15,7 @@ router.post("/", function (req, res, next) {
 
 
 router.get("/", function(req, res, next) {
-    database.executeQuery("Select * From product;").then(value => {res.json(value);});
+    database.executeQuery("SELECT * FROM product WHERE owner_username='"+req.query.user+"';").then(value => {res.json(value);});
 
 
 });

@@ -6,8 +6,7 @@ class MyproductsPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            products: [
-            ],
+            products: [],
             header: ["Total Quantity","Price","Status","Actions"],
             widths: [200,115,50,50,190]
         };
@@ -15,7 +14,7 @@ class MyproductsPage extends Component {
 
 ///this method gets called and it populates the products array
     componentDidMount(){
-        fetch("http://localhost:9000/postProduct")
+        fetch("http://localhost:9000/postProduct?user="+this.props.user.username)
           .then(res => res.text())
           .then(res => this.setState({products: JSON.parse(res)}))
           .catch(err => err);
@@ -75,7 +74,7 @@ class MyproductsPage extends Component {
 
               <p> Your Products</p>
               {this.getHeader()}
-              {this.getProducts()}
+              {(this.state.products.length > 0? this.getProducts():" ")}
           </div>
       );
     }
