@@ -2,20 +2,21 @@ import React, {Component} from 'react';
 import '../styles/ProducerProfile.css';
 import GoogleMapReact from 'google-map-react';
 
-
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 class ProducerProfilePage extends Component{
   /////TODO: make this get information from database
 
+
+
     static defaultProps = {
-        center: {
-            lat: 35.308076,
-            lng: -80.733726,
-        },
-        zoom: 11
-    };
+        center: {lat: -80.733726, lng: 35.308076},
+        zoom: 12
+    }
+
     constructor(props){
+
+
         super(props);
         this.state = {
             producer:{
@@ -27,9 +28,11 @@ class ProducerProfilePage extends Component{
                 latitude: -80.733726,
             }
 
+
         };
 
     }
+
 /////BUG: Label doesn't show 
     render() {
 
@@ -47,22 +50,26 @@ class ProducerProfilePage extends Component{
                 <img className="produce4U-producerPhoto" src={this.state.producer.image}/>
                 <p className="produce4U-producerName">{this.state.producer.name} <br></br><br></br><span className="produce4U-producerText">{this.state.producer.description}</span></p>
          </div>
-
-                    <div className="location-info">
+                  <div className="location-info">
                         <p className= "produce4U-producerLocation"> Location</p>
                         <p className="produce4U-locationText">{this.state.producer.name} is located at {this.state.producer.location}</p>
                         <div style={{ height: '600px', width: '90%', margin:"auto"}}>
                           <GoogleMapReact
-                              bootstrapURLKeys={{ key: 'AIzaSyDiAVMs1DJpi5C8bkFHY2WZ6DTDq7K0pU0'}}
+                              bootstrapURLKeys={{key:'AIzaSyDiAVMs1DJpi5C8bkFHY2WZ6DTDq7K0pU0', language: 'en', region: 'US'}}
                               defaultCenter={this.props.center}
                               defaultZoom={this.props.zoom}
-                              >
-                              <AnyReactComponent
-                                  lat={this.state.producer.latitude}
-                                  lng={this.state.producer.longitude}
-                                  text={this.state.producer.name}
-                                />
-                            </GoogleMapReact>
+                              onChildMouseEnter={this.onChildMouseEnter}
+                              onChildMouseLeave={this.onChildMouseLeave}
+>
+                           <AnyReactComponent
+                                 lat={this.state.producer.latitude}
+                                 lng={this.state.producer.longitude}
+                                 text={this.state.producer.name}
+                             />
+                          </GoogleMapReact>
+
+
+
                           </div>
 
                     </div>
