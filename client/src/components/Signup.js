@@ -42,7 +42,7 @@ class SignupPage extends Component{
       this.setState({error: "Must include Email"})
       return false;
     }
-    if(this.state.farm_name == ''){
+    if(this.state.farm_name == '' && this.state.userType == "PRODUCER"){
       this.setState({error: "Must include Farm Name"})
       return false;
     }
