@@ -4,7 +4,6 @@ const conn = mysql.createConnection({
   host: "database-1.cwsrx6jlceko.us-east-1.rds.amazonaws.com",
   user: "producedev",
   password: "freshtomatoes"
-
 });
 
 const tables = ["test(id int NOT NULL AUTO_INCREMENT, value varchar(20), PRIMARY KEY(id))",
@@ -25,7 +24,7 @@ const tables = ["test(id int NOT NULL AUTO_INCREMENT, value varchar(20), PRIMARY
                   first_name VARCHAR(40) NOT NULL,
                   last_name VARCHAR(40) NOT NULL,
                   email VARCHAR(100) NOT NULL,
-                  password BINARY(60) NOT NULL,
+                  password VARCHAR(60) NOT NULL,
                   account_type ENUM ('USER','PRODUCER','ADMIN') NOT NULL,
                   profile_picture VARCHAR(100) DEFAULT NULL,
                   date_joined DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -82,6 +81,7 @@ class Database{
     var query = "CREATE DATABASE IF NOT EXISTS produce;";
     this.executeQuery(query);
     this.executeQuery("USE produce;");
+
     var x;
     for( x in tables){
         this.executeQuery("CREATE TABLE IF NOT EXISTS " + tables[x]+";");
