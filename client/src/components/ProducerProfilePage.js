@@ -10,7 +10,7 @@ class ProducerProfilePage extends Component{
 
 
     static defaultProps = {
-        center: {lat: -80.733726, lng: 35.308076},
+        center: {lat: 35.308076, lng: -80.733726},
         zoom: 12
     }
 
@@ -24,8 +24,8 @@ class ProducerProfilePage extends Component{
                 name: "Perdu Farms",
                 description: "Since 2015, Perdu Farms has been committed to growing organic produce. Our mission is to build community through education, food accessibility, and by being a model of appropriate land stewardship and sustainable agriculture techniques.",
                 location: "University City South, Charlotte, NC 28262",
-                longitude: 35.308076,
-                latitude: -80.733726,
+                longitude: -80.733726,
+                latitude: 35.308076,
             }
 
 
@@ -60,12 +60,12 @@ class ProducerProfilePage extends Component{
                               defaultZoom={this.props.zoom}
                               onChildMouseEnter={this.onChildMouseEnter}
                               onChildMouseLeave={this.onChildMouseLeave}
->
-                           <AnyReactComponent
+                           >
+                          <AnyReactComponent
                                  lat={this.state.producer.latitude}
                                  lng={this.state.producer.longitude}
                                  text={this.state.producer.name}
-                             />
+                           />
                           </GoogleMapReact>
 
 
