@@ -9,14 +9,14 @@ class PostProductPage extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            owner_username: "",
-            name: "",
+            owner_username: this.props.user.username,
+            product_title: "",
             description: "",
             quantity: "",
-            price: "",
-            rating: "",
-            product_type: "",
-            pricing_type: "",
+            price: 0.0,
+            rating: 5.0,
+            product_type: "OTHER",
+            pricing_type: "Pc",
             date_harversted: "",
             picture: null,
             //product_owner: this.props.user.username
@@ -48,6 +48,9 @@ class PostProductPage extends Component {
 
 
     render() {
+        if(this.props.user.type != "PRODUCER"){
+          return <p>This Page is for producers Only</p>
+        }
         return (
             <div className="App">
                 <form action="http://localhost:3000/myProduct" onSubmit={this.addProduct}>
@@ -62,7 +65,7 @@ class PostProductPage extends Component {
                     <input
                     type="text"
                     value={this.state.name}
-                    name="name"
+                    name="product_title"
                     placeholder="Product Title"
                     onChange={this.handleChange}
                     className="post-border"
@@ -77,6 +80,7 @@ class PostProductPage extends Component {
                                 onChange={this.handleChange}
                                 rows={5}
                                 cols={5}
+                                name="description"
                                 placeholder="Descripe Your Product"
                                 className="post-border"
                     />
@@ -124,35 +128,37 @@ class PostProductPage extends Component {
                         className="post-border"
                             name="product_type"
                 >
-                    <option value="allProduct">All Product</option>
-                    <option value="vegtable">Vegtable</option>
-                    <option value="fruits">Fruits</option>
-                    <option value="bread">Bread</option>
-                    <option value="juices">Juices</option>
-                            <option value="tea">Tea</option>
-                            <option value="other">Other</option>
+
+                    <option value="VEGETABLE">Vegtable</option>
+                    <option value="FRUITS">Fruits</option>
+                    <option value="BREAD">Bread</option>
+                    <option value="JUICES">Juices</option>
+                            <option value="TEA">Tea</option>
+                            <option value="OTHER">Other</option>
 
                      </select>
                         <br />
                     <label className="post-info">Pricing Type:
                     <br />
                         <input
+                            value={this.state.pricing_type}
                             type="text"
                             name="pricing_type"
-                                placeholder="pricing type: (e.g., 'Lb','Oz','Pc','Dz','Pkg')"
+                            placeholder="pricing type: (e.g., 'Lb','Oz','Pc','Dz','Pkg')"
                             className="post-border"
                             onChange={this.handleChange} />
                     </label>
                     <br />
 
-                        <label className="post-info">Date Harversted:
-                    <br />
-                    <input
-                    type="text"
-                                name="date_harversted"
-                                placeholder="Date Harversted"
-                            className="post-border"
-                    onChange={this.handleChange} />
+                    <label className="post-info">Date Harversted:
+                        <br />
+                        <input
+                              value={this.date_harversted}
+                              type="text"
+                              name="date_harversted"
+                              placeholder="Date Harversted"
+                              className="post-border"
+                              onChange={this.handleChange} />
                     </label>
                     <br />
 
