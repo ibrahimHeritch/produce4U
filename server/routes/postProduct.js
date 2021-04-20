@@ -7,8 +7,15 @@ router.post("/", function (req, res, next) {
     database.executeQuery(
         `INSERT INTO product ( name, description, product_type, quantity, price, rating, picture, owner_username,pricing_type)
             value('`+ state.product_title + `', '` + state.description + `', '` + state.product_type + `', ` +
-                    state.quantity + `, ` + state.price + `, `+state.rating+`, 'NULL', '`+state.owner_username+`' , '`+state.pricing_type+`')`
+                    state.quantity + `, ` + state.price + `, `+state.rating+`, '`+state.picture_url+`', '`+state.owner_username+`' , '`+state.pricing_type+`')`
     );
+
+
+});
+
+
+router.get("/", function(req, res, next) {
+    database.executeQuery("Select * From product;").then(value => {res.json(value);});
 
 
 });
