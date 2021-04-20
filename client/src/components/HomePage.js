@@ -15,71 +15,25 @@ class HomePage extends Component{
     super(props);
     this.handleClick = this.handleClick.bind(this)
     this.getProduceCards = this.getProduceCards.bind(this)
-    ////TODO: have products come from database and not be hardcoded
-    this.state = {produce:[
-      {imageSrc: "https://modernfarmer.com/wp-content/uploads/2018/07/how-to-grow-strawberries-1200x900.jpg",
-       name: "Fresh Organic Strawberries",
-       price: 3.6,
-       pricingType: "per Oz.",
-       distance: 30,
-       stars: 3.5,
-       producer: "Perdu Farms",
 
-      },
-      {imageSrc: "https://www.dayimaanfresheats.com/wp-content/uploads/2020/07/nati-egg.jpg",
-       name: "Brown Eggs",
-       price: 5.5,
-       pricingType: "Each",
-       distance: 55,
-       stars: 5,
-       producer: "Farma Fish",
-      },
-      {imageSrc: "https://previews.123rf.com/images/andreadonetti/andreadonetti1209/andreadonetti120900057/15471596-a-glass-jar-of-fresh-healthy-golden-honey-being-dispensed-with-a-metal-dipper-or-drizzler.jpg",
-       name: "Golden Honey",
-       price: 45.5,
-       pricingType: "per Oz",
-       distance: 55,
-       stars: 5,
-       producer: "Crack Eggs",
-      },
-      {imageSrc: "https://savannahbee.com/product_images/uploaded_images/savannah-bee-company-raw-acacia-honeycomb-easy-ways-to-eat.jpg",
-       name: "Honeycomb",
-       price: 4.5,
-       pricingType: " per Oz",
-       distance: 23,
-       stars: 5,
-       producer:"Buzn'BeeZ"
-      },
-      {imageSrc: "https://image.sciencenordic.com/1440035.jpg?imageId=1440035&panow=0&panoh=0&panox=0&panoy=0&heightw=0&heighth=0&heightx=0&heighty=0&width=1200&height=630",
-       name: "Organic Corn",
-       price: 1.5,
-       pricingType: "per Lb",
-       distance: 30,
-       stars: 3.5,
-       producer: "Perdu Farms"
-      },
-      {imageSrc: "https://www.mediastorehouse.com/p/191/freshly-caught-fish-port-negombo-sri-lanka-asia-10536760.jpg",
-       name: "Fresh Fish",
-       price: 5.5,
-       pricingType: "Each",
-       distance: 55,
-       stars: 5,
-       producer: "Farma Fish"
-      },
-      {imageSrc: "https://previews.123rf.com/images/andreadonetti/andreadonetti1209/andreadonetti120900057/15471596-a-glass-jar-of-fresh-healthy-golden-honey-being-dispensed-with-a-metal-dipper-or-drizzler.jpg",
-       name: "Golden Honey",
-       price: 45.5,
-       pricingType: "per Oz",
-       distance: 23,
-       stars: 5,
-       producer:"Buzn'BeeZ"
-      }
-    ]};
+    this.state = {
+      product_type:"ALL",
+      produce:[]
+    };
   }
   ////TODO: Filtering functionality
   handleClick(event){
 
   }
+
+  componentDidMount(){
+      fetch("http://localhost:9000/Search?product_type="+this.state.product_type)
+        .then(res => res.text())
+        .then(res => this.setState({produce: JSON.parse(res)}))
+        .catch(err => err);
+  }
+
+
 ////This function maps produce to the cards and returns a list of produce cards
   getProduceCards(){
     return this.state.produce.map(item => {return <ProduceCard product = {item} /> ;});
@@ -105,7 +59,7 @@ class HomePage extends Component{
           </div>
           <br />
           <div style = {{ display: "grid", gridTemplateColumns: "400px 400px 400px", justifyContent:"space-evenly"}}>
-            {this.getProduceCards()}
+            {((this.state.produce.length == 0)?<p>No Products in your area</p>:this.getProduceCards())}
           </div>
           <br />
           <button className="produce4U-green-button"type="button">More</button>

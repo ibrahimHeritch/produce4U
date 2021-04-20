@@ -113,6 +113,7 @@ class PostProductPage extends Component {
                             <input
                                 type="text"
                                 name="picture_url"
+                                placeholder="No More the 100 chars tho"
                                 className="post-border"
                                 onChange={this.handleChange} />
                         </label>
