@@ -4,8 +4,23 @@ import Navbar from 'react-bootstrap/Navbar';
 import '../styles/header.css';
 
 class Header extends Component{
+  constructor(props){
+    super(props);
+    this.logoutifLoggedin = this.logoutifLoggedin.bind(this);
+
+  }
 
 
+  logoutifLoggedin(){
+
+    if(this.props.user != null){
+
+        localStorage.removeItem('user')
+        this.props.onLogout()
+        window.location.href = "http://localhost:3000/Login";
+      }
+    window.location.href = "http://localhost:3000/Login";
+  }
 
   render() {
     console.log(this.props.user)
@@ -29,7 +44,7 @@ class Header extends Component{
               <a className="header-item" href="/Signup">
                 <p>Sign Up</p>
               </a>
-              <a class="btn header-button" href="/Login">
+              <a class="btn header-button" onClick={this.logoutifLoggedin} >
                 {this.props.user == null? "Log In" : "Log Out"}
               </a>
             </div>
@@ -56,7 +71,7 @@ class Header extends Component{
               <a className="header-item" href="/myProfile">
                 <p>My Profile</p>
               </a>
-              <a class="btn header-button" href="/Login">
+              <a class="btn header-button" onClick={this.logoutifLoggedin} >
                 {this.props.user == null? "Log In" : "Log Out"}
               </a>
             </div>
@@ -86,7 +101,7 @@ class Header extends Component{
               <a className="header-item" href="/myProfile">
                 <p>My Profile</p>
               </a>
-              <a class="btn header-button" href="/Login">
+              <a class="btn header-button" onClick={this.logoutifLoggedin}>
                 {this.props.user == null? "Log In" : "Log Out"}
               </a>
             </div>
@@ -97,7 +112,7 @@ class Header extends Component{
     }else {
       return(
         <Navbar className="navbar ">
-        <a class="btn header-button" href="/Login">
+        <a class="btn header-button" onClick={this.logoutifLoggedin}>
           {this.props.user == null? "Log In" : "Log Out"}
         </a>
         </Navbar>

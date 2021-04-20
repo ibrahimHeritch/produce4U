@@ -66,7 +66,7 @@ class App extends Component{
   render() {
     return(
       <div className="App">
-        <Header user={this.state.userAccount}/>
+        <Header user={this.state.userAccount} onLogout={()=>{this.setState({userAccount:null})}}/>
         <Router>
           <div style={{minHeight:"90vh", paddingBottom:"180px", paddingTop:"50px"}}>
 
