@@ -24,17 +24,12 @@ class HomePage extends Component{
 
   ////TODO: Filtering functionality
   handleClick(event){
-    this.setState({
-      product_type: event.target.value,
-      produce:[]
-    });
+    fetch("http://localhost:9000/Search?product_type="+event.target.value)
+      .then(res => res.text())
+      .then(res => this.setState({produce: JSON.parse(res)}))
+      .catch(err => err);
   }
-  componentDidUpdate(){
-      fetch("http://localhost:9000/Search?product_type="+this.state.product_type)
-        .then(res => res.text())
-        .then(res => this.setState({produce: JSON.parse(res)}))
-        .catch(err => err);
-  }
+
 
   componentDidMount(){
       fetch("http://localhost:9000/Search?product_type="+this.state.product_type)
