@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import logo from '../resources/noTextLogo.svg';
 import '../App.css';
+import '../styles/LoginPage.css'
 import { Redirect } from 'react-router-dom';
 
 class LoginPage extends Component{
@@ -60,18 +61,19 @@ class LoginPage extends Component{
         return <Redirect to='/Home' />
     }else{
       return(
-        <div className="App">
-          <p className="App-intro">Edit components/LoginPage.js to change</p>
-          <p className="App-intro">Log In:</p>
+        <div className="produce4U-blackLoginText">
+          <p className="App-intro"></p>
+            <p className="App-intro">Log In:</p>
           <form onSubmit = {this.handleSubmit} >
-              <label>Username:</label>
-              <input type="text" name="username" onChange={this.handleChange} value={this.state.username} />
-              <label>Password:</label>
-              <input type="Password" name="password" onChange={this.handleChange} value={this.state.password} />
-              <input type="submit" value="Submit" onClick = {this.handleSubmit}/>
+              <input className = "produce4U-form-inputLogin" type="text" placeholder="Username" onChange={this.handleChange} value={this.state.username}/>
+              <br></br><br></br>
+              <input className = "produce4U-form-inputLogin" type="Password" placeholder="Password" onChange={this.handleChange} value={this.state.password} />
+              <br></br><br></br>
+              <input className = "produce4U-green-button-submit" type="submit" value="Login" onClick = {this.handleSubmit}/>
           </form>
           <p style={{color:'red'}}>{this.state.error == "ALL OK"? '':this.state.error}</p>
         </div>
+
       );
     }
 

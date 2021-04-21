@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
+
+.produce4U-blackLoginText
+{
+    font-family: Roboto, Bold;
+    color: black;
+    font-size: 48px;
+}
+.produce4U-form-inputLogin{
+    height:93px;
+    width: 501px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    outline: none;
+    border: 2px solid #C4C4C4;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 36px;
+    font-family: Roboto, Light;
+    text-align: left;
+    color: 000000;
+}
+
+.produce4U-green-button-submit{
+    color: black;
+    margin-top: 20px;
+    background-color: #78B244;
+    text-align: center;
+    text-decoration: none;
+    font-size: 35px;
+    font-family: Roboto, Bold;
+    line-height: 87px;
+    width: 457px;
+    border-radius: 20px;
+    padding: 10px 17px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.produce4U-regularText{
+    color: black;
+    font-family: Roboto;
+    font-size: 24px;
+}
+
+.produce4U-blackBoldText{
+    color: black;
+    font-family: Roboto, Bold;
+    font-size: 24px;
+}
