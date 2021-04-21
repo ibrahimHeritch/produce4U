@@ -16,12 +16,12 @@ class MyReservationsPage extends Component{
 
 ///this method gets called and it populates the reservations array
   componentDidMount(){
-    fetch("http://localhost:9000/reservation")
+    fetch("http://localhost:9000/reservation?user="+this.props.user.username)
       .then(res => res.text())
       .then(res => this.setState({reservations: JSON.parse(res)}))
       .catch(err => err);
   }
-  
+
   getReservations(){
     return(
       this.state.reservations.map((item)=>(this.getRow(

@@ -4,7 +4,7 @@ var database = require("../database/database.js");
 /////TODO: make it so that the user can only see their own reservations
 //gets products for myReservations page
 router.get("/", function(req, res, next) {
-    database.executeQuery("Select *, DATE_FORMAT(pickup_datetime,'%d/%m/%Y %h:%i %p') AS niceDate From reservation ORDER BY pickup_datetime DESC;").then(value => {res.json(value);});
+    database.executeQuery("Select *, DATE_FORMAT(pickup_datetime,'%d/%m/%Y %h:%i %p') AS niceDate From reservation WHERE reserver='"+req.query.user+"';").then(value => {res.json(value);});
 
 
 });
