@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import logo from '../resources/noTextLogo.svg';
 import '../App.css';
-import '../styles/LoginPage.css'
+import '../styles/LoginPage.css';
 import { Redirect } from 'react-router-dom';
 
 class LoginPage extends Component{
