@@ -3,6 +3,7 @@ import logo from '../resources/footerLogo.svg';
 import insta from '../resources/Icons/insta.svg'
 import twitter from '../resources/Icons/twitter.svg'
 import youtube from '../resources/Icons/youtube.svg'
+import facebook from '../resources/Icons/facebook.svg'
 import '../styles/footer.css';
 //import insta from '../resources/Icons/insta.svg'
 
@@ -14,8 +15,8 @@ class Footer extends Component{
           <div className="footer-left">
             <p>Connect</p>
             <div>
-              <a href="https://www.youtube.com/">
-                <img className="footer-icon" src={youtube} height="50px"/>
+              <a href="https://www.facebook.com/">
+                <img className="footer-icon" src={facebook} height="50px"/>
               </a>
               <a href="https://www.youtube.com/">
                 <img className="footer-icon" src={youtube} height="50px"/>
