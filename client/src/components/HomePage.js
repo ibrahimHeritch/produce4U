@@ -21,9 +21,19 @@ class HomePage extends Component{
       produce:[]
     };
   }
+
   ////TODO: Filtering functionality
   handleClick(event){
-
+    this.setState({
+      product_type: event.target.value,
+      produce:[]
+    });
+  }
+  componentDidUpdate(){
+      fetch("http://localhost:9000/Search?product_type="+this.state.product_type)
+        .then(res => res.text())
+        .then(res => this.setState({produce: JSON.parse(res)}))
+        .catch(err => err);
   }
 
   componentDidMount(){
@@ -50,12 +60,12 @@ class HomePage extends Component{
           <form ><input className="produce4U-form-input" type ='text' name ="search" placeholder="Search"/>{' '}<select className="homepage-dropdown-input" name="distance"><option value = "50">50 miles</option></select>{' '}<input className="produce4U-form-input" type ='text' name ="location" placeholder="Location"/></form>
           <br />
           <div>
-            <button type="button" onClick={this.handleClick}>All Products</button> {' '}
-            <button type="button" onClick={this.handleClick}>Vegetables</button> {' '}
-            <button type="button" onClick={this.handleClick}>Fruits</button> {' '}
-            <button type="button" onClick={this.handleClick}>Bread</button> {' '}
-            <button type="button" onClick={this.handleClick}>Juices</button> {' '}
-            <button type="button" onClick={this.handleClick}>Tea</button>
+            <button type="button" onClick={this.handleClick} value="ALL">All Products</button> {' '}
+            <button type="button" onClick={this.handleClick} value="VEGETABLE">Vegetables</button> {' '}
+            <button type="button" onClick={this.handleClick} value="FRUITS">Fruits</button> {' '}
+            <button type="button" onClick={this.handleClick} value="BREAD">Bread</button> {' '}
+            <button type="button" onClick={this.handleClick} value="JUICES">Juices</button> {' '}
+            <button type="button" onClick={this.handleClick} value="TEA">Tea</button>
           </div>
           <br />
           <div style = {{ display: "grid", gridTemplateColumns: "400px 400px 400px", justifyContent:"space-evenly"}}>
