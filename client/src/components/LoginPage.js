@@ -71,6 +71,10 @@ class LoginPage extends Component{
               <br></br><br></br>
               <input className = "produce4U-green-button-submit" type="submit" value="Login" onClick = {this.handleSubmit}/>
           </form>
+            <div>
+                <p className = "produce4U-regularText">Don't have an account? <span className="produce4U-blackBoldText">Sign Up!</span> </p>
+                <p className = "produce4U-blackBoldText">Forgot Your Password?</p>
+            </div>
           <p style={{color:'red'}}>{this.state.error == "ALL OK"? '':this.state.error}</p>
         </div>
 
