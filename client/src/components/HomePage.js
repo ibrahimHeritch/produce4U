@@ -53,8 +53,10 @@ class HomePage extends Component{
 
             <div className = "produce4U-textForIcons-greenText"><Search />Browse <span className = "produce4U-textForIcons-blackText">Available Produce{'   '}</span><Schedule />Schedule<span className="produce4U-textForIcons-blackText"> A Pick-Up Time{'   '}</span><Commute />Pick-Up<span className="produce4U-textForIcons-blackText"> Your Produce{'   '}</span><Eat />Enjoy<span className="produce4U-textForIcons-blackText"> Your Fresh Local Produce</span></div>
         <br /><br />
+          <p className = "produce4U-headlineWelcome">Fresh. Healthy. Local.</p>
           <form ><input className="produce4U-form-input" type ='text' name ="search" placeholder="Search"/>{' '}<select className="homepage-dropdown-input" name="distance"><option value = "50">50 miles</option></select>{' '}<input className="produce4U-form-input" type ='text' name ="location" placeholder="Location"/></form>
           <br />
+
           <div>
             <button type="button" onClick={this.handleClick} value="ALL">All Products</button> {' '}
             <button type="button" onClick={this.handleClick} value="VEGETABLE">Vegetables</button> {' '}
