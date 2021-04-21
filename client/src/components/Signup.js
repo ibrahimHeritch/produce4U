@@ -93,7 +93,7 @@ class SignupPage extends Component{
 
         <p className="App-intro">Sign up:</p>
         <form >
-            <label >I am a:</label>
+            <label >I am a: </label>
             <select name="userType" onChange={this.handleChange}><option value = "USER">Customer</option><option value = "PRODUCER">Producer</option></select>
             <label>Username:</label>
             <input name="username" type="text" value={this.state.username} onChange={this.handleChange}/>

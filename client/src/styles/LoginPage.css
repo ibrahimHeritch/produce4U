@@ -2,7 +2,8 @@
 
 .produce4U-blackLoginText
 {
-    font-family: Roboto, Bold;
+    font-family: Roboto;
+    font-weight: bold;
     color: black;
     font-size: 48px;
 }
@@ -46,6 +47,7 @@
 
 .produce4U-blackBoldText{
     color: black;
-    font-family: Roboto, Bold;
+    font-family: Roboto;
+    font-weight: bold;
     font-size: 24px;
 }
