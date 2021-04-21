@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import logo from '../resources/noTextLogo.svg';
 import '../App.css';
+import '../styles/Signup.css';
 
 
 class SignupPage extends Component{
@@ -91,7 +92,7 @@ class SignupPage extends Component{
     return(
       <div className="App">
 
-        <p className="App-intro">Sign up:</p>
+        <p className="produce4U-blackSignUpText">Sign up:</p>
         <form >
             <label >I am a: </label>
             <select name="userType" onChange={this.handleChange}><option value = "USER">Customer</option><option value = "PRODUCER">Producer</option></select>
