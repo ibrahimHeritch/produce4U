@@ -76,10 +76,13 @@
   margin-top: 10px;
   margin-bottom: 10px;
   outline: none;
+  line-height: 47px;
+  width: 506px;
   border: 2px solid #E5E5E5;
   padding-left: 10px;
   padding-right: 10px;
-  font-size: 14px;
+  font-size: 24px;
+  font-family: Roboto;
   text-align: left;
 
 }
@@ -124,4 +127,20 @@
   margin: auto;
   margin-top: 15px;
   padding: 3px;
+}
+.produce4U-distance-button{
+  color: white;
+  margin-top:20px;
+  background-color: #78B244;
+  text-align: center;
+  text-decoration: none;
+  font-family: Roboto;
+  font-size: 24px;
+  line-height: 47px;
+  width: 158px;
+  border-radius: 50px;
+  padding: 10px 17px;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
