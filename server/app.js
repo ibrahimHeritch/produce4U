@@ -11,7 +11,7 @@ var postProductRouter = require('./routes/postProduct')
 var signupRouter = require('./routes/signup')
 var loginRouter = require('./routes/login')
 var searchRouter = require('./routes/search')
-var productsRouter = require('./routes/productsPage')
+var productsRouter = require('./routes/productPage')
 
 var cors = require("cors");
 
@@ -25,7 +25,7 @@ var app = express();
 
 //for delete button
 
-const methodOverride = require('method-override')
+//const methodOverride = require('method-override')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -40,7 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //For delete method
-app.use(methodOverride('_method'))
+//app.use(methodOverride('_method'))
 
 //Add routes here
 app.use('/', indexRouter);
