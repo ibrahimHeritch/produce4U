@@ -32,9 +32,11 @@ class MyproductsPage extends Component {
                  <p>Active</p>,
                  <div className="table-actions">
 
-                      <a href="/confirmation"><p className="produce4U-bluetext table-row-product">Add</p></a>
-                      <a href="/reserve"><button className="produce4U-green-button table-edit">Edit</button></a>
-                      <button className="produce4U-red-button table-delete">Delete</button>
+                      <a href="/confirmation/ <%= products.name %>"><p className="produce4U-bluetext table-row-product">Add</p></a>
+                     <a href="/reserve/ <%= products.name %>/edit"><button className="produce4U-green-button table-edit">Edit</button></a>
+                     <form method="POST" action="/confirmation/ <% products.name %>?_method=DELTE">
+                         <button type = "submit" className="produce4U-red-button table-delete">Delete</button>
+                         </form>
                  </div>]))
 
         )
