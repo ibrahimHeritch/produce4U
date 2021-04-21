@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt');
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
+
 .App {
   text-align: center;
   position: relative;
@@ -94,4 +97,22 @@
   font-size: 14px;
   text-align: left;
 
+}
+
+.produce4U-textForIcons-blackText
+{
+  color: black;
+  font-family: Roboto;
+  font-size: 24px;
+  height: 230px;
+  width: 79px;
+
+}
+
+.produce4U-textForIcons-greenText
+{
+  color: #78B244;
+  font-family: Roboto;
+  font-size: 24px;
+  text-align: center;
 }

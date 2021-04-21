@@ -3,25 +3,49 @@ import '../styles/product.css';
 
 /////TODO: make this get information from database
 class ProductPage extends Component{
+  constructor(props){
+    super(props);
+    console.log(props);
+    this.state = {
+      product:{
+        name:"sss",
+        description:"description",
+        price:0.00,
+        quantity:2,
+        owner_name: 'Perdu Farm',
+
+
+      }
+    }
+
+  }
+
+  componentDidMount(){
+      fetch("http://localhost:9000/postProduct/"+this.props.match.params.id)
+        .then(res => res.text())
+        .then(res => this.setState({product: JSON.parse(res)}))
+        .catch(err => err);
+  }
+
   render() {
     return(
 
         <div className="product">
             <div className="product-left">
-              <img className="product-image" src="https://images.ctfassets.net/zma7thmmcinb/6QUAiho9YwaL9G54t28W3A/a6bb3ad9bdf6043fcc1050b3da0897be/How-to-start-a-strawberry-patch-pv.jpg"/>
+              <img className="product-image" src={this.state.product.picture}/>
               <div className=" product-info ">
-                  <p className="product-title">Fresh Organic Strawberries</p>
-                  <p className="product-describtion">These Strawberries are fresh and organic. They taste mostly like Strawberries. Which is not that surprising. Anyway please buy my strawberries. Cash Only. IRS not welcome</p>
-                  <a href="/ProducerProfilePage">
+                  <p className="product-title">{this.state.product.name}</p>
+                  <p className="product-describtion">{this.state.product.description}</p>
+                  <a className="product-producer" href="/ProducerProfilePage">
                   <div className=" produce4U-producer product-producer">
-                    By Perdu Farms
+                    By {this.state.product.owner_username}
                   </div>
                   </a>
                   <div>
                     <p> 22 miles away </p>
-                    <p> $ 3.50 per Oz. </p>
+                    <p> $ {this.state.product.price} per {this.state.product.pricing_type} </p>
                   </div>
-                  <p> Only 50 Oz. left </p>
+                  <p> Only {this.state.product.quantity} {this.state.product.pricing_type} left </p>
               </div>
               <div style={{marginTop:"25px"}}>
                 Got Questions?
@@ -30,7 +54,7 @@ class ProductPage extends Component{
                 </a>
               </div>
 
-              <a href="/reserve">
+              <a href={"/reserve/"+this.props.match.params.id}>
                  <button className="produce4U-green-button">
                     Schedule Pick up
                  </button>

@@ -20,14 +20,14 @@ function ProduceCard(props){
   return (
     <div className="produce4U-tile" style={divStyle}>
     <br />
-    <a href="/product"><img src={props.product.picture} className="produce4U-roundImage"/></a>
+    <a href={"/product/"+props.product.id}><img src={props.product.picture} className="produce4U-roundImage"/></a>
     <p className="product-title">{props.product.name}</p>
     <div className="quantity-form-item">
       <p>${props.product.price.toFixed(2)}{" Per "}{props.product.pricing_type} </p>
       <p>{props.product.distance} miles away</p>
     </div>
     <p>Stars: {props.product.rating}</p>
-    <p className="produce4U-producer product-producer">{props.product.owner_username}</p>
+    <a className="product-producer" href="/ProducerProfilePage"><p className="produce4U-producer product-producer" >{props.product.owner_username}</p></a>
     </div>
   )
 }

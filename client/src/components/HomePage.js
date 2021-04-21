@@ -55,8 +55,9 @@ class HomePage extends Component{
         <div style={{marginTop: "-50px", marginBottom:"-100px"}}>
           <img src = {image} alt="freshproduce" style ={{width: "100%",height: "600px",objectFit:"cover"}} />
           <br /><br />
-          <Search />Browse Available Produce{'   '}<Schedule />Schedule a pick up time{'   '}<Commute />Pick up your Produce{'   '}<Eat />Enjoy your fresh local Produce
-          <br /><br />
+
+            <div className = "produce4U-textForIcons-greenText"><Search />Browse <span className = "produce4U-textForIcons-blackText">Available Produce{'   '}</span><Schedule />Schedule<span className="produce4U-textForIcons-blackText"> A Pick-Up Time{'   '}</span><Commute />Pick-Up<span className="produce4U-textForIcons-blackText"> Your Produce{'   '}</span><Eat />Enjoy<span className="produce4U-textForIcons-blackText"> Your Fresh Local Produce</span></div>
+        <br /><br />
           <form ><input className="produce4U-form-input" type ='text' name ="search" placeholder="Search"/>{' '}<select className="homepage-dropdown-input" name="distance"><option value = "50">50 miles</option></select>{' '}<input className="produce4U-form-input" type ='text' name ="location" placeholder="Location"/></form>
           <br />
           <div>

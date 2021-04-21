@@ -16,16 +16,16 @@ class MyReservationsPage extends Component{
 
 ///this method gets called and it populates the reservations array
   componentDidMount(){
-    fetch("http://localhost:9000/reservation")
+    fetch("http://localhost:9000/reservation?user="+this.props.user.username)
       .then(res => res.text())
       .then(res => this.setState({reservations: JSON.parse(res)}))
       .catch(err => err);
   }
-  
+
   getReservations(){
     return(
       this.state.reservations.map((item)=>(this.getRow(
-              [<a href="/product"><p className=" table-row-product produce4U-greentext ">{item.product_name}</p></a>,
+              [<a href={"/product/"+item.item_id}><p className=" table-row-product produce4U-greentext ">{item.product_name}</p></a>,
                <p className="produce4U-producer">{item.producer_name}</p>,
                <p>{item.quantity}</p>,
                <p>${parseFloat(item.price).toFixed(2)}</p>,
