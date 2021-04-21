@@ -25,7 +25,7 @@ class MyReservationsPage extends Component{
   getReservations(){
     return(
       this.state.reservations.map((item)=>(this.getRow(
-              [<a href="/product"><p className=" table-row-product produce4U-greentext ">{item.product_name}</p></a>,
+              [<a href={"/product/"+item.item_id}><p className=" table-row-product produce4U-greentext ">{item.product_name}</p></a>,
                <p className="produce4U-producer">{item.producer_name}</p>,
                <p>{item.quantity}</p>,
                <p>${parseFloat(item.price).toFixed(2)}</p>,
