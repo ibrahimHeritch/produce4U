@@ -94,29 +94,33 @@ class SignupPage extends Component{
 
         <p className="produce4U-blackSignUpText">Sign up:</p>
         <form >
-            <label >I am a: </label>
+            <label className="produce4U-blackBoldTextSignUp" >I am a: </label>
             <select name="userType" onChange={this.handleChange}><option value = "USER">Customer</option><option value = "PRODUCER">Producer</option></select>
-            <label>Username:</label>
-            <input name="username" type="text" value={this.state.username} onChange={this.handleChange}/>
-            <label>First Name:</label>
-            <input name="fname" type="text" value={this.state.fname}  onChange={this.handleChange}/>
-            <label>Last Name:</label>
-            <input name="lname" type="text" value={this.state.lname} onChange={this.handleChange} />
-            <label >Email:</label>
-            <input name="email" type="text" value={this.state.email} onChange={this.handleChange} />
+            <br></br>
+            <input className = "produce4U-form-inputSignupName" name="fname" type="text" placeholder = "First Name" value={this.state.fname}  onChange={this.handleChange}/>
+            <input className = "produce4U-form-inputSignupName" name="lname" type="text" placeholder = "Last Name" value={this.state.lname} onChange={this.handleChange} />
+            <br></br>
+            <input className = "produce4U-form-inputSignup" name="username" type="text" placeholder = "Username" value={this.state.username} onChange={this.handleChange}/>
+            <br></br>
+            <input className = "produce4U-form-inputSignup" name="email" type="text" placeholder = "Email" value={this.state.email} onChange={this.handleChange} />
+            <br></br>
             { this.state.userType == "PRODUCER" &&
             <label>Farm Name:</label>
             }
             { this.state.userType == "PRODUCER" &&
             <input name="farm_name" type="text" value={this.state.farm_name} onChange={this.handleChange} />
             }
-            <label >Password:</label>
-            <input name="pass1" type="Password" value={this.state.pass1} onChange={this.handleChange} />
-            <label >Password:</label>
-            <input name="pass2" type="Password" value={this.state.pass2} onChange={this.handleChange} />
-            <input type="submit" value="Sign Up" onClick = {this.handleSubmit} />
+            <input className = "produce4U-form-inputSignup" name="pass1" type="Password" placeholder =  "Password" value={this.state.pass1} onChange={this.handleChange} />
+            <input className = "produce4U-form-inputSignup" name="pass2" type="Password" placeholder = "Retype your password" value={this.state.pass2} onChange={this.handleChange} />
+            <br></br>
+            <input className = "produce4U-green-button-submit" type="submit" value="Sign Up" onClick = {this.handleSubmit} />
         </form>
+          <div>
+              <p className = "produce4U-regularTextSignUp">Already have an account? <span className="produce4U-blackBoldTextSignUp">Log in!</span> </p>
+              <p className = "produce4U-blackBoldTextSignUp">Forgot Your Password?</p>
+          </div>
         <p style={{color:'red'}}>{this.state.error == "ALL OK"? '':this.state.error}</p>
+
       </div>
     );
   }
