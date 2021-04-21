@@ -13,8 +13,9 @@ class ReservePage extends Component{
     this.state = {times: ["8:00 AM","8:15 AM","9:30 AM","9:45 AM","2:00 PM","2:15 PM","2:30 PM","2:45 PM","3:15 PM","4:00 PM"],
                   pickupDate:null,
                   selectedTime: 0,
-                  selectedProducts: [{name: "Fresh Organic Strawberries", price: 3.50, quantity: 0, total:0}],
+                  selectedProducts: [],
                   error: [false,false],
+                  user: JSON.parse(localStorage.getItem('user'))
                   };
     this.confirmReservation = this.confirmReservation.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
@@ -42,7 +43,7 @@ class ReservePage extends Component{
                           this.state.selectedProducts.splice(index,1);
                           this.state.error.splice(index,1);
                           this.setState({
-                            selectedQuantities:this.state.selectedQuantities,
+                            selectedProducts:this.state.selectedProducts,
                             error:this.state.error,
                           })}
                         }
@@ -52,18 +53,18 @@ class ReservePage extends Component{
                         {(event)=>{
                             var value = parseInt(event.target.value);
                             if(!isNaN(value) && value>0 ){
-                              this.state.selectedProducts[index].quantity = value;
+                              this.state.selectedProducts[index].order_quantity = value;
                               this.state.error[index] = false;
                               this.setState({
-                                selectedQuantities:this.state.selectedQuantities,
+                                selectedProducts:this.state.selectedProducts,
                                 error:this.state.error,
                               })
 
                             }else{
-                              this.state.selectedProducts[index].quantity = 0;
+                              this.state.selectedProducts[index].order_quantity = 0;
                               this.state.error[index] = true;
                               this.setState({
-                                selectedQuantities:this.state.selectedQuantities,
+                                selectedProducts:this.state.selectedProducts,
                                 error:this.state.error,
                               })
                             }
@@ -77,11 +78,12 @@ class ReservePage extends Component{
     );
   }
 
-  confirmReservation(){
+  confirmReservation(event){
     this.state.selectedProducts.forEach((item, i) => {
-      item.total = item.quantity * item.price
+      item.total = item.order_quantity * item.price
       item.date = this.state.pickupDate +' '+this.state.times[this.state.selectedTime]
-      if(item.total > 0){
+      item.user = this.state.user.username
+      if(item.total > 0 && this.state.pickupDate != null){
         fetch("http://localhost:9000/reservation", { method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(item)
@@ -89,8 +91,9 @@ class ReservePage extends Component{
             console.log(response)
             return response.json();
           });
+      }else{
+        event.preventDefault()
       }
-
     });
   }
 
@@ -100,15 +103,25 @@ class ReservePage extends Component{
 
     }
 
+    componentDidMount(){
+      if(this.state.selectedProducts.length == 0){
+        fetch("http://localhost:9000/postProduct/"+this.props.match.params.id)
+          .then(res => res.text())
+          .then(res => this.setState({selectedProducts: [JSON.parse(res)]}))
+          .catch(err => err);
+      }
 
+    }
   render() {
     var yesterday = moment().subtract( 1, 'day' );
     var valid = function( current ){
       return current.isAfter( yesterday ) && current.day() !== 0 && current.day() !== 6;
     };
 
-    var total = this.state.selectedProducts.reduce((a,b)=>a+(b.quantity * b.price),0).toFixed(2);
-
+    var total = this.state.selectedProducts.length == 0? NaN:this.state.selectedProducts.reduce((a,b)=>a+(b.order_quantity * b.price),0).toFixed(2);
+    if(this.state.user.type != "USER"){
+      return <p>You need to log into a customer account to view this page</p>
+    }
     return(
         <div className="reserve">
           <div className=" reservation-step ">

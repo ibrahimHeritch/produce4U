@@ -13,6 +13,11 @@ router.post("/", function (req, res, next) {
 
 });
 
+router.get("/:ID", function(req, res, next) {
+    database.executeQuery("SELECT * FROM product WHERE id="+req.params.ID+";").then(value => {if(value.length > 0){res.json(value[0])}else{res.json(null)}});
+
+
+});
 
 router.get("/", function(req, res, next) {
     database.executeQuery("SELECT * FROM product WHERE owner_username='"+req.query.user+"';").then(value => {res.json(value);});

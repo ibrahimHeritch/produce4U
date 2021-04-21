@@ -15,7 +15,7 @@ router.post("/", function(req, res, next) {
     //console.log("recived: "+req.body.name);
     database.executeQuery(
       `INSERT INTO reservation (pickup_datetime,reserver,order_status,item_id,quantity,price,producer_name,product_name)
-                        VALUE (STR_TO_DATE('`+ req.body.date +`','%Y-%m-%d %h:%i %p'), 'test', 'CONFIRMED', 1,`+req.body.quantity+', '+req.body.total+ `, 'perdu farms','`+ req.body.name +`');`
+                        VALUE (STR_TO_DATE('`+ req.body.date +`','%Y-%m-%d %h:%i %p'), '`+req.body.user+`', 'CONFIRMED', 1,`+req.body.order_quantity+', '+req.body.total+ `, 'perdu farms','`+ req.body.name +`');`
      );
 });
 

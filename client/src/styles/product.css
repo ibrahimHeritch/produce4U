@@ -26,6 +26,7 @@
 
 .product-producer{
   max-width: 130px;
+  text-decoration: none !important;
 }
 
 .product-title{
