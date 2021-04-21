@@ -65,9 +65,9 @@ class LoginPage extends Component{
           <p className="App-intro"></p>
             <p className="App-intro">Log In:</p>
           <form onSubmit = {this.handleSubmit} >
-              <input className = "produce4U-form-inputLogin" type="text" placeholder="Username" onChange={this.handleChange} value={this.state.username}/>
+              <input className = "produce4U-form-inputLogin" name="username" type="text" placeholder="Username" onChange={this.handleChange} value={this.state.username}/>
               <br></br><br></br>
-              <input className = "produce4U-form-inputLogin" type="Password" placeholder="Password" onChange={this.handleChange} value={this.state.password} />
+              <input className = "produce4U-form-inputLogin" name="password" type="Password" placeholder="Password" onChange={this.handleChange} value={this.state.password} />
               <br></br><br></br>
               <input className = "produce4U-green-button-submit" type="submit" value="Login" onClick = {this.handleSubmit}/>
           </form>
