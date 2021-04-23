@@ -13,6 +13,7 @@ import MyproductsPage from './components/myproductsPage.js'
 import HomePage from './components/HomePage.js';
 import ProducerProfilePage from './components/ProducerProfilePage.js';
 import SignupPage from './components/Signup.js';
+import ProfilePage from './components/ProfilePage.js';
 
 
 import {
@@ -58,7 +59,7 @@ class App extends Component{
               <Route path="/MyProduct" >
                             <MyproductsPage user={this.state.userAccount}/>
               </Route>
-              
+
               <Route path="/reserve/:id" component={ReservePage} />
 
               <Route path="/product/:id" component={ProductPage} />
@@ -73,6 +74,10 @@ class App extends Component{
 
               <Route path="/ProducerProfilePage">
                 <ProducerProfilePage user={this.state.userAccount}/>
+              </Route>
+
+              <Route path="/myProfile">
+                <ProfilePage user={this.state.userAccount}/>
               </Route>
 
               <Route path="/Debug">

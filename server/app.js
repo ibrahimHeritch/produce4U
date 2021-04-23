@@ -10,6 +10,7 @@ var reservationRouter = require('./routes/reservation')
 var postProductRouter = require('./routes/postProduct')
 var signupRouter = require('./routes/signup')
 var loginRouter = require('./routes/login')
+var userRouter = require('./routes/user')
 var searchRouter = require('./routes/search')
 var productsRouter = require('./routes/productPage')
 
@@ -47,6 +48,7 @@ app.use('/', indexRouter);
 app.use('/test', addTestRouter);
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
+app.use('/user', userRouter);
 app.use('/reservation',reservationRouter);
 app.use('/postProduct', postProductRouter);
 app.use('/Search', searchRouter);

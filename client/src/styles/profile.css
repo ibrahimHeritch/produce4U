@@ -1,0 +1,60 @@
+.profile-left{
+   margin: 10px;
+   width: 350px;
+}
+
+.profile-right{
+   margin: 10px;
+   min-width: 550px;
+   width: 50%;
+}
+
+.profile-tile{
+  text-align: left;
+  padding: 20px;
+  padding-left: 35px;
+  margin: 20px;
+}
+
+.profile-producerInfo{
+  padding-left: 20px;
+  position: relative;
+}
+
+.profile-description{
+  margin-left: 30px;
+  padding: 15px;
+  width: 500px;
+  height: 150px;
+
+}
+
+.profile-lable{
+  margin-right: 10px;
+  font-weight: bold;
+
+}
+
+.profile-edit{
+  position: absolute;
+  right: 5px;
+  bottom: -15px;
+  cursor: pointer;
+
+}
+
+.profile-save-button{
+  position: absolute;
+  right: 5px;
+  bottom: -13px;
+  cursor: pointer;
+  color: white;
+  background-color: #78B244;
+  text-align: center;
+  text-decoration: none;
+  line-height: 28px;
+  border-radius: 15px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
