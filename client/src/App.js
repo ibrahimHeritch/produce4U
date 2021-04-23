@@ -72,8 +72,8 @@ class App extends Component{
                   <MyReservationsPage user={this.state.userAccount}/>
               </Route>
 
-              <Route path="/ProducerProfilePage">
-                <ProducerProfilePage user={this.state.userAccount}/>
+              <Route path="/ProducerProfile/:username" component={ProducerProfilePage}>
+
               </Route>
 
               <Route path="/myProfile">

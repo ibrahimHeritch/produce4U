@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import '../styles/ProducerProfile.css';
 import GoogleMapReact from 'google-map-react';
-
+import profile from '../resources/pictures/defualt_profile.png'
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 class ProducerProfilePage extends Component{
-  /////TODO: make this get information from database
+
 
 
 
@@ -19,6 +19,7 @@ class ProducerProfilePage extends Component{
 
         super(props);
         this.state = {
+            user: null,//temporary
             producer:{
                 image: "https://media.istockphoto.com/photos/farmer-in-a-soybean-field-agricultural-concept-picture-id1158664559?k=6&m=1158664559&s=612x612&w=0&h=gKaS2VdqyJZKAJMFTOZDZC72oVYFwXt7PqcDdqcfCSw=",
                 name: "Perdu Farms",
@@ -33,9 +34,15 @@ class ProducerProfilePage extends Component{
 
     }
 
-/////BUG: Label doesn't show 
-    render() {
+    componentDidMount(){
+        fetch("http://localhost:9000/user?username="+this.props.match.params.username)
+          .then(res => res.text())
+          .then(res => this.setState({user: JSON.parse(res)}))
+          .catch(err => err);
+    }
 
+    render() {
+        if(this.state.user==null) return <p>Producer Doesn't exist</p>
         return(
 
                 <div>
@@ -47,8 +54,8 @@ class ProducerProfilePage extends Component{
 
 
          <div className="producer-info">
-                <img className="produce4U-producerPhoto" src={this.state.producer.image}/>
-                <p className="produce4U-producerName">{this.state.producer.name} <br></br><br></br><span className="produce4U-producerText">{this.state.producer.description}</span></p>
+                <img className="produce4U-producerPhoto" src={this.state.user.image?this.state.user.image:profile}/>
+                <p className="produce4U-producerName">{this.state.user.farm_name} <br></br><br></br><span className="produce4U-producerText">{this.state.user.description?this.state.user.description:"No Description"}</span></p>
          </div>
                   <div className="location-info">
                         <p className= "produce4U-producerLocation"> Location</p>

@@ -27,7 +27,7 @@ function ProduceCard(props){
       <p>{props.product.distance} miles away</p>
     </div>
     <p>Stars: {props.product.rating}</p>
-    <a className="product-producer" href="/ProducerProfilePage"><p className="produce4U-producer product-producer" >{props.product.owner_username}</p></a>
+    <a className="product-producer" href={"/ProducerProfile/"+props.product.owner_username}><p className="produce4U-producer product-producer" >{props.product.owner_username}</p></a>
     </div>
   )
 }

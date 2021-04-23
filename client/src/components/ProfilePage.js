@@ -9,7 +9,6 @@ class ProfilePage extends Component{
     console.log(props);
     this.state = {
       user:null,
-      temp:"hello",
       editInfo: false,
       newFarmName: "",
       newDescription: ""
@@ -23,10 +22,33 @@ class ProfilePage extends Component{
   }
 ///TODO make this update the backend
   handleInfoSave(){
-      if(this.state.user.username != this.state.newFarmName){
-        this.state.user.username  = this.state.newFarmName
+      let changed = false
+      if(this.state.user.farm_name != this.state.newFarmName){
+        this.state.user.farm_name  = this.state.newFarmName
+        changed = true
         this.setState({
             user: this.state.user,
+            editInfo: !this.state.editInfo
+          })
+      }
+      if(this.state.user.description != this.state.newDescription){
+        changed = true
+        this.state.user.description  = this.state.newDescription
+        this.setState({
+            user: this.state.user,
+            editInfo: !this.state.editInfo
+          })
+      }
+      if(changed){
+        fetch("http://localhost:9000/user/update", { method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(this.state.user)
+          }).then(function(response) {
+            console.log(response)
+            return response.json();
+          });
+      }else{
+        this.setState({
             editInfo: !this.state.editInfo
           })
       }
@@ -37,6 +59,7 @@ class ProfilePage extends Component{
       fetch("http://localhost:9000/user?username="+this.props.user.username)
         .then(res => res.text())
         .then(res => this.setState({user: JSON.parse(res)}))
+        .then(res => this.setState({newFarmName:this.state.user.farm_name,newDescription:this.state.user.description}))
         .catch(err => err);
   }
   render() {
@@ -65,16 +88,16 @@ class ProfilePage extends Component{
                 <p className="produce4U-greytext">What customers see on your profile:  </p>
                 <div className="profile-producerInfo">
                   <p> <span className="profile-lable produce4U-greentext">Your Farm Name:</span>
-                  <span>{this.state.editInfo? <input value={this.state.newFarmName} name="newFarmName" onChange={this.handleChange} /> : this.state.user.username}</span>
+                  <span>{this.state.editInfo? <input maxlength="100" value={this.state.newFarmName} name="newFarmName" onChange={this.handleChange} /> : this.state.user.farm_name}</span>
                   </p>
                   <p className="profile-lable produce4U-greentext" > Your Description: </p>
-                  {this.state.editInfo? <textarea className="profile-description" value={this.state.newDescription} name="newDescription" onChange={this.handleChange}/> :<p className="profile-description "> {this.state.user.description} </p>}
+                  {this.state.editInfo? <textarea maxlength="250" className="profile-description" value={this.state.newDescription} name="newDescription" onChange={this.handleChange}/> :<p className="profile-description "> {this.state.user.description} </p>}
                   {this.state.editInfo? <button className="profile-save-button" onClick={this.handleInfoSave}>save</button> : <img className="profile-edit" src={editIcon} onClick={()=>{this.setState({editInfo:!this.state.editInfo})}}/>}
                 </div>
                </div>
                <div className="profile-tile produce4U-tile">
                  <p className="produce4U-greytext">Your Address:</p>
-                 <Editable value={"TODO"} onChange={(event)=>{this.setState({temp:event.target.value})}}/>
+                 <p value={"TODO"} onChange={(event)=>{this.setState({temp:event.target.value})}}/>
                 </div>
             </div>
         </div>
