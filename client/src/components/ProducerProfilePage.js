@@ -30,6 +30,7 @@ class ProducerProfilePage extends Component{
             }
 
 
+
         };
 
     }
@@ -40,7 +41,7 @@ class ProducerProfilePage extends Component{
           .then(res => this.setState({user: JSON.parse(res)}))
           .catch(err => err);
     }
-
+/////TODO: do not display address it is null
     render() {
         if(this.state.user==null) return <p>Producer Doesn't exist</p>
         return(
@@ -59,20 +60,20 @@ class ProducerProfilePage extends Component{
          </div>
                   <div className="location-info">
                         <p className= "produce4U-producerLocation"> Location</p>
-                        <p className="produce4U-locationText">{this.state.producer.name} is located at {this.state.producer.location}</p>
+                        <p className="produce4U-locationText">{this.state.user.farm_name} is located at {this.state.user.address_line_one+" "+this.state.user.address_line_two+" "+this.state.user.city+" "+this.state.user.state+" "+this.state.user.country+" "+this.state.user.zip_code}</p>
                         <div style={{ height: '600px', width: '90%', margin:"auto"}}>
                           <GoogleMapReact
                               bootstrapURLKeys={{key:'AIzaSyDiAVMs1DJpi5C8bkFHY2WZ6DTDq7K0pU0', language: 'en', region: 'US'}}
-                              defaultCenter={this.props.center}
+                              defaultCenter={{lat: this.state.user.latitude, lng: this.state.user.longitude}}
                               defaultZoom={this.props.zoom}
                               onChildMouseEnter={this.onChildMouseEnter}
                               onChildMouseLeave={this.onChildMouseLeave}
                            >
-                          <AnyReactComponent
-                                 lat={this.state.producer.latitude}
-                                 lng={this.state.producer.longitude}
-                                 text={this.state.producer.name}
-                           />
+                           <AnyReactComponent
+                                  lat={this.state.user.latitude}
+                                  lng={this.state.user.longitude}
+                                  text={this.state.user.farm_name}
+                            />
                           </GoogleMapReact>
 
 
