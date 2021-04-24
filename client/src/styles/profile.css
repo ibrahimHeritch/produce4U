@@ -14,31 +14,35 @@
   padding: 20px;
   padding-left: 35px;
   margin: 20px;
+  min-width: 500px;
 }
 
 .profile-producerInfo{
   padding-left: 20px;
   position: relative;
+  padding-bottom: 20px;
 }
 
 .profile-description{
   margin-left: 30px;
   padding: 15px;
-  width: 500px;
-  height: 150px;
+  
 
 }
 
 .profile-lable{
   margin-right: 10px;
   font-weight: bold;
+}
 
+.profile-address-lable{
+  margin-right: 10px;
+  font-weight: bold;
+  float: left;
 }
 
 .profile-edit{
-  position: absolute;
-  right: 5px;
-  bottom: -15px;
+  float: right;
   cursor: pointer;
 
 }
@@ -57,4 +61,14 @@
   outline: none;
   border: none;
   cursor: pointer;
+}
+
+.profile-address-span{
+  float: left;
+  width: 300px ;
+}
+
+.profile-address-span-country{
+  float: left;
+  width: 270px ;
 }

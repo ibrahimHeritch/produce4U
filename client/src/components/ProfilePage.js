@@ -2,6 +2,7 @@ import React, {Component,useState} from 'react';
 import '../styles/profile.css';
 import editIcon from '../resources/Icons/edit.svg'
 import profile from '../resources/pictures/defualt_profile.png'
+import Geocode from "react-geocode";
 
 class ProfilePage extends Component{
   constructor(props){
@@ -10,17 +11,103 @@ class ProfilePage extends Component{
     this.state = {
       user:null,
       editInfo: false,
+      editAddress: false,
       newFarmName: "",
-      newDescription: ""
+      newDescription: "",
+      newAddressLineOne: "",
+      newAddressLineTwo: "",
+      newCity: "",
+      newState: "",
+      newCountry: "",
+      newZipCode: "",
+
     }
+
     this.handleInfoSave = this.handleInfoSave.bind(this)
+    this.handleAddressSave = this.handleAddressSave.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
 
   handleChange(event){
     this.setState({[event.target.name]: event.target.value})
   }
-///TODO make this update the backend
+
+  handleAddressSave(){
+      let changed = false
+      if(this.state.user.address_line_one != this.state.newAddressLineOne){
+        this.state.user.address_line_one  = this.state.newAddressLineOne
+        changed = true
+        this.setState({
+            user: this.state.user,
+          })
+      }
+      if(this.state.user.address_line_two != this.state.newAddressLineTwo){
+        this.state.user.address_line_two  = this.state.newAddressLineTwo
+        changed = true
+        this.setState({
+            user: this.state.user,
+          })
+      }
+      if(this.state.user.city != this.state.newCity){
+        this.state.user.city  = this.state.newCity
+        changed = true
+        this.setState({
+            user: this.state.user,
+          })
+      }
+      if(this.state.user.state != this.state.newState){
+        this.state.user.state  = this.state.newState
+        changed = true
+        this.setState({
+            user: this.state.user,
+          })
+      }
+      if(this.state.user.country != this.state.newCountry){
+        this.state.user.country  = this.state.newCountry
+        changed = true
+        this.setState({
+            user: this.state.user,
+          })
+      }
+      if(this.state.user.zip_code != this.state.newZipCode){
+        this.state.user.zip_code  = this.state.newZipCode
+        changed = true
+        this.setState({
+            user: this.state.user,
+          })
+      }
+      if(changed){
+        Geocode.setApiKey('AIzaSyDiAVMs1DJpi5C8bkFHY2WZ6DTDq7K0pU0');
+        Geocode.fromAddress(this.state.user.address_line_one+" "+this.state.user.address_line_two+" "+this.state.user.city+" "+this.state.user.state+" "+this.state.user.country+" "+this.state.user.zip_code).then(
+            (response) => {
+              const { lat, lng } = response.results[0].geometry.location;
+              this.state.user.latitude=lat
+              this.state.user.longitude=lng
+              this.setState({
+                  user: this.state.user,
+                })
+            },
+            (error) => {
+              console.error(error);
+            }
+          ).then(
+            ()=>{
+              fetch("http://localhost:9000/user/update/address", { method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(this.state.user)
+                }).then(function(response) {
+                  console.log(response)
+                  return response.json();
+                });
+            }
+          )
+
+      }
+      this.setState({
+          editAddress: !this.state.editAddress
+      })
+  }
+
   handleInfoSave(){
       let changed = false
       if(this.state.user.farm_name != this.state.newFarmName){
@@ -28,7 +115,6 @@ class ProfilePage extends Component{
         changed = true
         this.setState({
             user: this.state.user,
-            editInfo: !this.state.editInfo
           })
       }
       if(this.state.user.description != this.state.newDescription){
@@ -36,22 +122,21 @@ class ProfilePage extends Component{
         this.state.user.description  = this.state.newDescription
         this.setState({
             user: this.state.user,
-            editInfo: !this.state.editInfo
           })
       }
       if(changed){
-        fetch("http://localhost:9000/user/update", { method: 'POST',
+        fetch("http://localhost:9000/user/update/producerInfo", { method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(this.state.user)
           }).then(function(response) {
             console.log(response)
             return response.json();
           });
-      }else{
-        this.setState({
-            editInfo: !this.state.editInfo
-          })
       }
+      this.setState({
+          editInfo: !this.state.editInfo
+      })
+
 
   }
 
@@ -60,48 +145,130 @@ class ProfilePage extends Component{
         .then(res => res.text())
         .then(res => this.setState({user: JSON.parse(res)}))
         .then(res => this.setState({newFarmName:this.state.user.farm_name,newDescription:this.state.user.description}))
+        .then(res => this.setState({
+                        newAddressLineOne: this.state.user.address_line_one,
+                        newAddressLineTwo: this.state.user.address_line_two,
+                        newCity: this.state.user.city,
+                        newState: this.state.user.state,
+                        newCountry: this.state.user.country,
+                        newZipCode: this.state.user.zip_code,
+                                    }))
         .catch(err => err);
   }
   render() {
+
     if(this.state.user==null) return <p>Login to see your profile</p>
+    if(this.props.user.type=="PRODUCER"){
+      return(
 
-    return(
+          <div className="product">
+              <div className="profile-left">
 
-        <div className="product">
-            <div className="profile-left">
+                <div className=" product-info ">
+                    <img className="product-image" src={profile}/>
+                    <p className="product-title">{this.state.user.username}</p>
+                    <p>{this.state.user.first_name}{" "}{this.state.user.last_name}</p>
+                    <p>{this.state.user.email}</p>
+                    <p>Date Joined: {this.state.user.date_joined.split("T")[0]}</p>
 
-              <div className=" product-info ">
-                  <img className="product-image" src={profile}/>
-                  <p className="product-title">{this.state.user.username}</p>
-                  <p>{this.state.user.first_name}{" "}{this.state.user.last_name}</p>
-                  <p>{this.state.user.email}</p>
-                  <p>Date Joined: {this.state.user.date_joined.split("T")[0]}</p>
+                </div>
+
+
+
 
               </div>
+              <div className="profile-right ">
 
+                 <div className="profile-tile produce4U-tile">
+                   <p className="produce4U-greytext">What customers see on your profile:  </p>
+                   <div className="profile-producerInfo">
+                     <p> <span className="profile-lable produce4U-greentext">Your Farm Name:</span>
+                     <span>{this.state.editInfo? <input maxlength="100" value={this.state.newFarmName} name="newFarmName" onChange={this.handleChange} /> : this.state.user.farm_name}</span>
+                     </p>
+                     <p className="profile-lable produce4U-greentext" > Your Description: </p>
+                     {this.state.editInfo? <textarea maxlength="250" className="profile-description" value={this.state.newDescription} name="newDescription" onChange={this.handleChange}/> :<p className="profile-description "> {this.state.user.description} </p>}
+                     {this.state.editInfo? <button className="profile-save-button" onClick={this.handleInfoSave}>save</button> : <img className="profile-edit" src={editIcon} onClick={()=>{this.setState({editInfo:!this.state.editInfo})}}/>}
+                   </div>
+                  </div>
 
+                  <div className="profile-tile produce4U-tile">
+                    <p className="produce4U-greytext">Your Address: </p>
+                    <div className="profile-producerInfo">
+                      <p> <span className="profile-lable produce4U-greentext">Address Line One:</span>
+                      <span>{this.state.editAddress? <input maxlength="100" value={this.state.newAddressLineOne} name="newAddressLineOne" onChange={this.handleChange} /> : this.state.user.address_line_one}</span>
+                      </p>
+                      <p> <span className="profile-lable produce4U-greentext">Address Line Two:</span>
+                      <span>{this.state.editAddress? <input maxlength="100" value={this.state.newAddressLineTwo} name="newAddressLineTwo" onChange={this.handleChange} /> : this.state.user.address_line_two}</span>
+                      </p>
+                      <p>
+                      <span className="profile-address-lable produce4U-greentext">City:</span>
+                      <span className="profile-address-span">{this.state.editAddress? <input maxlength="100" value={this.state.newCity} name="newCity" onChange={this.handleChange} /> : this.state.user.city}</span>
+                      <span className="profile-address-lable produce4U-greentext">State:</span>
+                      <span>{this.state.editAddress? <input maxlength="100" value={this.state.newState} name="newState" onChange={this.handleChange} /> : this.state.user.state}</span>
+                      </p>
+                      <p>
+                      <span className="profile-address-lable produce4U-greentext">Country:</span>
+                      <span className="profile-address-span-country" >{this.state.editAddress? <input maxlength="100" value={this.state.newCountry} name="newCountry" onChange={this.handleChange} /> : this.state.user.country}</span>
+                      <span className="profile-address-lable produce4U-greentext">Zip Code:</span>
+                      <span>{this.state.editAddress? <input maxlength="100" value={this.state.newZipCode} name="newZipCode" onChange={this.handleChange} /> : this.state.user.zip_code}</span>
+                      </p>
+                      {this.state.editAddress? <button className="profile-save-button" onClick={this.handleAddressSave}>save</button> : <img className="profile-edit" src={editIcon} onClick={()=>{this.setState({editAddress:!this.state.editAddress})}}/>}
+                    </div>
+                   </div>
+              </div>
+          </div>
+      );
+    }else{
+      return(
 
+          <div className="product">
+              <div className="profile-left">
 
-            </div>
-            <div className="profile-right ">
-              <div className="profile-tile produce4U-tile">
-                <p className="produce4U-greytext">What customers see on your profile:  </p>
-                <div className="profile-producerInfo">
-                  <p> <span className="profile-lable produce4U-greentext">Your Farm Name:</span>
-                  <span>{this.state.editInfo? <input maxlength="100" value={this.state.newFarmName} name="newFarmName" onChange={this.handleChange} /> : this.state.user.farm_name}</span>
-                  </p>
-                  <p className="profile-lable produce4U-greentext" > Your Description: </p>
-                  {this.state.editInfo? <textarea maxlength="250" className="profile-description" value={this.state.newDescription} name="newDescription" onChange={this.handleChange}/> :<p className="profile-description "> {this.state.user.description} </p>}
-                  {this.state.editInfo? <button className="profile-save-button" onClick={this.handleInfoSave}>save</button> : <img className="profile-edit" src={editIcon} onClick={()=>{this.setState({editInfo:!this.state.editInfo})}}/>}
+                <div className=" product-info ">
+                    <img className="product-image" src={profile}/>
+                    <p className="product-title">{this.state.user.username}</p>
+                    <p>{this.state.user.first_name}{" "}{this.state.user.last_name}</p>
+                    <p>{this.state.user.email}</p>
+                    <p>Date Joined: {this.state.user.date_joined.split("T")[0]}</p>
+
                 </div>
-               </div>
-               <div className="profile-tile produce4U-tile">
-                 <p className="produce4U-greytext">Your Address:</p>
-                 <p value={"TODO"} onChange={(event)=>{this.setState({temp:event.target.value})}}/>
-                </div>
-            </div>
-        </div>
-    );
+
+
+
+
+              </div>
+              <div className="profile-right ">
+
+
+                  <div className="profile-tile produce4U-tile">
+                    <p className="produce4U-greytext">Your Address: </p>
+                    <div className="profile-producerInfo">
+                      <p> <span className="profile-lable produce4U-greentext">Address Line One:</span>
+                      <span>{this.state.editAddress? <input maxlength="100" value={this.state.newAddressLineOne} name="newAddressLineOne" onChange={this.handleChange} /> : this.state.user.address_line_one}</span>
+                      </p>
+                      <p> <span className="profile-lable produce4U-greentext">Address Line Two:</span>
+                      <span>{this.state.editAddress? <input maxlength="100" value={this.state.newAddressLineTwo} name="newAddressLineTwo" onChange={this.handleChange} /> : this.state.user.address_line_two}</span>
+                      </p>
+                      <p>
+                      <span className="profile-address-lable produce4U-greentext">City:</span>
+                      <span className="profile-address-span">{this.state.editAddress? <input maxlength="100" value={this.state.newCity} name="newCity" onChange={this.handleChange} /> : this.state.user.city}</span>
+                      <span className="profile-address-lable produce4U-greentext">State:</span>
+                      <span>{this.state.editAddress? <input maxlength="100" value={this.state.newState} name="newState" onChange={this.handleChange} /> : this.state.user.state}</span>
+                      </p>
+                      <p>
+                      <span className="profile-address-lable produce4U-greentext">Country:</span>
+                      <span className="profile-address-span-country" >{this.state.editAddress? <input maxlength="100" value={this.state.newCountry} name="newCountry" onChange={this.handleChange} /> : this.state.user.country}</span>
+                      <span className="profile-address-lable produce4U-greentext">Zip Code:</span>
+                      <span>{this.state.editAddress? <input maxlength="100" value={this.state.newZipCode} name="newZipCode" onChange={this.handleChange} /> : this.state.user.zip_code}</span>
+                      </p>
+                      {this.state.editAddress? <button className="profile-save-button" onClick={this.handleAddressSave}>save</button> : <img className="profile-edit" src={editIcon} onClick={()=>{this.setState({editAddress:!this.state.editAddress})}}/>}
+                    </div>
+                   </div>
+              </div>
+          </div>
+      );
+    }
+
   }
 
 }
