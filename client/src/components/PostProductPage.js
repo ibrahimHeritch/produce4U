@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import '../App.css';
 import '../styles/PostProductPage.css';
-
+import axios from 'axios';
+import Datetime from "react-datetime";
 
 
 class PostProductPage extends Component {
@@ -13,28 +14,71 @@ class PostProductPage extends Component {
             product_title: "",
             description: "",
             quantity: "",
-            price: 0.0,
+            price: null,
             rating: 5.0,
             product_type: "OTHER",
             pricing_type: "Pc",
             date_harversted: "",
-            picture_url: null, //temporary
+            picture_url: null,
+            error:"ALL OK"
         }
         this.handleChange = this.handleChange.bind(this)
         this.addProduct = this.addProduct.bind(this);
-
-
+        this.uploadHandler = this.uploadHandler.bind(this)
+        this.isValidInput = this.isValidInput.bind(this);
 
     }
-/////TODO: more input validiation
-    addProduct(){
-          fetch("http://localhost:9000/postProduct", { method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(this.state)
-            }).then(function(response) {
-              console.log(response)
-              return response.json();
-            });
+
+    isValidInput(){
+      if(this.state.product_title == ""){
+        this.setState({error: "Must include Product Name"})
+        return false;
+      }
+      if(this.state.description == ""){
+        this.setState({error: "Must include Product Description"})
+        return false;
+      }
+      if(this.state.quantity == '' || isNaN(this.state.quantity) ){
+        this.setState({error: "Must include Quantity as Number"})
+        return false;
+      }
+      if(this.state.price == null || isNaN(this.state.price)){
+        this.setState({error: "Must include Price as Number"})
+        return false;
+      }
+      if(this.state.picture_url == null){
+        this.setState({error: "Must include picture"})
+        return false;
+      }
+
+      return true;
+    }
+
+
+    addProduct(event){
+          if(this.isValidInput()){
+            fetch("http://localhost:9000/postProduct", { method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(this.state)
+              }).then(function(response) {
+                console.log(response)
+                return response.json();
+              });
+          }else{
+            event.preventDefault()
+          }
+
+    }
+
+    uploadHandler(event) {
+      const data = new FormData();
+    data.append('file', event.target.files[0]);
+
+    axios.post('http://localhost:9000/postProduct/uploadImg', data)
+      .then((res) => {
+        console.log(res.data)
+        this.setState({ picture_url: "http://localhost:9000/"+res.data.path.split("/")[1] });
+      });
     }
 
 
@@ -53,7 +97,7 @@ class PostProductPage extends Component {
         return (
             <div className="App">
                 <form action="http://localhost:3000/myProduct" onSubmit={this.addProduct}>
-                    <section className="post-out-border">
+                    <section className="post-out-border produce4U-tile">
                     <label className="post-top">Post Your Product</label>
                     <br />
                     <br />
@@ -62,6 +106,7 @@ class PostProductPage extends Component {
                     <label className="post-info"> Product Title:
                     <br />
                     <input
+
                     type="text"
                     value={this.state.name}
                     name="product_title"
@@ -75,10 +120,11 @@ class PostProductPage extends Component {
                     <label className="post-info"> Description:
                     <br />
                     <textarea
+
                                 value={this.state.textAreaValue}
                                 onChange={this.handleChange}
-                                rows={5}
-                                cols={5}
+                                rows={10}
+                                cols={53}
                                 name="description"
                                 placeholder="Descripe Your Product"
                                 className="post-border"
@@ -103,21 +149,12 @@ class PostProductPage extends Component {
                                 type="text"
                                 name="price"
                                 className="post-border"
-                                defaultValue="0.0"
+                                placeholder="Price"
                                 onChange={this.handleChange} />
                     </label>
                         <br />
 
-                        <label className="post-info">Picture Url (temp will change later):
-                    <br />
-                            <input
-                                type="text"
-                                name="picture_url"
-                                placeholder="No More the 100 chars tho"
-                                className="post-border"
-                                onChange={this.handleChange} />
-                        </label>
-                        <br />
+
 
                     <label className="post-info">Select a Product Category:</label>
                     <br />
@@ -139,32 +176,41 @@ class PostProductPage extends Component {
                         <br />
                     <label className="post-info">Pricing Type:
                     <br />
-                        <input
-                            value={this.state.pricing_type}
-                            type="text"
-                            name="pricing_type"
-                            placeholder="pricing type: (e.g., 'Lb','Oz','Pc','Dz','Pkg')"
-                            className="post-border"
-                            onChange={this.handleChange} />
+
+                    <select
+                         onChange={this.handleChange}
+                         className="post-border"
+                         name="pricing_type"
+                       >
+
+                           <option value="Pc">Each</option>
+                           <option value="Lb">Per Pound</option>
+                           <option value="Oz">Per Ounce</option>
+                           <option value="Dz">Per Dozen</option>
+                           <option value="Pkg">Per Package</option>
+
+
+                            </select>
                     </label>
                     <br />
 
                     <label className="post-info">Date Harversted:
                         <br />
-                        <input
-                              value={this.date_harversted}
-                              type="text"
-                              name="date_harversted"
-                              placeholder="Date Harversted"
-                              className="post-border"
-                              onChange={this.handleChange} />
+                        <div className="post-date-harversted">
+                        <Datetime input={false} timeFormat={false}  />
+                        </div>
                     </label>
                     <br />
-
-                    <input type="file" onChange={this.fileSelectedHandler} className="produce4U-font"/>
-                    <br />
-                        <button className="produce4U-green-button">Submit</button>
-                        </section>
+                    <label className="post-info">Product Picture:
+                      <br />
+                      <input type="file" onChange={this.uploadHandler} className="produce4U-font"/>
+                      <br />
+                      <br />
+                      <button className="produce4U-green-button">Submit</button>
+                      <br />
+                      {this.state.error=="ALL OK"?" " : <p style={{color:'red'}}>{this.state.error}</p>}
+                    </label>
+                    </section>
                 </form>
 
             </div>
