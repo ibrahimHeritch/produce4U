@@ -11,6 +11,11 @@ class MyproductsPage extends Component {
             widths: [200,115,50,50,190]
         };
     }
+    
+    handleDelete = itemId => {
+        const products = this.state.products.filter(item => item.name !== itemId);
+        this.setState({ products: products });
+    };
 
 ///this method gets called and it populates the products array
     componentDidMount(){
@@ -34,7 +39,7 @@ class MyproductsPage extends Component {
 
                       <a href="/confirmation"><p className="produce4U-bluetext table-row-product">Add</p></a>
                       <a href="/reserve"><button className="produce4U-green-button table-edit">Edit</button></a>
-                      <button className="produce4U-red-button table-delete">Delete</button>
+                     <button className="produce4U-red-button table-delete" onClick={() => this.props.onDelete(this.props.item.name)}>Delete</button>
                  </div>]))
 
         )
@@ -75,6 +80,7 @@ class MyproductsPage extends Component {
               <p> Your Products</p>
               {this.getHeader()}
               {(this.state.products.length > 0? this.getProducts():" ")}
+              onDelete = {this.handleDelete}
           </div>
       );
     }
