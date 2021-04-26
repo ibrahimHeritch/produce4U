@@ -14,7 +14,6 @@ class MyproductsPage extends Component {
         this.deleteProduct = this.deleteProduct.bind(this);
     }
     
-    
 ///this method gets called and it populates the products array
     componentDidMount(){
         fetch("http://localhost:9000/postProduct?user="+this.props.user.username)
