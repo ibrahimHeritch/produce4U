@@ -40,7 +40,7 @@ class LoginPage extends Component{
         localStorage.setItem('user',JSON.stringify({username:this.state.user.username,type:this.state.user.account_type,token:null}))
         this.props.onLogin({username:this.state.user.username,type:this.state.user.account_type,token:null})
       }else{
-        this.setState({error:"Username or Password Are worng"})
+        this.setState({error:"Username or Password Are Wrong"})
       }
     }else{
       //// TODO: Display a message to tell user what they did wrong
