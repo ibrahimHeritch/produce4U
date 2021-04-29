@@ -1,4 +1,4 @@
-const tables = ["test(id int NOT NULL AUTO_INCREMENT, value varchar(20), PRIMARY KEY(id))",
+const tables = [
                 `address(
                 id INT NOT NULL AUTO_INCREMENT,
                 address_line_one VARCHAR(100) DEFAULT NULL,
@@ -61,6 +61,45 @@ const tables = ["test(id int NOT NULL AUTO_INCREMENT, value varchar(20), PRIMARY
                   PRIMARY KEY (id),
                   FOREIGN KEY (item_id) REFERENCES product(id),
                   FOREIGN KEY (reserver) REFERENCES user(username)
+                )`,
+                `message(
+                  id INT NOT NULL AUTO_INCREMENT,
+                  from_user VARCHAR(26) NOT NULL,
+                  to_user VARCHAR(26) NOT NULL,
+                  message VARCHAR(250),
+                  picture VARCHAR(100) DEFAULT NULL,
+                  send_datetime DATETIME NOT NULL,
+                  PRIMARY KEY (id),
+                  FOREIGN KEY (from_user) REFERENCES user(username),
+                  FOREIGN KEY (to_user) REFERENCES user(username)
+                )`,
+                `report(
+                  id INT NOT NULL AUTO_INCREMENT,
+                  from_user VARCHAR(26) NOT NULL,
+                  message VARCHAR(250),
+                  time_reported DATETIME NOT NULL,
+                  PRIMARY KEY (id),
+                  FOREIGN KEY (from_user) REFERENCES user(username)
+                )`,
+                `
+                follow(
+                  username VARCHAR(26) NOT NULL,
+                  producer VARCHAR(26) NOT NULL,
+                  FOREIGN KEY (username) REFERENCES user(username),
+                  FOREIGN KEY (producer) REFERENCES user(username),
+                  PRIMARY KEY (username,producer)
+                )`,
+                `review(
+                  id INT NOT NULL AUTO_INCREMENT,
+                  author_username VARCHAR(26) NOT NULL,
+                  text VARCHAR(250),
+                  producer_reply VARCHAR(250),
+                  product_id INT NOT NULL,
+                  rating DECIMAL(11,7) DEFAULT 5.0,
+                  picture VARCHAR(100) DEFAULT NULL,
+                  FOREIGN KEY (author_username) REFERENCES user(username),
+                  FOREIGN KEY (product_id) REFERENCES product(id),
+                  PRIMARY KEY (id)
                 )`,
                 ];
 
