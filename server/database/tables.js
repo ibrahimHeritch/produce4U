@@ -23,6 +23,7 @@ const tables = [
                   is_banned BOOLEAN NOT NULL DEFAULT 0,
                   token VARCHAR(30) DEFAULT NULL,
                   address_id INT DEFAULT NULL,
+                  isBan BOOLEAN DEFAULT FALSE,
                   PRIMARY KEY (username),
                   FOREIGN KEY (address_id) REFERENCES address(id)
                 )`,
