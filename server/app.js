@@ -5,7 +5,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var indexRouter = require('./routes/index');
-var addTestRouter = require('./routes/test');
 var reservationRouter = require('./routes/reservation')
 var postProductRouter = require('./routes/postProduct')
 var signupRouter = require('./routes/signup')
@@ -13,6 +12,9 @@ var loginRouter = require('./routes/login')
 var userRouter = require('./routes/user')
 var searchRouter = require('./routes/search')
 var productsRouter = require('./routes/productPage')
+var chatRouter = require('./routes/chat')
+var notificationRouter = require('./routes/subscribe')
+var sendNotification = require("./notificationService.js");
 
 var cors = require("cors");
 
@@ -27,6 +29,7 @@ var app = express();
 //for delete button
 
 //const methodOverride = require('method-override')
+//sendNotification("Perdu Farm",{title:"Reservation Confirmed",text:"You reserved Product: for ", tag:"Reservation"})
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -45,7 +48,6 @@ app.use(express.static(path.join(__dirname,'public')));
 
 //Add routes here
 app.use('/', indexRouter);
-app.use('/test', addTestRouter);
 app.use('/signup', signupRouter);
 app.use('/login', loginRouter);
 app.use('/user', userRouter);
@@ -53,7 +55,8 @@ app.use('/reservation',reservationRouter);
 app.use('/postProduct', postProductRouter);
 app.use('/Search', searchRouter);
 app.use('/productsPage', productsRouter);
-
+app.use('/chat', chatRouter);
+app.use('/subscription', notificationRouter);
 
 
 

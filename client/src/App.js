@@ -14,8 +14,8 @@ import HomePage from './components/HomePage.js';
 import ProducerProfilePage from './components/ProducerProfilePage.js';
 import SignupPage from './components/Signup.js';
 import ProfilePage from './components/ProfilePage.js';
-
-
+import Chat from './components/Chat.js';
+//import PushNotificationDemo from "./components/notification";
 import {
   BrowserRouter as Router,
   Switch,
@@ -23,6 +23,15 @@ import {
   Link
 } from "react-router-dom";
 
+import http from "./utils/http";
+
+import {
+  isPushNotificationSupported,
+  askUserPermission,
+  registerServiceWorker,
+  createNotificationSubscription,
+  getUserSubscription
+} from "./push-notifications";
 
 
 
@@ -34,8 +43,25 @@ class App extends Component{
   }
 
 
-
   render() {
+
+    if(this.state.userAccount != null ){
+      askUserPermission().then(consent => {
+
+          if(consent == "granted"){
+            registerServiceWorker()
+            .then(createNotificationSubscription()
+              .then( (userSubscription)=>{
+
+                http.post("/subscription", {username: this.state.userAccount.username,request: userSubscription})
+
+
+            })
+          )
+        }
+      })
+    }
+
     return(
       <div className="App">
         <Header user={this.state.userAccount} onLogout={()=>{this.setState({userAccount:null})}}/>
@@ -78,6 +104,10 @@ class App extends Component{
 
               <Route path="/myProfile">
                 <ProfilePage user={this.state.userAccount}/>
+              </Route>
+
+              <Route path="/Chat" >
+                <Chat user={this.state.userAccount} />
               </Route>
 
               <Route path="/Debug">

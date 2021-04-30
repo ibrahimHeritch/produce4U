@@ -79,7 +79,6 @@ class SignupPage extends Component{
           this.props.onLogin({username:this.state.user.username,type:this.state.user.account_type,token:null})
           window.location.href = "http://localhost:3000/Login";
       }else{
-        //// TODO: Display a message to tell user what they did wrong
 
         console.log(this.state)
       }

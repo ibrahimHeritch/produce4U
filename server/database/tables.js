@@ -82,8 +82,7 @@ const tables = [
                   PRIMARY KEY (id),
                   FOREIGN KEY (from_user) REFERENCES user(username)
                 )`,
-                `
-                follow(
+                `follow(
                   username VARCHAR(26) NOT NULL,
                   producer VARCHAR(26) NOT NULL,
                   FOREIGN KEY (username) REFERENCES user(username),
@@ -102,6 +101,12 @@ const tables = [
                   FOREIGN KEY (product_id) REFERENCES product(id),
                   PRIMARY KEY (id)
                 )`,
+              `subscription(
+                username VARCHAR(26) NOT NULL,
+                subscription VARCHAR(1000) NOT NULL,
+                FOREIGN KEY (username) REFERENCES user(username),
+                PRIMARY KEY (username)
+              )`,
                 ];
 
 module.exports = tables;
