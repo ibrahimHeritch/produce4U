@@ -6,8 +6,13 @@ var sendNotification = require("../notificationService.js");
 /////TODO: make it so that the user can only see their own reservations
 //gets products for myReservations page
 router.get("/", function(req, res, next) {
-    database.executeQuery("Select *, DATE_FORMAT(pickup_datetime,'%m/%d/%Y %h:%i %p') AS niceDate From reservation WHERE reserver='"+req.query.user+"';").then(value => {res.json(value);});
+  if(req.query.user){
 
+    database.executeQuery("Select *, DATE_FORMAT(pickup_datetime,'%m/%d/%Y %h:%i %p') AS niceDate From reservation WHERE reserver='"+req.query.user+"';").then(value => {res.json(value);});
+  }else{
+
+    database.executeQuery("Select *, DATE_FORMAT(pickup_datetime,'%m/%d/%Y %h:%i %p') AS niceDate From reservation WHERE producer_name='"+req.query.producer_name+"';").then(value => {res.json(value);});
+  }
 
 });
 

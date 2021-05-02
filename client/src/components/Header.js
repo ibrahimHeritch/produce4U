@@ -18,23 +18,25 @@ class Header extends Component{
     if(this.props.user){
       console.log("Emiting new message")
       socket.emit('Request Unread Message', this.props.user.username)
-    }
-    socket.removeAllListeners();
+      socket.removeAllListeners();
 
-    socket.on('Unread Messages:'+this.props.user.username, (messages) => {
-        console.log(messages)
-        this.setState({unread_messages:messages})
-    })
+      socket.on('Unread Messages:'+this.props.user.username, (messages) => {
+          console.log(messages)
+          this.setState({unread_messages:messages})
+      })
+    }
+
   }
 
   componentDidUpdate(){
+    if(this.props.user){
+      socket.removeAllListeners();
 
-    socket.removeAllListeners();
-
-    socket.on('Unread Messages:'+this.props.user.username, (messages) => {
-        console.log(messages)
-        this.setState({unread_messages:messages})
-    })
+      socket.on('Unread Messages:'+this.props.user.username, (messages) => {
+          console.log(messages)
+          this.setState({unread_messages:messages})
+        })
+    }
   }
 
   logoutifLoggedin(){
@@ -58,7 +60,7 @@ class Header extends Component{
               <a href="/Home" className="header-item">
                 <p>Home</p>
               </a>
-              <a className="header-item" href="/myReservations">
+              <a className="header-item" href="/">
                     <p>About Us</p>
               </a>
 
@@ -122,7 +124,9 @@ class Header extends Component{
               <a className="header-item" href="/MyProduct">
                     <p>My Produce</p>
               </a>
-
+              <a className="header-item" href="/myReservations">
+                    <p>Reservations</p>
+              </a>
             </div>
             <div className="header-center">
               <img className="header-logo" src={logo} />

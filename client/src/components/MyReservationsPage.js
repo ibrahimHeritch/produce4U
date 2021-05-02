@@ -16,10 +16,19 @@ class MyReservationsPage extends Component{
 
 ///this method gets called and it populates the reservations array
   componentDidMount(){
-    fetch("http://localhost:9000/reservation?user="+this.props.user.username)
-      .then(res => res.text())
-      .then(res => this.setState({reservations: JSON.parse(res)}))
-      .catch(err => err);
+    if(this.props.user.type == "USER"){
+      fetch("http://localhost:9000/reservation?user="+this.props.user.username)
+        .then(res => res.text())
+        .then(res => this.setState({reservations: JSON.parse(res)}))
+        .catch(err => err);
+    }
+
+    if(this.props.user.type == "PRODUCER"){
+      fetch("http://localhost:9000/reservation?producer_name="+this.props.user.username)
+        .then(res => res.text())
+        .then(res => this.setState({reservations: JSON.parse(res)}))
+        .catch(err => err);
+    }
   }
 
   getReservations(){
