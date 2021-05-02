@@ -12,13 +12,14 @@ class ProductPage extends Component{
         description:"description",
         price:0.00,
         quantity:2,
-        owner_name: 'Perdu Farm',
+        owner_username: '',
 
 
       }
     }
 
   }
+
 
   componentDidMount(){
       fetch("http://localhost:9000/postProduct/"+this.props.match.params.id)
@@ -49,7 +50,7 @@ class ProductPage extends Component{
               </div>
               <div style={{marginTop:"25px"}}>
                 Got Questions?
-                <a class="contact-producer" href="/Login">
+                <a class="contact-producer" href={"/Chat/"+this.state.product.owner_username} >
                   Contact Producer
                 </a>
               </div>

@@ -30,8 +30,8 @@ class Database{
   static async executeQuery(qry){
     try {
       const result = await query(qry);
-      console.log(qry + "\nGave Result:");
-      console.log(result);
+      //console.log(qry + "\nGave Result:");
+      //console.log(result);
       return result;
 
     }catch (err){

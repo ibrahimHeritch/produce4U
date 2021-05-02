@@ -18,7 +18,7 @@ class Chat extends Component {
         picture: null,
         send_datetime:null
       },
-      current_to_user: "Perdu Farm",
+      current_to_user:props.match.params.user,
       newMessageValue:""
     };
     this.send = this.send.bind(this)
@@ -39,6 +39,15 @@ class Chat extends Component {
                   messages:this.state.messages})
   }
 
+  addChat(user){
+    fetch("http://localhost:9000/chat/new", { method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({user1:this.props.user.username,user2:user})
+      }).then(function(response) {
+        console.log(response)
+        return response.json();
+      });
+  }
 
   getChats(){
     return this.state.chats.map(item =>{return <div className="chat-item" onClick={()=>{this.setState({current_to_user:item.username},this.toUserChanged)}}>
@@ -72,7 +81,7 @@ class Chat extends Component {
 
 
   componentDidMount(){
-      fetch("http://localhost:9000/chat")
+      fetch("http://localhost:9000/chat?user="+this.props.user.username)
         .then(res => res.text())
         .then(res => this.setState({chats: JSON.parse(res)}))
         .catch(err => err);
@@ -83,7 +92,7 @@ class Chat extends Component {
   }
 
   toUserChanged(){
-    fetch("http://localhost:9000/chat")
+    fetch("http://localhost:9000/chat?user="+this.props.user.username)
       .then(res => res.text())
       .then(res => this.setState({chats: JSON.parse(res)}))
       .catch(err => err);
@@ -101,14 +110,18 @@ class Chat extends Component {
           this.state.messages=[message,...this.state.messages]
           this.setState({messages:this.state.messages})
         }
-
+    })
+    socket.once('New Chat:'+this.props.user.username, (message) => {
+      this.toUserChanged()
     })
   }
 
   render() {
 
-
-
+    if(this.state.current_to_user == "ALL" && this.state.chats && this.state.chats.length != 0){
+      this.setState({current_to_user:this.state.chats[0].username},this.toUserChanged)
+    }
+  
     return (
       <div style={{padding:"50px", textAlign: "center" }}>
           <div className="chat-tile">

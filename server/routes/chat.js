@@ -1,9 +1,10 @@
 var express = require("express");
 var router = express.Router();
 var database = require("../database/database.js");
+let socketapi = require("../socketapi");
 
 router.get("/", function(req, res, next) {
-    var query = "SELECT * FROM user "
+    var query = "SELECT * FROM (SELECT * FROM chat WHERE first_user= '"+req.query.user+"') u LEFT JOIN user on username = second_user;"
     database.executeQuery(query)
           .then(value => {
             res.json(value)
@@ -22,6 +23,24 @@ router.get("/messages", function(req, res, next) {
             res.json(value)
           })
 
+
+});
+
+router.post("/new", function(req, res, next) {
+    console.log("user1 " + req.body.user1 + " user2 "+req.body.user2)
+    var query1 = `INSERT IGNORE INTO chat
+                 (first_user, second_user)
+                 VALUES
+                 ('`+req.body.user1+`','`+req.body.user2+`');`
+    var query2 = `INSERT IGNORE INTO chat
+                 (first_user, second_user)
+                 VALUES
+                 ('`+req.body.user2+`','`+req.body.user1+`');`
+
+    database.executeQuery(query1)
+    database.executeQuery(query2)
+    
+    socketapi.io.sockets.emit('New Chat:'+req.body.user2,'')
 
 });
 module.exports = router;

@@ -68,6 +68,9 @@ class Header extends Component{
               <img className="header-logo" src={logo} />
             </div>
             <div className="header-right">
+              <a className="header-item" href="/Chat/ALL">
+                <p>My Messages</p>
+              </a>
               <a className="header-item" href="/myProfile">
                 <p>My Profile</p>
               </a>
@@ -98,8 +101,11 @@ class Header extends Component{
               <a className="header-item" href="/PostProduct">
                 <p>Add Product</p>
               </a>
+              <a className="header-item" href="/Chat/ALL">
+                <p>Messages</p>
+              </a>
               <a className="header-item" href="/myProfile">
-                <p>My Profile</p>
+                <p>Profile</p>
               </a>
               <a class="btn header-button" onClick={this.logoutifLoggedin}>
                 {this.props.user == null? "Log In" : "Log Out"}

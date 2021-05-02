@@ -107,6 +107,17 @@ const tables = [
                 FOREIGN KEY (username) REFERENCES user(username),
                 PRIMARY KEY (username)
               )`,
+              `
+              chat(
+                first_user VARCHAR(26) NOT NULL,
+                second_user VARCHAR(26) NOT NULL,
+                unread_messages INT DEFAULT 0,
+                is_blocked BOOLEAN DEFAULT FALSE,
+                FOREIGN KEY (first_user) REFERENCES user(username),
+                FOREIGN KEY (second_user) REFERENCES user(username),
+                PRIMARY KEY (first_user, second_user)
+              )
+              `,
                 ];
 
 module.exports = tables;

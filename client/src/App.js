@@ -88,7 +88,7 @@ class App extends Component{
 
               <Route path="/reserve/:id" component={ReservePage} />
 
-              <Route path="/product/:id" component={ProductPage} />
+              <Route path="/product/:id" render={(props) => (<ProductPage {...props} user={this.state.userAccount} />)}/>
 
               <Route path="/Confirmation">
                   <ConfirmationPage user={this.state.userAccount}/>
@@ -106,9 +106,8 @@ class App extends Component{
                 <ProfilePage user={this.state.userAccount}/>
               </Route>
 
-              <Route path="/Chat" >
-                <Chat user={this.state.userAccount} />
-              </Route>
+              <Route path="/Chat/:user" render={(props) => (<Chat {...props} user={this.state.userAccount} />)}/>
+
 
               <Route path="/Debug">
               <div>
