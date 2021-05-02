@@ -2,14 +2,40 @@ import React, {Component} from 'react';
 import logo from '../resources/headerLogo.png';
 import Navbar from 'react-bootstrap/Navbar';
 import '../styles/header.css';
+import socket from "../chatService.js";
 
 class Header extends Component{
   constructor(props){
     super(props);
+    this.state={
+      unread_messages: 0
+    }
     this.logoutifLoggedin = this.logoutifLoggedin.bind(this);
 
   }
 
+  componentDidMount(){
+    if(this.props.user){
+      console.log("Emiting new message")
+      socket.emit('Request Unread Message', this.props.user.username)
+    }
+    socket.removeAllListeners();
+
+    socket.on('Unread Messages:'+this.props.user.username, (messages) => {
+        console.log(messages)
+        this.setState({unread_messages:messages})
+    })
+  }
+
+  componentDidUpdate(){
+
+    socket.removeAllListeners();
+
+    socket.on('Unread Messages:'+this.props.user.username, (messages) => {
+        console.log(messages)
+        this.setState({unread_messages:messages})
+    })
+  }
 
   logoutifLoggedin(){
 
@@ -23,7 +49,7 @@ class Header extends Component{
   }
 
   render() {
-    console.log(this.props.user)
+
     if(this.props.user == null){
       return(
         <Navbar className="navbar ">
@@ -68,9 +94,13 @@ class Header extends Component{
               <img className="header-logo" src={logo} />
             </div>
             <div className="header-right">
-              <a className="header-item" href="/Chat/ALL">
-                <p>My Messages</p>
-              </a>
+            <a className="header-item" href="/Chat/ALL">
+
+              <p>
+              <span>Messages</span>
+              {this.state.unread_messages != 0 && <span className="chat-unread-messages">{this.state.unread_messages}</span>}
+              </p>
+            </a>
               <a className="header-item" href="/myProfile">
                 <p>My Profile</p>
               </a>
@@ -102,7 +132,11 @@ class Header extends Component{
                 <p>Add Product</p>
               </a>
               <a className="header-item" href="/Chat/ALL">
-                <p>Messages</p>
+
+                <p>
+                <span>Messages</span>
+                {this.state.unread_messages != 0 && <span className="chat-unread-messages">{this.state.unread_messages}</span>}
+                </p>
               </a>
               <a className="header-item" href="/myProfile">
                 <p>Profile</p>

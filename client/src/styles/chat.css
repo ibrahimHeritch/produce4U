@@ -147,3 +147,15 @@
     float:right;
     font-size: 10px;
 }
+
+.chat-unread-messages{
+    background-color: red;
+    border-radius: 12px; /* one half of ( (border * 2) + height + padding ) */
+    color: white;
+    font: bold 15px/13px Helvetica, Verdana, Tahoma;
+    height: 16px;
+    min-width: 14px;
+    padding: 4px 3px 0 3px;
+    text-align: center;
+
+}

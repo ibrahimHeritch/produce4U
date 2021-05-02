@@ -18,6 +18,10 @@ router.get("/messages", function(req, res, next) {
                   FROM message
                   WHERE (to_user="`+req.query.user1+`" AND from_user="`+req.query.user2+`") OR (to_user="`+req.query.user2+`" AND from_user="`+req.query.user1+`")
                   ORDER BY send_datetime DESC;`
+    database.executeQuery(`UPDATE chat
+                           SET unread_messages = 0
+                           WHERE first_user="`+req.query.user1+`" AND second_user="`+req.query.user2+`";`)
+                           .then(value=>(console.log(value)))
     database.executeQuery(query)
           .then(value => {
             res.json(value)
@@ -39,7 +43,7 @@ router.post("/new", function(req, res, next) {
 
     database.executeQuery(query1)
     database.executeQuery(query2)
-    
+
     socketapi.io.sockets.emit('New Chat:'+req.body.user2,'')
 
 });

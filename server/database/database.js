@@ -18,7 +18,7 @@ class Database{
     var query = "CREATE DATABASE IF NOT EXISTS produce;";
     this.executeQuery(query);
     this.executeQuery("USE produce;");
-
+    this.executeQuery("SELECT * FROM product;").then(value =>{console.log(value)});  
     var x;
     for( x in tables){
         this.executeQuery("CREATE TABLE IF NOT EXISTS " + tables[x]+";");

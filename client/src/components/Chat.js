@@ -55,8 +55,10 @@ class Chat extends Component {
 
                                             <p>
                                                   {item.username}
+
                                             </p>
-                                                </div>})
+                                            {item.unread_messages != 0 && <div className="chat-unread-messages">{item.unread_messages}</div>}
+                                            </div>})
   }
 
   getMessages(){
@@ -95,11 +97,22 @@ class Chat extends Component {
     fetch("http://localhost:9000/chat?user="+this.props.user.username)
       .then(res => res.text())
       .then(res => this.setState({chats: JSON.parse(res)}))
+      .then(res =>{
+        this.state.chats = this.state.chats.map((item)=>{
+             if(item.username == this.state.current_to_user){
+                 item.unread_messages=0
+               }
+             return item
+         })
+        this.setState({chats:this.state.chats})
+        }
+      )
       .catch(err => err);
      fetch("http://localhost:9000/chat/messages?user1="+this.props.user.username+"&user2="+this.state.current_to_user)
         .then(res => res.text())
         .then(res => this.setState({messages: JSON.parse(res)}))
         .catch(err => err);
+
   }
 
   componentDidUpdate(){
@@ -108,7 +121,16 @@ class Chat extends Component {
     socket.once('message:'+this.props.user.username, (message) => {
         if(message.from_user == this.state.current_to_user){
           this.state.messages=[message,...this.state.messages]
+
           this.setState({messages:this.state.messages})
+        }else{
+          this.state.chats = this.state.chats.map((item)=>{
+                if(item.username == message.from_user){
+                  item.unread_messages++
+                }
+                return item
+          })
+          this.setState({chats:this.state.chats})
         }
     })
     socket.once('New Chat:'+this.props.user.username, (message) => {
@@ -117,11 +139,10 @@ class Chat extends Component {
   }
 
   render() {
-
-    if(this.state.current_to_user == "ALL" && this.state.chats && this.state.chats.length != 0){
-      this.setState({current_to_user:this.state.chats[0].username},this.toUserChanged)
+    if(this.state.current_to_user!="ALL"){
+      this.addChat(this.state.current_to_user)
     }
-  
+
     return (
       <div style={{padding:"50px", textAlign: "center" }}>
           <div className="chat-tile">
