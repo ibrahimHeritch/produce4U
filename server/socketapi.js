@@ -19,7 +19,7 @@ io.on( "connection", function( socket ) {
                              FROM chat
                              WHERE first_user="`+message.to_user+`";`)
                              .then(value =>{
-                                      io.sockets.emit('Unread Messages:'+message.to_user,(value[0].total?value[0].total:0))
+                                      io.sockets.emit('Unread Messages:'+message.to_user,(value.result[0].total?value.result[0].total:0))
                                       })
       io.sockets.emit('message:'+message.to_user,message)
     })
@@ -34,7 +34,7 @@ io.on( "connection", function( socket ) {
                              WHERE first_user="`+user+`";`)
                              .then(value =>{
 
-                               io.sockets.emit('Unread Messages:'+user,(value[0].total?value[0].total:0))
+                               io.sockets.emit('Unread Messages:'+user,(value.result[0].total?value.result[0].total:0))
                              })
 
 

@@ -5,17 +5,9 @@ import '../styles/product.css';
 class ProductPage extends Component{
   constructor(props){
     super(props);
-    console.log(props);
     this.state = {
-      product:{
-        name:"sss",
-        description:"description",
-        price:0.00,
-        quantity:2,
-        owner_username: '',
-
-
-      }
+      product:null,
+      error: "ALL OK"
     }
 
   }
@@ -24,11 +16,18 @@ class ProductPage extends Component{
   componentDidMount(){
       fetch("http://localhost:9000/postProduct/"+this.props.match.params.id)
         .then(res => res.text())
-        .then(res => this.setState({product: JSON.parse(res)}))
+        .then(res => this.setState({error:JSON.parse(res).error,product: JSON.parse(res).result}))
         .catch(err => err);
   }
 
   render() {
+    console.log(this.state.product)
+    if(this.state.product == null){
+      return <p>Loading....</p>
+    }
+    if(this.state.error!="ALL OK"){
+      return <p style={{color:'red'}}>{this.state.error}</p>
+    }
     return(
 
         <div className="product">

@@ -26,7 +26,7 @@ class LoginPage extends Component{
   tryLogin(){
     return fetch("http://localhost:9000/login?username=" +this.state.username+"&password="+this.state.password)
         .then(res => res.text())
-        .then(res => this.setState({user:JSON.parse(res)}))
+        .then(res => this.setState({error:JSON.parse(res).error,user:JSON.parse(res).result}))
         .then(res => this.state.user != null)
         .catch(err => err);
   }
@@ -39,12 +39,7 @@ class LoginPage extends Component{
         console.log(this.state.user)
         localStorage.setItem('user',JSON.stringify({username:this.state.user.username,type:this.state.user.account_type,token:null}))
         this.props.onLogin({username:this.state.user.username,type:this.state.user.account_type,token:null})
-      }else{
-        this.setState({error:"Username or Password Are Wrong"})
       }
-    }else{
-      //// TODO: Display a message to tell user what they did wrong
-
     }
 
   }

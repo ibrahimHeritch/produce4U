@@ -6,25 +6,26 @@ class MyproductsPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            products: [],
+            products: null,
             header: ["Total Quantity","Price","Status","Actions"],
             widths: [200,115,50,50,190]
         };
 
-        this.deleteProduct = this.deleteProduct.bind(this);
+        //this.deleteProduct = this.deleteProduct.bind(this);
     }
 
 ///this method gets called and it populates the products array
     componentDidMount(){
         fetch("http://localhost:9000/postProduct?user="+this.props.user.username)
           .then(res => res.text())
-          .then(res => this.setState({products: JSON.parse(res)}))
+          .then(res => this.setState({products: JSON.parse(res).result}))
           .catch(err => err);
     }
 
 ////TODO: make edit add and delete buttons do somehtingS
 /////translates products into html elements
     getProducts(){
+
       return(
         this.state.products.map((item)=>(this.getRow(
                 [<a href="/product"><p className=" table-row-product produce4U-greentext ">{item.name}</p></a>,
@@ -72,6 +73,9 @@ class MyproductsPage extends Component {
     }
 
     render() {
+      if(this.state.products==null){
+        return <p>Loading...</p>
+      }
       return(
 
           <div className="myReservations">

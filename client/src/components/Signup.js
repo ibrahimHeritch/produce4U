@@ -60,7 +60,7 @@ class SignupPage extends Component{
     console.log("this is being called");
     return fetch("http://localhost:9000/login?username=" +this.state.username+"&password="+this.state.pass1)
         .then(res => res.text())
-        .then(res => this.setState({user:JSON.parse(res)}))
+        .then(res => this.setState({user:JSON.parse(res).result}))
         .then(res => this.state.user != null)
         .catch(err => err);
   }

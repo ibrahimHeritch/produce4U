@@ -18,7 +18,8 @@ class HomePage extends Component{
 
     this.state = {
       product_type:"ALL",
-      produce:[]
+      produce:null,
+      error:"ALL OK"
     };
   }
 
@@ -26,7 +27,7 @@ class HomePage extends Component{
   handleClick(event){
     fetch("http://localhost:9000/Search?product_type="+event.target.value)
       .then(res => res.text())
-      .then(res => this.setState({produce: JSON.parse(res)}))
+      .then(res => this.setState({error:JSON.parse(res).error, produce: JSON.parse(res).result}))
       .catch(err => err);
   }
 
@@ -34,7 +35,7 @@ class HomePage extends Component{
   componentDidMount(){
       fetch("http://localhost:9000/Search?product_type="+this.state.product_type)
         .then(res => res.text())
-        .then(res => this.setState({produce: JSON.parse(res)}))
+        .then(res => this.setState({error:JSON.parse(res).error, produce: JSON.parse(res).result}))
         .catch(err => err);
   }
 
@@ -46,6 +47,12 @@ class HomePage extends Component{
   }
 
   render() {
+     if(this.state.produce==null){
+       return <p>Loading....</p>
+     }
+     if(this.state.error!="ALL OK"){
+       return <p style={{color:'red'}}>{this.state.error}</p>
+     }
       return(
         <div style={{marginTop: "-50px", marginBottom:"-100px"}}>
           <img src = {image} alt="freshproduce" style ={{width: "100%",height: "600px",objectFit:"cover"}} />

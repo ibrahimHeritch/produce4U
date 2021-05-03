@@ -43,6 +43,7 @@ class ProducerProfilePage extends Component{
     }
 /////TODO: do not display address it is null
     render() {
+
         if(this.state.user==null) return <p>Producer Doesn't exist</p>
         return(
 

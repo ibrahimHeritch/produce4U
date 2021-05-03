@@ -32,11 +32,11 @@ class Database{
       const result = await query(qry);
       console.log(qry + "\nGave Result:");
       console.log(result);
-      return result;
+      return {error: "ALL OK", result:result};
 
     }catch (err){
       console.log(err);
-      return(err.sqlMessage);
+      return{error: err.sqlMessage,result:[]};
     }
   }
 

@@ -23,8 +23,8 @@ webpush.setVapidDetails("mailto:example@yourdomain.org", vapidKeys.publicKey, va
 const  sendNotification = async function(user, notification){
   let subscriptionRequest = await database.executeQuery("SELECT subscription FROM subscription WHERE username='"+user+"';")
               .then((value)=>{
-                if(value.length > 0){
-                  return JSON.parse(value[0].subscription)
+                if(value.result.length > 0){
+                  return JSON.parse(value.result[0].subscription)
                 }else{
                   return "error";
                 }

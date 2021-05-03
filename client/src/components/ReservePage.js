@@ -14,9 +14,10 @@ class ReservePage extends Component{
                   pickupDate:null,
                   selectedTime: 0,
                   selectedProducts: [],
-                  error: [false,false],
+                  error: [false, false],
+                  getError: "ALL OK",
                   user: JSON.parse(localStorage.getItem('user'))
-                  };
+                }
     this.confirmReservation = this.confirmReservation.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
   }
@@ -104,22 +105,29 @@ class ReservePage extends Component{
     }
 
     componentDidMount(){
-      if(this.state.selectedProducts.length == 0){
+
         fetch("http://localhost:9000/postProduct/"+this.props.match.params.id)
           .then(res => res.text())
-          .then(res => this.setState({selectedProducts: [JSON.parse(res)]}))
+          .then(res => this.setState({getError:JSON.parse(res).error,selectedProducts: [JSON.parse(res).result]}))
           .catch(err => err);
-      }
+
 
     }
   render() {
+    console.log(this.state.user)
+    if(this.state.selectedProducts.length==0){
+      return <p>Loading....</p>
+    }
+    if(this.state.getError!="ALL OK"){
+      return <p style={{color:'red'}}>{this.state.error}</p>
+    }
     var yesterday = moment().subtract( 1, 'day' );
     var valid = function( current ){
       return current.isAfter( yesterday ) && current.day() !== 0 && current.day() !== 6;
     };
 
     var total = this.state.selectedProducts.length == 0? NaN:this.state.selectedProducts.reduce((a,b)=>a+(b.order_quantity * b.price),0).toFixed(2);
-    if(this.state.user.type != "USER"){
+    if(!this.state.user && this.state.user.type != "USER"){
       return <p>You need to log into a customer account to view this page</p>
     }
     return(

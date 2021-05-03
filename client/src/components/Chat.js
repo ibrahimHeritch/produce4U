@@ -85,18 +85,18 @@ class Chat extends Component {
   componentDidMount(){
       fetch("http://localhost:9000/chat?user="+this.props.user.username)
         .then(res => res.text())
-        .then(res => this.setState({chats: JSON.parse(res)}))
+        .then(res => this.setState({chats: JSON.parse(res).result}))
         .catch(err => err);
        fetch("http://localhost:9000/chat/messages?user1="+this.props.user.username+"&user2="+this.state.current_to_user)
           .then(res => res.text())
-          .then(res => this.setState({messages: JSON.parse(res)}))
+          .then(res => this.setState({messages: JSON.parse(res).result}))
           .catch(err => err);
   }
 
   toUserChanged(){
     fetch("http://localhost:9000/chat?user="+this.props.user.username)
       .then(res => res.text())
-      .then(res => this.setState({chats: JSON.parse(res)}))
+      .then(res => this.setState({chats: JSON.parse(res).result}))
       .then(res =>{
         this.state.chats = this.state.chats.map((item)=>{
              if(item.username == this.state.current_to_user){
@@ -110,7 +110,7 @@ class Chat extends Component {
       .catch(err => err);
      fetch("http://localhost:9000/chat/messages?user1="+this.props.user.username+"&user2="+this.state.current_to_user)
         .then(res => res.text())
-        .then(res => this.setState({messages: JSON.parse(res)}))
+        .then(res => this.setState({messages: JSON.parse(res).result}))
         .catch(err => err);
 
   }

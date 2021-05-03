@@ -8,11 +8,11 @@ var database = require("../database/database.js");
 
 router.get("/", function(req, res, next) {
     var firstJoin = "SELECT * FROM user LEFT JOIN address ON user.address_id = address.id"
-    var secondJoin = "SELECT * FROM ("+firstJoin+") as U LEFT JOIN producer as P ON U.username = P.username WHERE U.username = '"+req.query.username+"';"
+    var secondJoin = "SELECT *, U.username as username FROM ("+firstJoin+") as U LEFT JOIN producer as P ON U.username = P.username WHERE U.username = '"+req.query.username+"';"
     database.executeQuery(secondJoin)
           .then(value => {
-            if(value.length > 0){
-              res.json(value[0])
+            if(value.result.length > 0){
+              res.json(value.result[0])
             }else{
               return res.json(null)
           }})
