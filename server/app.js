@@ -15,6 +15,8 @@ var productsRouter = require('./routes/productPage')
 var chatRouter = require('./routes/chat')
 var notificationRouter = require('./routes/subscribe')
 var sendNotification = require("./notificationService.js");
+var reportedUserRouter = require('./routes/reportedUser')
+
 
 var cors = require("cors");
 
@@ -57,6 +59,8 @@ app.use('/Search', searchRouter);
 app.use('/productsPage', productsRouter);
 app.use('/chat', chatRouter);
 app.use('/subscription', notificationRouter);
+app.use('/reportedUser', reportedUserRouter);
+
 
 
 
