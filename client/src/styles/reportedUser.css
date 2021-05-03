@@ -1,0 +1,28 @@
+.post-out-border {
+    padding: 60px;
+    margin: auto;
+    width: 950px;
+}
+
+.post-border {
+    border: 2px solid #E5E5E5;
+    border-radius: 15px;
+    background-color: white;
+    width: 40%;
+    min-height: 40px;
+    left: 191px;
+    top: 358px;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+
+.post-info {
+    font-family: Roboto;
+    font-weight: 200;
+    font-size: 30px;
+    color: #000000;
+    font-style: italic;
+    text-align: center;
+}
