@@ -19,15 +19,7 @@ class ProducerProfilePage extends Component{
 
         super(props);
         this.state = {
-            user: null,//temporary
-            producer:{
-                image: "https://media.istockphoto.com/photos/farmer-in-a-soybean-field-agricultural-concept-picture-id1158664559?k=6&m=1158664559&s=612x612&w=0&h=gKaS2VdqyJZKAJMFTOZDZC72oVYFwXt7PqcDdqcfCSw=",
-                name: "Perdu Farms",
-                description: "Since 2015, Perdu Farms has been committed to growing organic produce. Our mission is to build community through education, food accessibility, and by being a model of appropriate land stewardship and sustainable agriculture techniques.",
-                location: "University City South, Charlotte, NC 28262",
-                longitude: -80.733726,
-                latitude: 35.308076,
-            }
+            user: null
 
 
 
@@ -56,7 +48,7 @@ class ProducerProfilePage extends Component{
 
 
          <div className="producer-info">
-                <img className="produce4U-producerPhoto" src={this.state.user.image?this.state.user.image:profile}/>
+                <img className="produce4U-producerPhoto" src={this.state.user.profile_picture?this.state.user.profile_picture:profile}/>
                 <p className="produce4U-producerName">{this.state.user.farm_name} <br></br><br></br><span className="produce4U-producerText">{this.state.user.description?this.state.user.description:"No Description"}</span></p>
          </div>
                   <div className="location-info">

@@ -3,6 +3,7 @@ import '../styles/profile.css';
 import editIcon from '../resources/Icons/edit.svg'
 import profile from '../resources/pictures/defualt_profile.png'
 import Geocode from "react-geocode";
+import axios from 'axios';
 
 class ProfilePage extends Component{
   constructor(props){
@@ -25,6 +26,7 @@ class ProfilePage extends Component{
 
     this.handleInfoSave = this.handleInfoSave.bind(this)
     this.handleAddressSave = this.handleAddressSave.bind(this)
+    this.uploadHandler = this.uploadHandler.bind(this)
     this.handleChange = this.handleChange.bind(this)
   }
 
@@ -140,7 +142,23 @@ class ProfilePage extends Component{
 
 
   }
+  uploadHandler(event) {
+    const data = new FormData();
+  data.append('file', event.target.files[0]);
 
+  axios.post('http://localhost:9000/postProduct/uploadImg', data)
+    .then((res) => {
+      this.state.user.profile_picture="http://localhost:9000/"+res.data.path.split("/")[1]
+      this.setState({ user:this.state.user });
+      fetch("http://localhost:9000/user/update/profilePicture", { method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(this.state.user)
+        }).then(function(response) {
+          console.log(response)
+          return response.json();
+        });
+    });
+  }
   componentDidMount(){
       fetch("http://localhost:9000/user?username="+this.props.user.username)
         .then(res => res.text())
@@ -166,7 +184,13 @@ class ProfilePage extends Component{
               <div className="profile-left">
 
                 <div className=" product-info ">
-                    <img className="product-image" src={profile}/>
+                    <img className="product-image" src={this.state.user.profile_picture?this.state.user.profile_picture:profile}/>
+                    <div>
+                    <label htmlFor="filePicker" >
+                        <p><span><img src={editIcon}/></span>Edit Profile Picture</p>
+                    </label>
+                    <input id="filePicker" style={{visibility:"hidden"}} type={"file"} onChange={this.uploadHandler}/>
+                    </div>
                     <p className="product-title">{this.state.user.username}</p>
                     <p>{this.state.user.first_name}{" "}{this.state.user.last_name}</p>
                     <p>{this.state.user.email}</p>
@@ -226,7 +250,13 @@ class ProfilePage extends Component{
               <div className="profile-left">
 
                 <div className=" product-info ">
-                    <img className="product-image" src={profile}/>
+                    <img className="product-image" src={this.state.user.profile_picture?this.state.user.profile_picture:profile}/>
+                    <div>
+                    <label htmlFor="filePicker" >
+                        <p><span><img src={editIcon}/></span>Edit Profile Picture</p>
+                    </label>
+                    <input id="filePicker" style={{visibility:"hidden"}} type={"file"} onChange={this.uploadHandler}/>
+                    </div>
                     <p className="product-title">{this.state.user.username}</p>
                     <p>{this.state.user.first_name}{" "}{this.state.user.last_name}</p>
                     <p>{this.state.user.email}</p>

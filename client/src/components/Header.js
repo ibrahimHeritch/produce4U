@@ -153,6 +153,44 @@ class Header extends Component{
         </Navbar>
 
       );
+    }if(this.props.user.type == "ADMIN"){
+      return(
+        <Navbar className="navbar ">
+
+            <div className="header-left">
+              <a href="/Home" className="header-item">
+                <p>Home</p>
+              </a>
+              <a className="header-item" href="/MyProduct">
+                    <p>Users</p>
+              </a>
+              <a className="header-item" href="/MyProduct">
+                    <p>Reports</p>
+              </a>
+            </div>
+            <div className="header-center">
+              <img className="header-logo" src={logo} />
+            </div>
+            <div className="header-right">
+
+              <a className="header-item" href="/Chat/ALL">
+
+                <p>
+                <span>Messages</span>
+                {this.state.unread_messages != 0 && <span className="chat-unread-messages">{this.state.unread_messages}</span>}
+                </p>
+              </a>
+              <a className="header-item" href="/myProfile">
+                <p>Profile</p>
+              </a>
+              <a class="btn header-button" onClick={this.logoutifLoggedin}>
+                {this.props.user == null? "Log In" : "Log Out"}
+              </a>
+            </div>
+
+        </Navbar>
+
+      );
     }else {
       return(
         <Navbar className="navbar ">

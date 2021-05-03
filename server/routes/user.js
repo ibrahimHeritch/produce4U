@@ -64,4 +64,12 @@ router.post("/update/address", function(req, res, next) {
 
 });
 
+router.post("/update/profilePicture", function(req, res, next) {
+    var query = "UPDATE user SET profile_picture='"+req.body.profile_picture+"' WHERE username = '"+req.body.username+"';"
+    database.executeQuery(query)
+
+
+
+});
+
 module.exports = router;
