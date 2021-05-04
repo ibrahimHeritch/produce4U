@@ -12,9 +12,9 @@ router.get('/:name/edit', (req, res) => {
     res.send('Edit Reservation' + req.params.id)
 })
 
-//Deleting
-router.delete('/:name', (req, res) => {
-    res.send('Delete Reservation' + req.params.id)
+//Deleting THIS WON'T work until we drop the database and re init it.
+router.post('/delete', (req, res) => {
+    database.executeQuery("DELETE FROM products WHERE id="+req.body.id+";")
 })
 
 module.exports = router;

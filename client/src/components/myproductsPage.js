@@ -11,9 +11,19 @@ class MyproductsPage extends Component {
             widths: [200,115,50,50,190]
         };
 
-        //this.deleteProduct = this.deleteProduct.bind(this);
+        this.deleteProduct = this.deleteProduct.bind(this);
     }
-
+    deleteProduct(id){
+      this.state.products = this.state.products.filter(item => item.id != id)
+      this.setState({products:this.state.products})
+      fetch("http://localhost:9000/products/delete", { method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({id:id})
+        }).then(function(response) {
+          console.log(response)
+          return response.json();
+        });
+    }
 ///this method gets called and it populates the products array
     componentDidMount(){
         fetch("http://localhost:9000/postProduct?user="+this.props.user.username)
@@ -38,7 +48,7 @@ class MyproductsPage extends Component {
                       <a href="/confirmation"><p className="produce4U-bluetext table-row-product">Add</p></a>
                       <a href="/reserve"><button className="produce4U-green-button table-edit">Edit</button></a>
                      <button className="produce4U-red-button table-delete" onClick={() => {
-                         this.props.deleteProduct(item.key)
+                         this.deleteProduct(item.id)
                      }}>Delete</button>
                  </div>]))
 

@@ -56,7 +56,7 @@ app.use('/user', userRouter);
 app.use('/reservation',reservationRouter);
 app.use('/postProduct', postProductRouter);
 app.use('/Search', searchRouter);
-app.use('/productsPage', productsRouter);
+app.use('/products', productsRouter);
 app.use('/chat', chatRouter);
 app.use('/subscription', notificationRouter);
 app.use('/report', reportRouter);
