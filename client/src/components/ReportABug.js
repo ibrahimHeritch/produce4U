@@ -1,7 +1,6 @@
 import React, { component } from 'react';
 import '../App.css';
-import '../styles/ReportABug.css';
-
+import '../styles/PostProductPage.css';
 
 class ReportABug extends component {
     constructor(props) {
