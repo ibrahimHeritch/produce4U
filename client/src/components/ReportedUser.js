@@ -50,7 +50,7 @@ class ReportedUser extends component {
     render() {
         return (
             <div className="App" >
-                <form action="http://localhost:3000/Reports" onSubmit={this.addReport}>
+                <form action="http://localhost:3000/reports" onSubmit={this.addReport}>
                     <section className="post-out-border produce4U-tile">
                         <label className="post-info">Flagges as Inappropriate
                         </label>
