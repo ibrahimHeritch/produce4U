@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import '../styles/ProducerProfile.css';
 import GoogleMapReact from 'google-map-react';
 import profile from '../resources/pictures/defualt_profile.png'
+import ScrollableProduce from '../components/ScrollableProduce'
+
+
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 class ProducerProfilePage extends Component{
@@ -51,7 +54,8 @@ class ProducerProfilePage extends Component{
                 <img className="produce4U-producerPhoto" src={this.state.user.profile_picture?this.state.user.profile_picture:profile}/>
                 <p className="produce4U-producerName">{this.state.user.farm_name} <br></br><br></br><span className="produce4U-producerText">{this.state.user.description?this.state.user.description:"No Description"}</span></p>
          </div>
-                  <div className="location-info">
+         <div style={{width:"100%"}}>
+                  <div className="location-info" >
                         <p className= "produce4U-producerLocation"> Location</p>
                         <p className="produce4U-locationText">{this.state.user.farm_name} is located at {this.state.user.address_line_one+" "+this.state.user.address_line_two+" "+this.state.user.city+" "+this.state.user.state+" "+this.state.user.country+" "+this.state.user.zip_code}</p>
                         <div style={{ height: '600px', width: '90%', margin:"auto"}}>
@@ -74,7 +78,14 @@ class ProducerProfilePage extends Component{
                           </div>
 
                     </div>
+                    </div>
+                    <div className="producer-products">
+                          <p >
+                            <span>Check out some of my products:</span>
 
+                          </p>
+                          <ScrollableProduce username={this.state.user.username} />
+                    </div>
 
                 </div>
 

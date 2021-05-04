@@ -86,7 +86,7 @@ class App extends Component{
                             <MyproductsPage user={this.state.userAccount}/>
               </Route>
 
-              <Route path="/reserve/:id" component={ReservePage} />
+              <Route path="/reserve/:id" render={(props) => (<ReservePage {...props} user={this.state.userAccount} />)}/>
 
               <Route path="/product/:id" render={(props) => (<ProductPage {...props} user={this.state.userAccount} />)}/>
 

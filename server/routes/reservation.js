@@ -25,6 +25,11 @@ router.post("/", function(req, res, next) {
       `INSERT INTO reservation (pickup_datetime,reserver,order_status,item_id,quantity,price,producer_name,product_name)
                         VALUE (STR_TO_DATE('`+ req.body.date +`','%Y-%m-%d %h:%i %p'), '`+req.body.user+`', 'CONFIRMED', `+req.body.id+`,`+req.body.order_quantity+', '+req.body.total+ `, '`+req.body.owner_username+`','`+ req.body.name +`');`
      );
+     database.executeQuery(
+       `UPDATE product
+        SET quantity = quantity - `+req.body.order_quantity+`
+        WHERE id=`+req.body.id+`;`
+      );
 
 
 });
