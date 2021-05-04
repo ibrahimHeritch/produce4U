@@ -1,6 +1,6 @@
 import React, { component } from 'react';
 import '../App.css';
-import '../styles/ReportedUser.css';
+import '../styles/PostProductPage.css';
 
 class ReportedUser extends component {
     constructor(props) {
