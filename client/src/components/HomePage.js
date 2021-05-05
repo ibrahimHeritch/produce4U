@@ -5,6 +5,7 @@ import {ReactComponent as Schedule} from '../resources/Icons/schedule-24px.svg';
 import {ReactComponent as Commute} from '../resources/Icons/commute-24px.svg';
 import {ReactComponent as Eat} from '../resources/Icons/restaurant-24px.svg';
 import ProduceCard from '../components/ProduceCard'
+import Geocode from "react-geocode";
 
 
 
@@ -23,7 +24,9 @@ class HomePage extends Component{
       error:"ALL OK",
       search:null,
       distance:"50",
-      location:null
+      location:null,
+      longitude:null,
+      latitude:null
     };
   }
 
@@ -35,15 +38,34 @@ class HomePage extends Component{
   }
 
   submitSearch(){
+    console.log(this.state.latitude,this.state.longitude)
     fetch("http://localhost:9000/Search?product_type="+this.state.product_type+"&search="+this.state.search+"&location="+this.state.location+"&distance="+this.state.distance)
       .then(res => res.text())
       .then(res => this.setState({error:JSON.parse(res).error, produce: JSON.parse(res).result}))
       .catch(err => err);
   }
   handleChange(event) {
+      if(event.target.name == "location"){
+        Geocode.setApiKey('AIzaSyDiAVMs1DJpi5C8bkFHY2WZ6DTDq7K0pU0');
+        Geocode.fromAddress(event.target.value).then(
+            (response) => {
+              const { lat, lng } = response.results[0].geometry.location;
+
+              this.setState({
+                  longitude:lng,
+                  latitude:lat
+                })
+            },
+            (error) => {
+              console.error(error);
+            }
+          )
+      }
       this.setState({
           [event.target.name]: event.target.value
       })
+
+
   }
 
   componentDidMount(){
@@ -55,7 +77,7 @@ class HomePage extends Component{
 
   handleKeyDown(ev){
     if(ev.keyCode ===13){ // enter button
-      console.log(this.state.search,this.state.distance,this.state.location)
+      this.submitSearch()
     }
   }
 
