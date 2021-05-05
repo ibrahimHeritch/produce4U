@@ -39,7 +39,7 @@ class HomePage extends Component{
 
   submitSearch(){
     console.log(this.state.latitude,this.state.longitude)
-    fetch("http://localhost:9000/Search?product_type="+this.state.product_type+"&search="+this.state.search+"&location="+this.state.location+"&distance="+this.state.distance)
+    fetch("http://localhost:9000/Search?product_type="+this.state.product_type+"&search="+this.state.search+"&longitude="+this.state.longitude+"&latitude="+this.state.latitude+"&distance="+this.state.distance)
       .then(res => res.text())
       .then(res => this.setState({error:JSON.parse(res).error, produce: JSON.parse(res).result}))
       .catch(err => err);
