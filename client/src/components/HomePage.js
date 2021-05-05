@@ -14,23 +14,37 @@ class HomePage extends Component{
   constructor(props){
     super(props);
     this.handleClick = this.handleClick.bind(this)
+    this.handleChange = this.handleChange.bind(this)
     this.getProduceCards = this.getProduceCards.bind(this)
-
+    this.handleKeyDown = this.handleKeyDown.bind(this)
     this.state = {
       product_type:"ALL",
       produce:null,
-      error:"ALL OK"
+      error:"ALL OK",
+      search:null,
+      distance:"50",
+      location:null
     };
   }
 
-  ////TODO: Filtering functionality
   handleClick(event){
-    fetch("http://localhost:9000/Search?product_type="+event.target.value)
+    this.setState({
+        product_type: event.target.value
+    },
+    this.submitSearch)
+  }
+
+  submitSearch(){
+    fetch("http://localhost:9000/Search?product_type="+this.state.product_type+"&search="+this.state.search+"&location="+this.state.location+"&distance="+this.state.distance)
       .then(res => res.text())
       .then(res => this.setState({error:JSON.parse(res).error, produce: JSON.parse(res).result}))
       .catch(err => err);
   }
-
+  handleChange(event) {
+      this.setState({
+          [event.target.name]: event.target.value
+      })
+  }
 
   componentDidMount(){
       fetch("http://localhost:9000/Search?product_type="+this.state.product_type)
@@ -39,6 +53,11 @@ class HomePage extends Component{
         .catch(err => err);
   }
 
+  handleKeyDown(ev){
+    if(ev.keyCode ===13){ // enter button
+      console.log(this.state.search,this.state.distance,this.state.location)
+    }
+  }
 
 ////This function maps produce to the cards and returns a list of produce cards
   getProduceCards(){
@@ -54,14 +73,14 @@ class HomePage extends Component{
        return <p style={{color:'red'}}>{this.state.error}</p>
      }
       return(
-        <div style={{marginTop: "-50px", marginBottom:"-100px"}}>
+        <div onKeyDown={this.handleKeyDown} style={{marginTop: "-50px", marginBottom:"-100px"}}>
           <img src = {image} alt="freshproduce" style ={{width: "100%",height: "600px",objectFit:"cover"}} />
           <br /><br />
 
             <div className = "produce4U-textForIcons-greenText"><Search />Browse <span className = "produce4U-textForIcons-blackText">Available Produce{'   '}</span><Schedule />Schedule<span className="produce4U-textForIcons-blackText"> A Pick-Up Time{'   '}</span><Commute />Pick-Up<span className="produce4U-textForIcons-blackText"> Your Produce{'   '}</span><Eat />Enjoy<span className="produce4U-textForIcons-blackText"> Your Fresh Local Produce</span></div>
         <br /><br />
           <p className = "produce4U-headlineWelcome">Fresh. Healthy. Local.</p>
-          <form ><input className="produce4U-form-input" type ='text' name ="search" placeholder="Search"/>{' '}<select className="produce4U-distance-button" name="distance"><option value = "50">50 miles</option></select>{' '}<input className="produce4U-form-input" type ='text' name ="location" placeholder="Location"/></form>
+          <form ><input className="produce4U-form-input" type ='text' name ="search" placeholder="Search" onChange={this.handleChange}/>{' '}<select className="produce4U-distance-button" name="distance" onChange={this.handleChange}><option value = "50">50 miles</option></select>{' '}<input className="produce4U-form-input" type ='text' name ="location" placeholder="Location" onChange={this.handleChange}/></form>
           <br />
 
           <div>
