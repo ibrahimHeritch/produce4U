@@ -15,7 +15,6 @@ const upload = multer({ storage: storage }).single('file')
 
 router.post("/", function (req, res, next) {
     var state = req.body
-    console.log(state);
     database.executeQuery(
         `INSERT INTO product ( name, description, product_type, quantity, price, rating, picture, owner_username,pricing_type)
             value('`+ state.product_title + `', '` + state.description + `', '` + state.product_type + `', ` +

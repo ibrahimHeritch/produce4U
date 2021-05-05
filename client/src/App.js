@@ -14,6 +14,7 @@ import HomePage from './components/HomePage.js';
 import ProducerProfilePage from './components/ProducerProfilePage.js';
 import SignupPage from './components/Signup.js';
 import ProfilePage from './components/ProfilePage.js';
+import EditProductPage from './components/EditProductPage.js';
 import Chat from './components/Chat.js';
 //import PushNotificationDemo from "./components/notification";
 import {
@@ -82,6 +83,8 @@ class App extends Component{
               <Route path="/PostProduct">
                             <PostProductPage user={this.state.userAccount}/>
               </Route>
+              <Route path="/product/edit/:id" render={(props) => (<EditProductPage {...props} user={this.state.userAccount} />)}/>
+
               <Route path="/MyProduct" >
                             <MyproductsPage user={this.state.userAccount}/>
               </Route>
