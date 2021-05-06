@@ -34,7 +34,7 @@ class Database{
       return {error: "ALL OK", result:result};
 
     }catch (err){
-      //console.log(err);
+      console.log(err);
       return{error: err.sqlMessage,result:[]};
     }
   }
