@@ -12,6 +12,8 @@ router.post('/edit', (req, res) => {
        WHERE id=`+req.body.id+`;
       `
   );
+  database.executeQuery("UPDATE reservation SET product_name='"+state.product_title+"' WHERE item_id="+req.body.id+";");
+
 })
 
 //Deleting THIS WON'T work until we drop the database and re init it.
@@ -21,6 +23,7 @@ router.post('/delete', (req, res) => {
 
 router.post('/add', (req, res) => {
     database.executeQuery("UPDATE product SET quantity = quantity + "+req.body.value+" WHERE id = "+req.body.id+";")
+
 })
 
 module.exports = router;

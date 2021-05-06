@@ -1,8 +1,8 @@
-import React, { component } from 'react';
+import React, { Component } from 'react';
 import '../App.css';
 import '../styles/PostProductPage.css';
 
-class ReportABug extends component {
+class ReportABug extends Component {
     constructor(props) {
         super(props)
         this.state = {

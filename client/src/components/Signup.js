@@ -77,7 +77,7 @@ class SignupPage extends Component{
 
           localStorage.setItem('user',JSON.stringify({username:this.state.user.username,type:this.state.user.account_type,token:null}))
           this.props.onLogin({username:this.state.user.username,type:this.state.user.account_type,token:null})
-          window.location.href = "http://localhost:3000/Login";
+          window.location.href = "http://localhost:3000/myProfile";
       }else{
 
         console.log(this.state)

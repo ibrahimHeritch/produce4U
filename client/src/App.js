@@ -16,7 +16,9 @@ import SignupPage from './components/Signup.js';
 import ProfilePage from './components/ProfilePage.js';
 import EditProductPage from './components/EditProductPage.js';
 import Chat from './components/Chat.js';
-//import PushNotificationDemo from "./components/notification";
+import ReportABug from './components/ReportABug.js';
+import ReportedUser from './components/ReportedUser.js';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -82,6 +84,12 @@ class App extends Component{
               </Route>
               <Route path="/PostProduct">
                             <PostProductPage user={this.state.userAccount}/>
+              </Route>
+              <Route path="/report">
+                            <ReportABug user={this.state.userAccount}/>
+              </Route>
+              <Route path="/reports">
+                            <ReportedUser user={this.state.userAccount}/>
               </Route>
               <Route path="/product/edit/:id" render={(props) => (<EditProductPage {...props} user={this.state.userAccount} />)}/>
 

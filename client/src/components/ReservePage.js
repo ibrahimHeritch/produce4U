@@ -86,7 +86,7 @@ class ReservePage extends Component{
                           }
                         }
                       />
-                      <p> Oz x ${item.price.toFixed(2)} </p>
+                      <p> {item.pricing_type} x ${item.price.toFixed(2)} </p>
                    </label>
           }
     );

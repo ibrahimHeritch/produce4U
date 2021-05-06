@@ -60,7 +60,7 @@ class MyproductsPage extends Component {
                          </form>
 =======
                       <a onClick={()=>{this.setState({show:true,current_product:item})}}><p className="produce4U-bluetext table-row-product">Add</p></a>
-                      <a href="/reserve"><button className="produce4U-green-button table-edit">Edit</button></a>
+                      <a href={"/product/edit/"+item.id}><button className="produce4U-green-button table-edit">Edit</button></a>
                      <button className="produce4U-red-button table-delete" onClick={() => {
                          this.deleteProduct(item.id)
                      }}>Delete</button>
