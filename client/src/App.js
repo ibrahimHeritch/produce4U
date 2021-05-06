@@ -18,7 +18,7 @@ import EditProductPage from './components/EditProductPage.js';
 import Chat from './components/Chat.js';
 import ReportABug from './components/ReportABug.js';
 import ReportedUser from './components/ReportedUser.js';
-import Reports from './components/reports.js';
+import Reports from './components/Reports.js';
 
 import {
   BrowserRouter as Router,

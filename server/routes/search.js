@@ -16,9 +16,9 @@ router.get("/", function(req, res, next) {
     }
 
 
-    if(req.query.lattitude && req.query.latitude!="null" && req.query.longitude!="null"){
+    if(req.query.latitude && req.query.latitude!="null" && req.query.longitude!="null"){
       console.log(req.query.latitude, req.query.longitude)
-      var query = `SELECT name,latitude,longitude,product_type
+      var query = `SELECT *
                    FROM product
                    INNER JOIN user
                    ON product.owner_username = user.username
