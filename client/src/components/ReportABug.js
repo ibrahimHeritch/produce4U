@@ -6,7 +6,9 @@ class ReportABug extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            message: ""
+            from_user:this.props.user.username,
+            message: "",
+            error: "ALL OK"
         }
         this.handleChange = this.handleChange.bind(this)
         this.addReport = this.addReport.bind(this)
@@ -31,7 +33,7 @@ class ReportABug extends Component {
 
     addReport(event) {
         if (this.isValidInput()) {
-            fetch("http://localhost:9000/reportABug", {
+            fetch("http://localhost:9000/report", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(this.state)
@@ -48,7 +50,7 @@ class ReportABug extends Component {
     render() {
         return (
             <div className="App">
-                <form action="http://localhost:3000/reports" onSubmit={this.addReport}>
+                <form action="http://localhost:3000/Home" onSubmit={this.addReport}>
                     <section className="post-out-border produce4U-tile">
                         <label className="post-top">Report A Bug</label>
                         <br />
@@ -80,7 +82,7 @@ class ReportABug extends Component {
                         <br />
                         </section>
                 </form>
-
+                {this.state.error!="ALL OK" && <p style={{color:"red"}}>{this.state.error}</p>}
             </div>
             )
     }

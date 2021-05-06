@@ -43,9 +43,9 @@ class Footer extends Component{
                 <li>
                   Careers
                 </li>
-                <li>
+                <a href="/report"><li>
                    Report a Bug
-                </li>
+                </li></a>
               </ul>
           </div>
 

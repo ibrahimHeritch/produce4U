@@ -18,6 +18,7 @@ import EditProductPage from './components/EditProductPage.js';
 import Chat from './components/Chat.js';
 import ReportABug from './components/ReportABug.js';
 import ReportedUser from './components/ReportedUser.js';
+import Reports from './components/reports.js';
 
 import {
   BrowserRouter as Router,
@@ -88,8 +89,11 @@ class App extends Component{
               <Route path="/report">
                             <ReportABug user={this.state.userAccount}/>
               </Route>
-              <Route path="/reports">
+              <Route path="/reportReview">
                             <ReportedUser user={this.state.userAccount}/>
+              </Route>
+              <Route path="/reports">
+                            <Reports user={this.state.userAccount}/>
               </Route>
               <Route path="/product/edit/:id" render={(props) => (<EditProductPage {...props} user={this.state.userAccount} />)}/>
 
