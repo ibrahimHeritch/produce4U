@@ -8,22 +8,22 @@ const bcrypt = require('bcrypt');
 */
 router.get("/", function(req, res, next) {
     var query = "select * from user where username = '"+req.query.username+"';"
-    ////TODO: Check password + return token
+    ////TODO: return token
     database.executeQuery(query)
           .then(value => {
-            if(value.length > 0){
-              bcrypt.compare(req.query.password, value[0].password).then( isEqual => {
+            if(value.result.length > 0){
+              bcrypt.compare(req.query.password, value.result[0].password).then( isEqual => {
                 if(isEqual){
-                  res.json(value[0])
+                  res.json({error:"ALL OK",result:value.result[0]})
                 }else{
-                  res.json(null)
+                  res.json({error:"Wrong Password",result:null})
                 }
               }
 
               )
 
             }else{
-              return res.json(null)
+              return res.json({error:"Wrong Username",result:null})
           }})
 
 

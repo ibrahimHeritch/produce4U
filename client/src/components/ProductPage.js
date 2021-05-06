@@ -5,29 +5,29 @@ import '../styles/product.css';
 class ProductPage extends Component{
   constructor(props){
     super(props);
-    console.log(props);
     this.state = {
-      product:{
-        name:"sss",
-        description:"description",
-        price:0.00,
-        quantity:2,
-        owner_name: 'Perdu Farm',
-
-
-      }
+      product:null,
+      error: "ALL OK"
     }
 
   }
 
+
   componentDidMount(){
       fetch("http://localhost:9000/postProduct/"+this.props.match.params.id)
         .then(res => res.text())
-        .then(res => this.setState({product: JSON.parse(res)}))
+        .then(res => this.setState({error:JSON.parse(res).error,product: JSON.parse(res).result}))
         .catch(err => err);
   }
 
   render() {
+    console.log(this.state.product)
+    if(this.state.product == null){
+      return <p>Loading....</p>
+    }
+    if(this.state.error!="ALL OK"){
+      return <p style={{color:'red'}}>{this.state.error}</p>
+    }
     return(
 
         <div className="product">
@@ -49,7 +49,7 @@ class ProductPage extends Component{
               </div>
               <div style={{marginTop:"25px"}}>
                 Got Questions?
-                <a class="contact-producer" href="/Login">
+                <a class="contact-producer" href={"/Chat/"+this.state.product.owner_username} >
                   Contact Producer
                 </a>
               </div>

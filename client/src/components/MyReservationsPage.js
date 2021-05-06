@@ -6,9 +6,10 @@ class MyReservationsPage extends Component{
 
   constructor(props){
     super(props);
-    this.state = {reservations: [],
+    this.state = {reservations: null,
                   header: ["Producer","Quantity","Total","Pick Up Time","Status","Actions"],
-                  widths: [200,100,60,50,160,80,190]
+                  widths: [200,100,60,50,160,80,190],
+                  error: "ALL O"
     };
 
 
@@ -16,10 +17,19 @@ class MyReservationsPage extends Component{
 
 ///this method gets called and it populates the reservations array
   componentDidMount(){
-    fetch("http://localhost:9000/reservation?user="+this.props.user.username)
-      .then(res => res.text())
-      .then(res => this.setState({reservations: JSON.parse(res)}))
-      .catch(err => err);
+    if(this.props.user.type == "USER"){
+      fetch("http://localhost:9000/reservation?user="+this.props.user.username)
+        .then(res => res.text())
+        .then(res => this.setState({error:JSON.parse(res).error,reservations: JSON.parse(res).result}))
+        .catch(err => err);
+    }
+
+    if(this.props.user.type == "PRODUCER"){
+      fetch("http://localhost:9000/reservation?producer_name="+this.props.user.username)
+        .then(res => res.text())
+        .then(res => this.setState({error:JSON.parse(res).error,reservations: JSON.parse(res).result}))
+        .catch(err => err);
+    }
   }
 
   getReservations(){
@@ -66,6 +76,13 @@ class MyReservationsPage extends Component{
   }
 
   render() {
+    if(this.state.reservations==null){
+      return <p>Loading....</p>
+    }
+    if(this.state.error!="ALL OK"){
+      return <p style={{color:'red'}}>{this.state.error}</p>
+    }
+
     return(
 
         <div className="myReservations">

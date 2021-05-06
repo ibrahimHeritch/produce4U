@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import '../styles/ProducerProfile.css';
 import GoogleMapReact from 'google-map-react';
+import profile from '../resources/pictures/defualt_profile.png'
+import ScrollableProduce from '../components/ScrollableProduce'
+
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 class ProducerProfilePage extends Component{
-  /////TODO: make this get information from database
+
 
 
 
@@ -19,23 +22,24 @@ class ProducerProfilePage extends Component{
 
         super(props);
         this.state = {
-            producer:{
-                image: "https://media.istockphoto.com/photos/farmer-in-a-soybean-field-agricultural-concept-picture-id1158664559?k=6&m=1158664559&s=612x612&w=0&h=gKaS2VdqyJZKAJMFTOZDZC72oVYFwXt7PqcDdqcfCSw=",
-                name: "Perdu Farms",
-                description: "Since 2015, Perdu Farms has been committed to growing organic produce. Our mission is to build community through education, food accessibility, and by being a model of appropriate land stewardship and sustainable agriculture techniques.",
-                location: "University City South, Charlotte, NC 28262",
-                longitude: -80.733726,
-                latitude: 35.308076,
-            }
+            user: null
+
 
 
         };
 
     }
 
-/////BUG: Label doesn't show 
+    componentDidMount(){
+        fetch("http://localhost:9000/user?username="+this.props.match.params.username)
+          .then(res => res.text())
+          .then(res => this.setState({user: JSON.parse(res)}))
+          .catch(err => err);
+    }
+/////TODO: do not display address it is null
     render() {
 
+        if(this.state.user==null) return <p>Producer Doesn't exist</p>
         return(
 
                 <div>
@@ -47,25 +51,26 @@ class ProducerProfilePage extends Component{
 
 
          <div className="producer-info">
-                <img className="produce4U-producerPhoto" src={this.state.producer.image}/>
-                <p className="produce4U-producerName">{this.state.producer.name} <br></br><br></br><span className="produce4U-producerText">{this.state.producer.description}</span></p>
+                <img className="produce4U-producerPhoto" src={this.state.user.profile_picture?this.state.user.profile_picture:profile}/>
+                <p className="produce4U-producerName">{this.state.user.farm_name} <br></br><br></br><span className="produce4U-producerText">{this.state.user.description?this.state.user.description:"No Description"}</span></p>
          </div>
-                  <div className="location-info">
+         <div style={{width:"100%"}}>
+                  <div className="location-info" >
                         <p className= "produce4U-producerLocation"> Location</p>
-                        <p className="produce4U-locationText">{this.state.producer.name} is located at {this.state.producer.location}</p>
+                        <p className="produce4U-locationText">{this.state.user.farm_name} is located at {this.state.user.address_line_one+" "+this.state.user.address_line_two+" "+this.state.user.city+" "+this.state.user.state+" "+this.state.user.country+" "+this.state.user.zip_code}</p>
                         <div style={{ height: '600px', width: '90%', margin:"auto"}}>
                           <GoogleMapReact
                               bootstrapURLKeys={{key:'AIzaSyDiAVMs1DJpi5C8bkFHY2WZ6DTDq7K0pU0', language: 'en', region: 'US'}}
-                              defaultCenter={this.props.center}
+                              defaultCenter={{lat: this.state.user.latitude, lng: this.state.user.longitude}}
                               defaultZoom={this.props.zoom}
                               onChildMouseEnter={this.onChildMouseEnter}
                               onChildMouseLeave={this.onChildMouseLeave}
                            >
-                          <AnyReactComponent
-                                 lat={this.state.producer.latitude}
-                                 lng={this.state.producer.longitude}
-                                 text={this.state.producer.name}
-                           />
+                           <AnyReactComponent
+                                  lat={this.state.user.latitude}
+                                  lng={this.state.user.longitude}
+                                  text={this.state.user.farm_name}
+                            />
                           </GoogleMapReact>
 
 
@@ -73,7 +78,14 @@ class ProducerProfilePage extends Component{
                           </div>
 
                     </div>
+                    </div>
+                    <div className="producer-products">
+                          <p >
+                            <span>Check out some of my products:</span>
 
+                          </p>
+                          <ScrollableProduce username={this.state.user.username} />
+                    </div>
 
                 </div>
 

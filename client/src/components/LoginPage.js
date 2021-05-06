@@ -26,7 +26,7 @@ class LoginPage extends Component{
   tryLogin(){
     return fetch("http://localhost:9000/login?username=" +this.state.username+"&password="+this.state.password)
         .then(res => res.text())
-        .then(res => this.setState({user:JSON.parse(res)}))
+        .then(res => this.setState({error:JSON.parse(res).error,user:JSON.parse(res).result}))
         .then(res => this.state.user != null)
         .catch(err => err);
   }
@@ -39,12 +39,7 @@ class LoginPage extends Component{
         console.log(this.state.user)
         localStorage.setItem('user',JSON.stringify({username:this.state.user.username,type:this.state.user.account_type,token:null}))
         this.props.onLogin({username:this.state.user.username,type:this.state.user.account_type,token:null})
-      }else{
-        this.setState({error:"Username or Password Are worng"})
       }
-    }else{
-      //// TODO: Display a message to tell user what they did wrong
-
     }
 
   }
@@ -65,9 +60,9 @@ class LoginPage extends Component{
           <p className="App-intro"></p>
             <p className="App-intro">Log In:</p>
           <form onSubmit = {this.handleSubmit} >
-              <input className = "produce4U-form-inputLogin" type="text" placeholder="Username" onChange={this.handleChange} value={this.state.username}/>
+              <input className = "produce4U-form-inputLogin" name="username" type="text" placeholder="Username" onChange={this.handleChange} value={this.state.username}/>
               <br></br><br></br>
-              <input className = "produce4U-form-inputLogin" type="Password" placeholder="Password" onChange={this.handleChange} value={this.state.password} />
+              <input className = "produce4U-form-inputLogin" name="password" type="Password" placeholder="Password" onChange={this.handleChange} value={this.state.password} />
               <br></br><br></br>
               <input className = "produce4U-green-button-submit" type="submit" value="Login" onClick = {this.handleSubmit}/>
           </form>

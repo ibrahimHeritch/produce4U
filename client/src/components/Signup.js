@@ -60,7 +60,7 @@ class SignupPage extends Component{
     console.log("this is being called");
     return fetch("http://localhost:9000/login?username=" +this.state.username+"&password="+this.state.pass1)
         .then(res => res.text())
-        .then(res => this.setState({user:JSON.parse(res)}))
+        .then(res => this.setState({user:JSON.parse(res).result}))
         .then(res => this.state.user != null)
         .catch(err => err);
   }
@@ -79,7 +79,6 @@ class SignupPage extends Component{
           this.props.onLogin({username:this.state.user.username,type:this.state.user.account_type,token:null})
           window.location.href = "http://localhost:3000/Login";
       }else{
-        //// TODO: Display a message to tell user what they did wrong
 
         console.log(this.state)
       }

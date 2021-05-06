@@ -13,8 +13,10 @@ import MyproductsPage from './components/myproductsPage.js'
 import HomePage from './components/HomePage.js';
 import ProducerProfilePage from './components/ProducerProfilePage.js';
 import SignupPage from './components/Signup.js';
-
-
+import ProfilePage from './components/ProfilePage.js';
+import EditProductPage from './components/EditProductPage.js';
+import Chat from './components/Chat.js';
+//import PushNotificationDemo from "./components/notification";
 import {
   BrowserRouter as Router,
   Switch,
@@ -22,6 +24,15 @@ import {
   Link
 } from "react-router-dom";
 
+import http from "./utils/http";
+
+import {
+  isPushNotificationSupported,
+  askUserPermission,
+  registerServiceWorker,
+  createNotificationSubscription,
+  getUserSubscription
+} from "./push-notifications";
 
 
 
@@ -33,8 +44,25 @@ class App extends Component{
   }
 
 
-
   render() {
+
+    if(this.state.userAccount != null ){
+      askUserPermission().then(consent => {
+
+          if(consent == "granted"){
+            registerServiceWorker()
+            .then(createNotificationSubscription()
+              .then( (userSubscription)=>{
+
+                http.post("/subscription", {username: this.state.userAccount.username,request: userSubscription})
+
+
+            })
+          )
+        }
+      })
+    }
+
     return(
       <div className="App">
         <Header user={this.state.userAccount} onLogout={()=>{this.setState({userAccount:null})}}/>
@@ -55,13 +83,15 @@ class App extends Component{
               <Route path="/PostProduct">
                             <PostProductPage user={this.state.userAccount}/>
               </Route>
+              <Route path="/product/edit/:id" render={(props) => (<EditProductPage {...props} user={this.state.userAccount} />)}/>
+
               <Route path="/MyProduct" >
                             <MyproductsPage user={this.state.userAccount}/>
               </Route>
-              
-              <Route path="/reserve/:id" component={ReservePage} />
 
-              <Route path="/product/:id" component={ProductPage} />
+              <Route path="/reserve/:id" render={(props) => (<ReservePage {...props} user={this.state.userAccount} />)}/>
+
+              <Route path="/product/:id" render={(props) => (<ProductPage {...props} user={this.state.userAccount} />)}/>
 
               <Route path="/Confirmation">
                   <ConfirmationPage user={this.state.userAccount}/>
@@ -71,9 +101,16 @@ class App extends Component{
                   <MyReservationsPage user={this.state.userAccount}/>
               </Route>
 
-              <Route path="/ProducerProfilePage">
-                <ProducerProfilePage user={this.state.userAccount}/>
+              <Route path="/ProducerProfile/:username" component={ProducerProfilePage}>
+
               </Route>
+
+              <Route path="/myProfile">
+                <ProfilePage user={this.state.userAccount}/>
+              </Route>
+
+              <Route path="/Chat/:user" render={(props) => (<Chat {...props} user={this.state.userAccount} />)}/>
+
 
               <Route path="/Debug">
               <div>
