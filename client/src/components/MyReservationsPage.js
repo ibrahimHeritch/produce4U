@@ -44,7 +44,20 @@ class MyReservationsPage extends Component{
                <div className="table-actions">
                     <a href="/confirmation"><p className="produce4U-bluetext table-row-product">View</p></a>
                     <a href="/reserve"><button className="produce4U-green-button table-edit">Edit</button></a>
-                    <button className="produce4U-red-button table-delete">Delete</button>
+                    <button
+                    className="produce4U-red-button table-delete"
+                    onClick={()=>{
+                      this.state.reservations = this.state.reservations.filter(r => r.id != item.id)
+                      this.setState({reservations:this.state.reservations})
+                      fetch("http://localhost:9000/reservation/delete", { method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify(item)
+                        }).then(function(response) {
+                          console.log(response)
+                          return response.json();
+                        });
+                    }}
+                    >Delete</button>
                </div>]))
 
       )
