@@ -1,8 +1,8 @@
-import React, { component } from 'react';
+import React, { Component } from 'react';
 import '../App.css';
 import '../styles/PostProductPage.css';
 
-class ReportedUser extends component {
+class ReportedUser extends Component {
     constructor(props) {
         super(props)
             this.state = {
@@ -12,11 +12,11 @@ class ReportedUser extends component {
         this.handleChange = this.handleChange.bind(this)
         this.addReport = this.addReport.bind(this)
         this.isValidInput = this.isValidInput.bind(this);
-        
+
     }
 
     isValidInput() {
-        
+
         if (this.state.message == "") {
             this.setState({ error: "Must include a Review" })
             return false;
