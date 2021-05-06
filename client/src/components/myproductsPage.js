@@ -52,11 +52,19 @@ class MyproductsPage extends Component {
                  <p>Active</p>,
                  <div className="table-actions">
 
+<<<<<<< HEAD
+                      <a href="/confirmation/ <%= products.name %>"><p className="produce4U-bluetext table-row-product">Add</p></a>
+                     <a href="/reserve/ <%= products.name %>/edit"><button className="produce4U-green-button table-edit">Edit</button></a>
+                     <form method="POST" action="/confirmation/ <% products.name %>?_method=DELTE">
+                         <button type = "submit" className="produce4U-red-button table-delete">Delete</button>
+                         </form>
+=======
                       <a onClick={()=>{this.setState({show:true,current_product:item})}}><p className="produce4U-bluetext table-row-product">Add</p></a>
                       <a href={"/product/edit/"+item.id}><button className="produce4U-green-button table-edit">Edit</button></a>
                      <button className="produce4U-red-button table-delete" onClick={() => {
                          this.deleteProduct(item.id)
                      }}>Delete</button>
+>>>>>>> 8b9230efdf6701d82453c33ca6ed525052554e79
                  </div>]))
 
         )
