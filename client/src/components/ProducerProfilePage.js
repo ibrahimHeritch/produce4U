@@ -22,12 +22,13 @@ class ProducerProfilePage extends Component{
 
         super(props);
         this.state = {
-            user: null
+            user: null,
+            isBan: false
 
 
 
         };
-
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount(){
@@ -35,6 +36,10 @@ class ProducerProfilePage extends Component{
           .then(res => res.text())
           .then(res => this.setState({user: JSON.parse(res)}))
           .catch(err => err);
+    }
+
+    handleClick() {
+        this.setState({ isBan: true });
     }
 /////TODO: do not display address it is null
     render() {
@@ -47,8 +52,11 @@ class ProducerProfilePage extends Component{
             <h1 className="produce4U-producerWelcome">Know<span className="produce4U-blacktext"> Your Farmer</span></h1>
              <h2 className="produce4U-producerWelcome"> Love<span className="produce4U-blacktext"> Your Food</span><br></br></h2>
             </div>
-
-
+            
+            if(isBan){
+                    <button className="produce4U-red-button" onClick={this.props.onClick}>Block</button>
+                }
+        
 
          <div className="producer-info">
                 <img className="produce4U-producerPhoto" src={this.state.user.profile_picture?this.state.user.profile_picture:profile}/>
