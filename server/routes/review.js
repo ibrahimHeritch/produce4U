@@ -39,20 +39,20 @@ router.post("/uploadImg", function (req, res, next) {
 });
 
 
-router.get("/:ID", function(req, res, next) {
+router.get("id/:ID", function(req, res, next) {
     database.executeQuery("SELECT * FROM review WHERE id="+req.params.ID+";").then(value => {if(value.result.length > 0){res.json({error:value.error,result:value.result[0]})}else{res.json(value)}});
 
 
 });
 
-router.get("/", function(req, res, next) {
-    database.executeQuery("SELECT * FROM review WHERE author_username='"+req.query.user+"';").then(value => {res.json(value);});
+router.get("/producer", function(req, res, next) {
+    database.executeQuery("SELECT * FROM (review INNER JOIN product ON product_id=product.id) WHERE owner_username='"+req.query.user+"';").then(value => {res.json(value);});
 
 
 });
 
 
-router.get("/", function(req, res, next) {
+router.get("/product", function(req, res, next) {
     database.executeQuery("SELECT * FROM review WHERE product_id='"+req.query.product+"';").then(value => {res.json(value);});
 
 

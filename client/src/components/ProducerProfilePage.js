@@ -52,11 +52,11 @@ class ProducerProfilePage extends Component{
             <h1 className="produce4U-producerWelcome">Know<span className="produce4U-blacktext"> Your Farmer</span></h1>
              <h2 className="produce4U-producerWelcome"> Love<span className="produce4U-blacktext"> Your Food</span><br></br></h2>
             </div>
-            
+
             if(isBan){
                     <button className="produce4U-red-button" onClick={this.props.onClick}>Block</button>
                 }
-        
+
 
          <div className="producer-info">
                 <img className="produce4U-producerPhoto" src={this.state.user.profile_picture?this.state.user.profile_picture:profile}/>
@@ -87,7 +87,7 @@ class ProducerProfilePage extends Component{
          </div>
                     <div className={"reviews-info"}>
 <p className = "produce4U-producerReviewHeader">Reviews</p>
-                        <ScrollReviews username={this.state.user.username} />
+                        <ScrollReviews username={this.state.user.username} fetch_by="producer"/>
                     </div>
 
                     <div className="producer-products">

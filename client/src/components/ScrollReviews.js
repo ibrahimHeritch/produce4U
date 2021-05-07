@@ -7,7 +7,7 @@ function ScrollReviews(props){
     const [review, updateReview] = useState(0);
 
     if(!review){
-        fetch("http://localhost:9000/postReview?user="+props.username)
+        fetch("http://localhost:9000/review/"+props.fetch_by+"?user="+props.username)
             .then(res => res.text())
             .then(res => updateReview(JSON.parse(res).result))
             .catch(err => err)
