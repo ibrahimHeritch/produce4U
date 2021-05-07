@@ -24,12 +24,8 @@ function ReviewCard(props){
         <br />
         <a href={"/review/"+props.review.id}><img src={props.review.picture} className="produce4U-roundImage"/></a>
         <p className="product-title">{props.review.author_username}</p>
-        <div className="quantity-form-item">
-            <p>Hi </p>
-            <p>Hi</p>
-        </div>
         <p>Stars: {props.review.rating}</p>
-
+        <p>Comments: {props.review.text}</p>
     </div>
 )
 }

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import '../styles/product.css';
+import ScrollReviews from '../components/ScrollReviews'
 
 /////TODO: make this get information from database
 class ProductPage extends Component{
@@ -62,8 +63,9 @@ class ProductPage extends Component{
 
             </div>
             <div className="review">
-              <p> We really enjoy their strawberries every so often. We usually buy 12lbs so our experience may be limited. That said, it is very tasty and the service is surprisingly fast. Their quality is so far ahead of the competition. </p>
+                <ScrollReviews fetch_by="product_id"/>
             </div>
+
         </div>
     );
   }
