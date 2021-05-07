@@ -95,8 +95,6 @@ class PostReview extends Component{
                             <br />
                             <label className="post-info">
                                 <br />
-                                <input type="file" onChange={this.uploadHandler} className="produce4U-font"/>
-                                <br />
                                 <br />
                                 <button className="produce4U-green-button">Submit</button>
                                 <br />
