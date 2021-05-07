@@ -43,7 +43,7 @@ class ProductPage extends Component{
                   </div>
                   </a>
                   <div>
-                    <p> 22 miles away </p>
+                  
                     <p> $ {this.state.product.price} per {this.state.product.pricing_type} </p>
                   </div>
                   <p> Only {this.state.product.quantity} {this.state.product.pricing_type} left </p>

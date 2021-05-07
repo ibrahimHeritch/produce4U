@@ -142,7 +142,7 @@ class ReservePage extends Component{
 
   }
   render() {
-    if(this.props.user.type != "USER"){
+    if(this.props.user==null || this.props.user.type != "USER"){
       return <p>You need to Login with Customer account to reserve products</p>
     }
     if(this.state.selectedProducts.length==0){

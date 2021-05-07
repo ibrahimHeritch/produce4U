@@ -129,23 +129,6 @@ class App extends Component{
 
               <Route path="/Chat/:user" render={(props) => (<Chat {...props} user={this.state.userAccount} />)}/>
 
-
-              <Route path="/Debug">
-              <div>
-
-                  <ul>
-                    <li><a href="/home">Home</a></li>
-                    <li><a href="/Login">Login</a></li>
-                    <li><a href="/PostProduct">Post Product</a></li>
-                    <li><a href="/MyProduct">My Products</a></li>
-                    <li><a href="/reserve">Reserve a Product</a></li>
-                    <li><a href="/Product">View a Product</a></li>
-                    <li><a href="/Confirmation">Confirmation Page</a></li>
-                    <li><a href="/myReservations">my Reservations</a></li>
-                    <li><a href="/ProducerProfilePage">My Profile</a></li>
-                  </ul>
-              </div>
-              </Route>
               <Route path="/">
                 <HomePage user={this.state.userAccount}/>
               </Route>

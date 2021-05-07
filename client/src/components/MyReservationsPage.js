@@ -45,7 +45,7 @@ class MyReservationsPage extends Component{
                     <a href="/confirmation"><p className="produce4U-bluetext table-row-product">View</p></a>
                     <a href="/reserve"><button className="produce4U-green-button table-edit">Edit</button></a>
                     <button
-                    className="produce4U-red-button table-delete"
+                    className=" table-delete produce4U-red-button"
                     onClick={()=>{
                       this.state.reservations = this.state.reservations.filter(r => r.id != item.id)
                       this.setState({reservations:this.state.reservations})
