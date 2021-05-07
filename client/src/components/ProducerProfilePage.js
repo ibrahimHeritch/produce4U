@@ -3,7 +3,7 @@ import '../styles/ProducerProfile.css';
 import GoogleMapReact from 'google-map-react';
 import profile from '../resources/pictures/defualt_profile.png'
 import ScrollableProduce from '../components/ScrollableProduce'
-
+import ScrollReviews from '../components/ScrollReviews'
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
@@ -73,15 +73,18 @@ class ProducerProfilePage extends Component{
                             />
                           </GoogleMapReact>
 
-
-
                           </div>
 
                     </div>
+         </div>
+                    <div className={"reviews-info"}>
+<p className = "produce4U-producerReviewHeader">Reviews</p>
+                        <ScrollReviews username={this.state.user.username} />
                     </div>
+
                     <div className="producer-products">
-                          <p >
-                            <span>Check out some of my products:</span>
+                          <p>
+                            <span>My Products:</span>
 
                           </p>
                           <ScrollableProduce username={this.state.user.username} />

@@ -148,3 +148,22 @@
   border: none;
   cursor: pointer;
 }
+.produce4U-producerReviewHeader{
+  color: #78B244;
+  font-size: 48px;
+  font-style: italic;
+  font-family: Roboto;
+  font-weight: bold;
+  text-align: left;
+  margin:auto;
+}
+.produce4U-reviewText{
+  float:right;
+  color: black;
+  font-weight: initial;
+  font-family: Roboto;
+  font-size: 34px;
+  height: 531px;
+  width: 499px;
+  text-align: left;
+}
