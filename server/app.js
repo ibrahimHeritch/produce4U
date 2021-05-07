@@ -12,7 +12,6 @@ var loginRouter = require('./routes/login')
 var userRouter = require('./routes/user')
 var searchRouter = require('./routes/search')
 var productsRouter = require('./routes/productPage')
-var reviewRouter = require('./routes/review')
 var chatRouter = require('./routes/chat')
 var notificationRouter = require('./routes/subscribe')
 var sendNotification = require("./notificationService.js");
@@ -61,7 +60,7 @@ app.use('/products', productsRouter);
 app.use('/chat', chatRouter);
 app.use('/subscription', notificationRouter);
 app.use('/report', reportRouter);
-app.use('/review', reviewRouter);
+
 
 
 
