@@ -4,7 +4,7 @@ var database = require("../database/database.js");
 let socketapi = require("../socketapi");
 
 router.get("/", function(req, res, next) {
-    var query = "SELECT * FROM (SELECT * FROM chat WHERE first_user= '"+req.query.user+"') u LEFT JOIN user on username = second_user;"
+    var query = "SELECT * FROM (SELECT * FROM chat WHERE first_user= '"+req.query.user+"' AND is_blocked = FALSE) u LEFT JOIN user on username = second_user;"
     database.executeQuery(query)
           .then(value => {
             res.json(value)
@@ -45,6 +45,17 @@ router.post("/new", function(req, res, next) {
     database.executeQuery(query2)
 
     socketapi.io.sockets.emit('New Chat:'+req.body.user2,'')
+
+});
+
+router.post("/block", function(req, res, next) {
+    var query1 = `UPDATE chat
+                  SET is_blocked = TRUE
+                  ON first_user = '`+req.body.user1+`';`
+
+
+    database.executeQuery(query1)
+
 
 });
 module.exports = router;

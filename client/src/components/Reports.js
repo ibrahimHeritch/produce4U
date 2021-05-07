@@ -14,36 +14,37 @@ class Reports extends Component {
         };
     }
 
-   
+
     componentDidMount() {
-        if (this.props.user.type == "USER") {
-            fetch("http://localhost:9000/report?user=" + this.props.user.username)
+        if (this.props.user.type == "ADMIN") {
+            fetch("http://localhost:9000/report")
                 .then(res => res.text())
-                .then(res => this.setState({ error: JSON.parse(res).error, reports: JSON.parse(res).result }))
+                .then(res => this.setState({  reports: JSON.parse(res).result }))
                 .catch(err => err);
         }
 
-        if (this.props.user.type == "PRODUCER") {
-            fetch("http://localhost:9000/report?producer_name=" + this.props.user.username)
-                .then(res => res.text())
-                .then(res => this.setState({ error: JSON.parse(res).error, reports: JSON.parse(res).result }))
-                .catch(err => err);
-        }
+
     }
 
     getReport() {
-        return (
+
+        return(
             this.state.reports.map((item) => (this.getRow(
-                <p>{item.from_user}</p>,
-                <p>{item.message}</p>)))
-        );
+                [ <p>{item.id}</p>,
+                  <p>{item.from_user}</p>,
+                  <p>{item.message}</p>
+                ]
+              )
+            )
+        )
+      )
 
     }
 
     getHeader() {
         return (
             <div className="table-header table produce4U-tile" style={{ maxWidth: ((this.state.widths.reduce((a, b) => (a + b), 0) + 300) + "px") }} >
-                <div className="table-header-item produce4U-greentext" style={{ width: "200px" }}><p>Report</p></div>
+                <div className="table-header-item produce4U-greentext" style={{ width: "200px" }}><p>Report id</p></div>
                 {this.state.header.map(
                     (item, i) => (
                         <div className="table-header-item" style={{ width: this.state.widths[i + 1] + "px" }}><p>{item}</p></div>
@@ -80,8 +81,8 @@ class Reports extends Component {
         );
     }
 
- 
-    
+
+
 }
 
 export default Reports;

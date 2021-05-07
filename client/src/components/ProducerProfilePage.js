@@ -3,7 +3,7 @@ import '../styles/ProducerProfile.css';
 import GoogleMapReact from 'google-map-react';
 import profile from '../resources/pictures/defualt_profile.png'
 import ScrollableProduce from '../components/ScrollableProduce'
-
+import ScrollReviews from '../components/ScrollReviews'
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
@@ -22,12 +22,13 @@ class ProducerProfilePage extends Component{
 
         super(props);
         this.state = {
-            user: null
+            user: null,
+            isBan: false
 
 
 
         };
-
+        this.handleClick = this.handleClick.bind(this);
     }
 
     componentDidMount(){
@@ -35,6 +36,10 @@ class ProducerProfilePage extends Component{
           .then(res => res.text())
           .then(res => this.setState({user: JSON.parse(res)}))
           .catch(err => err);
+    }
+
+    handleClick() {
+        this.setState({ isBan: true });
     }
 /////TODO: do not display address it is null
     render() {
@@ -48,6 +53,9 @@ class ProducerProfilePage extends Component{
              <h2 className="produce4U-producerWelcome"> Love<span className="produce4U-blacktext"> Your Food</span><br></br></h2>
             </div>
 
+              { this.state.isBan &&
+                    <button className="produce4U-red-button" onClick={this.props.onClick}>Block</button>
+                }
 
 
          <div className="producer-info">
@@ -73,15 +81,18 @@ class ProducerProfilePage extends Component{
                             />
                           </GoogleMapReact>
 
-
-
                           </div>
 
                     </div>
+         </div>
+                    <div className={"reviews-info"}>
+<p className = "produce4U-producerReviewHeader">Reviews</p>
+                        <ScrollReviews username={this.state.user.username} fetch_by="producer"/>
                     </div>
+
                     <div className="producer-products">
-                          <p >
-                            <span>Check out some of my products:</span>
+                          <p>
+                            <span>My Products:</span>
 
                           </p>
                           <ScrollableProduce username={this.state.user.username} />

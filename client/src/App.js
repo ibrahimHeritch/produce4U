@@ -18,6 +18,8 @@ import EditProductPage from './components/EditProductPage.js';
 import Chat from './components/Chat.js';
 import ReportABug from './components/ReportABug.js';
 import ReportedUser from './components/ReportedUser.js';
+import Reports from './components/Reports.js';
+import EditReview from './components/EditReview.js';
 
 import {
   BrowserRouter as Router,
@@ -88,14 +90,18 @@ class App extends Component{
               <Route path="/report">
                             <ReportABug user={this.state.userAccount}/>
               </Route>
-              <Route path="/reports">
+              <Route path="/reportReview">
                             <ReportedUser user={this.state.userAccount}/>
+              </Route>
+              <Route path="/reports">
+                            <Reports user={this.state.userAccount}/>
               </Route>
               <Route path="/product/edit/:id" render={(props) => (<EditProductPage {...props} user={this.state.userAccount} />)}/>
 
               <Route path="/MyProduct" >
                             <MyproductsPage user={this.state.userAccount}/>
               </Route>
+              <Route path="/review/edit/:id" render={(props) => (<EditReview {...props} user={this.state.userAccount} />)}/>
 
               <Route path="/reserve/:id" render={(props) => (<ReservePage {...props} user={this.state.userAccount} />)}/>
 

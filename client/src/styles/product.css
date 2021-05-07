@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
+
 .product{
   margin-top: 50px;
   margin-bottom: 100px;
   margin-left: 50px;
   margin-right: 50px;
   display: flex;
+  font-family: Roboto;
   justify-content: space-evenly;
 }
 
@@ -22,11 +25,13 @@
   border-radius: 33px;
   color: #78B244;
   max-width: 350px;
+  font-family: Roboto;
 }
 
 .product-producer{
   max-width: 130px;
   text-decoration: none !important;
+  font-family: Roboto;
 }
 
 .product-title{
@@ -34,17 +39,21 @@
   font-size: 19px;
   text-decoration-line: underline;
   text-align: center;
+  font-family: Roboto;
 }
 
 .product-describtion{
   font-size: 14px;
   margin: 6%;
+  font-family: Roboto;
 }
 
 
 .product-left{
    margin: 10px;
    width: 50%;
+  font-family: Roboto;
+
 }
 
 .review{
@@ -55,10 +64,12 @@
   padding: 8px;
   max-width: 50%;
   min-width: 300px;
+  font-family: Roboto;
 }
 
 .contact-producer{
   color: #78B244 !important;
   text-decoration-line: none;
   margin: 5px;
+  font-family: Roboto;
 }

@@ -12,7 +12,7 @@ router.get("/", function(req, res, next) {
     //TODO: improve apone this
 
     if(req.query.search && req.query.search!="null"){
-      query= "SELECT * FROM ("+query+") as a WHERE name = '"+req.query.search+"'"
+      query= "SELECT * FROM ("+query+") as a WHERE name LIKE '%"+req.query.search+"%'"
     }
 
 
