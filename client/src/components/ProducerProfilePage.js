@@ -53,7 +53,7 @@ class ProducerProfilePage extends Component{
              <h2 className="produce4U-producerWelcome"> Love<span className="produce4U-blacktext"> Your Food</span><br></br></h2>
             </div>
 
-            if(isBan){
+              { this.state.isBan &&
                     <button className="produce4U-red-button" onClick={this.props.onClick}>Block</button>
                 }
 

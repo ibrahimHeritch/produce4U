@@ -22,6 +22,7 @@ class Chat extends Component {
       newMessageValue:""
     };
     this.send = this.send.bind(this)
+    this.block = this.block.bind(this)
   }
 
 
@@ -115,6 +116,13 @@ class Chat extends Component {
 
   }
 
+  block(){
+    this.state.chats=this.state.chats.filter(item => item.username != this.state.current_to_user)
+    this.state.current_to_user = "ALL"
+    this.state.messages = []
+    this.setState({chats:this.state.chats,current_to_user:this.state.current_to_user,messages:this.state.messages})
+  }
+
   componentDidUpdate(){
 
     socket.removeAllListeners();
@@ -147,6 +155,7 @@ class Chat extends Component {
       <div style={{padding:"50px", textAlign: "center" }}>
           <div className="chat-tile">
             <div className="chat-side">
+
               <header className="chat-header">
                 <p className="produce4U-greentext">My Chats</p>
               </header>
@@ -157,9 +166,10 @@ class Chat extends Component {
             </div>
 
             <div className="chat-main">
-              <header className="chat-header">
-                <p className="produce4U-greentext">{this.state.current_to_user}</p>
-              </header>
+            <div className="chat-message">
+              <div className="chat-name"><p className="produce4U-greentext">{this.state.current_to_user}</p></div>
+              <button className="chat-block-button" onClick={this.block}>Block</button>
+            </div>
               <div className="chat-messages">
               {this.getMessages()}
               </div>
