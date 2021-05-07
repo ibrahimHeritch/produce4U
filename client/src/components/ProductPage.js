@@ -54,7 +54,7 @@ class ProductPage extends Component{
                   </div>
                   </a>
                   <div>
-                  
+
                     <p> $ {this.state.product.price} per {this.state.product.pricing_type} </p>
                   </div>
                   <p> Only {this.state.product.quantity} {this.state.product.pricing_type} left </p>
@@ -74,12 +74,12 @@ class ProductPage extends Component{
 
             </div>
             <div className="review">
-                <ScrollReviews fetch_by="product_id"/>
+                <ScrollReviews fetch_by="product" product_id={this.state.product.id}/>
 
 
-                    <button type = "button" className="produce4U-green-button" onClick = {this.PostReview()} >
+                    <a type = "button" className="produce4U-green-button" href={"/review/"+this.state.product.id} >
                         Leave A Review
-                    </button>
+                    </a>
 
             </div>
 
