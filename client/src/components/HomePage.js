@@ -106,12 +106,12 @@ class HomePage extends Component{
           <br />
 
           <div>
-            <button type="button" onClick={this.handleClick} value="ALL">All Products</button> {' '}
-            <button type="button" onClick={this.handleClick} value="VEGETABLE">Vegetables</button> {' '}
-            <button type="button" onClick={this.handleClick} value="FRUITS">Fruits</button> {' '}
-            <button type="button" onClick={this.handleClick} value="BREAD">Bread</button> {' '}
-            <button type="button" onClick={this.handleClick} value="JUICES">Juices</button> {' '}
-            <button type="button" onClick={this.handleClick} value="TEA">Tea</button>
+            <button type="button" className="produce4U-green-button" onClick={this.handleClick} value="ALL">All Products</button> {' '}
+            <button type="button" className="produce4U-green-button" onClick={this.handleClick} value="VEGETABLE">Vegetables</button> {' '}
+            <button type="button" className="produce4U-green-button" onClick={this.handleClick} value="FRUITS">Fruits</button> {' '}
+            <button type="button" className="produce4U-green-button" onClick={this.handleClick} value="BREAD">Bread</button> {' '}
+            <button type="button" className="produce4U-green-button" onClick={this.handleClick} value="JUICES">Juices</button> {' '}
+            <button type="button" className="produce4U-green-button" onClick={this.handleClick} value="TEA">Tea</button>
           </div>
           <br />
           <div style = {{ display: "grid", gridTemplateColumns: "400px 400px 400px", justifyContent:"space-evenly"}}>
