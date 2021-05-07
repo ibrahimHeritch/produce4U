@@ -20,6 +20,16 @@ router.get("/", function(req, res, next) {
 
 });
 
+router.get("/all", function(req, res, next) {
+
+    var query = "SELECT * FROM user WHERE is_banned = FALSE;"
+    database.executeQuery(query)
+    .then(value => {
+      res.json(value)
+    })
+
+});
+
 router.post("/update/producerInfo", function(req, res, next) {
     var query = "UPDATE producer SET farm_name = '"+req.body.farm_name+"', description ='"+req.body.description+"' WHERE username = '"+req.body.username+"';"
     database.executeQuery(query)
@@ -76,6 +86,17 @@ router.post("/update/profilePicture", function(req, res, next) {
     var query = "UPDATE user SET profile_picture='"+req.body.profile_picture+"' WHERE username = '"+req.body.username+"';"
     database.executeQuery(query)
 
+
+
+});
+
+router.post("/ban", function(req, res, next) {
+    var query1 = `UPDATE user
+                  SET is_banned = TRUE
+                  WHERE username = '`+req.body.user+`';`
+
+
+    database.executeQuery(query1)
 
 
 });

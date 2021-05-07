@@ -12,6 +12,9 @@ router.get("/", function(req, res, next) {
     database.executeQuery(query)
           .then(value => {
             if(value.result.length > 0){
+              if(value.result[0].is_banned){
+                res.json({error:"You are banned",result:null})
+              }
               bcrypt.compare(req.query.password, value.result[0].password).then( isEqual => {
                 if(isEqual){
                   res.json({error:"ALL OK",result:value.result[0]})

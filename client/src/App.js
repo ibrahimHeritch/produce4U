@@ -19,6 +19,7 @@ import Chat from './components/Chat.js';
 import ReportABug from './components/ReportABug.js';
 import ReportedUser from './components/ReportedUser.js';
 import Reports from './components/Reports.js';
+import Users from './components/users.js';
 import EditReview from './components/EditReview.js';
 
 import {
@@ -95,6 +96,9 @@ class App extends Component{
               </Route>
               <Route path="/reports">
                             <Reports user={this.state.userAccount}/>
+              </Route>
+              <Route path="/users">
+                            <Users user={this.state.userAccount}/>
               </Route>
               <Route path="/product/edit/:id" render={(props) => (<EditProductPage {...props} user={this.state.userAccount} />)}/>
 
