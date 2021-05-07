@@ -28,6 +28,14 @@ router.post("/update/producerInfo", function(req, res, next) {
 
 });
 
+router.post("/follow", function(req, res, next) {
+    var query = "INSERT INTO follow (username,producer) VALUES ('"+req.body.username+"','"+req.body.producer"');"
+    database.executeQuery(query)
+
+
+
+});
+
 router.post("/update/address", function(req, res, next) {
   if(req.body.address_id == null){
     var query1 =  `INSERT INTO
