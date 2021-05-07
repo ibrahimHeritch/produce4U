@@ -9,6 +9,7 @@
     text-align: left;
     margin:auto;
 }
+
 .produce4U-reviewText{
     float:right;
     color: black;
@@ -18,4 +19,12 @@
     height: 531px;
     width: 499px;
     text-align: left;
+}
+.reviewBox {
+    margin: auto;
+    width: 500px;
+    height: 300px;
+    margin: 50px;
+    color: #78B244;
+    padding: 20px;
 }

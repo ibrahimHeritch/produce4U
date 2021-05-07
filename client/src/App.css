@@ -148,6 +148,7 @@
   border: none;
   cursor: pointer;
 }
+
 .produce4U-producerReviewHeader{
   color: #78B244;
   font-size: 48px;
@@ -157,6 +158,7 @@
   text-align: left;
   margin:auto;
 }
+
 .produce4U-reviewText{
   float:right;
   color: black;
