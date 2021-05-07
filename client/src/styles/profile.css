@@ -1,16 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
+
 .profile-left{
    margin: 10px;
    width: 350px;
+  font-family: Roboto;
 }
 
 .profile-right{
    margin: 10px;
    min-width: 550px;
    width: 50%;
+  font-family: Roboto;
 }
 
 .profile-tile{
   text-align: left;
+  font-family: Roboto;
   padding: 20px;
   padding-left: 35px;
   margin: 20px;
@@ -20,31 +25,35 @@
 .profile-producerInfo{
   padding-left: 20px;
   position: relative;
+  font-family: Roboto;
   padding-bottom: 20px;
 }
 
 .profile-description{
   margin-left: 30px;
   padding: 15px;
+  font-family: Roboto;
   
 
 }
 
 .profile-lable{
   margin-right: 10px;
+  font-family: Roboto;
   font-weight: bold;
 }
 
 .profile-address-lable{
   margin-right: 10px;
   font-weight: bold;
+  font-family: Roboto;
   float: left;
 }
 
 .profile-edit{
   float: right;
   cursor: pointer;
-
+  font-family: Roboto;
 }
 
 .profile-save-button{
@@ -55,6 +64,7 @@
   color: white;
   background-color: #78B244;
   text-align: center;
+  font-family: Roboto;
   text-decoration: none;
   line-height: 28px;
   border-radius: 15px;
@@ -66,9 +76,11 @@
 .profile-address-span{
   float: left;
   width: 300px ;
+  font-family: Roboto;
 }
 
 .profile-address-span-country{
   float: left;
   width: 270px ;
+  font-family: Roboto;
 }

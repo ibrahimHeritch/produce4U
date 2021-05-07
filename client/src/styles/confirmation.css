@@ -1,12 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto');
+
 .confirmation{
   margin-top: 50px;
   margin-bottom: 100px;
   margin-left: 50px;
   margin-right: 50px;
   font-size: 34px;
+    font-family: Roboto;
 }
 
 .confirmation-page-buttons{
+    font-family: Roboto;
     display: flex;
     justify-content: space-around;
     width: 500px;
