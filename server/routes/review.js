@@ -32,7 +32,7 @@ router.get("id/:ID", function(req, res, next) {
 });
 
 router.get("/producer", function(req, res, next) {
-    database.executeQuery("SELECT * FROM (review INNER JOIN product ON product_id=product.id) WHERE owner_username='"+req.query.user+"';").then(value => {res.json(value);});
+    database.executeQuery("SELECT * FROM (review INNER JOIN product ON product_id=product.id) WHERE owner_username='"+req.query.producer+"';").then(value => {res.json(value);});
 
 
 });

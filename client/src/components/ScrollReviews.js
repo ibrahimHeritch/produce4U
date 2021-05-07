@@ -7,7 +7,7 @@ function ScrollReviews(props){
     const [review, updateReview] = useState(0);
 
     if(!review){
-        fetch("http://localhost:9000/review/"+props.fetch_by+"?product="+props.product_id)
+        fetch("http://localhost:9000/review/"+props.fetch_by+(props.fetch_by=="product"?"?product="+props.product_id : "?producer="+props.producer))
             .then(res => res.text())
             .then(res => updateReview(JSON.parse(res).result))
             .catch(err => err)

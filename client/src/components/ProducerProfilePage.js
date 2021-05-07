@@ -87,7 +87,7 @@ class ProducerProfilePage extends Component{
          </div>
                     <div className={"reviews-info"}>
 <p className = "produce4U-producerReviewHeader">Reviews</p>
-                        <ScrollReviews username={this.state.user.username} fetch_by="producer"/>
+                        <ScrollReviews producer={this.state.user.username} fetch_by="producer"/>
                     </div>
 
                     <div className="producer-products">
