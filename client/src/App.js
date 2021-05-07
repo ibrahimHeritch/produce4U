@@ -120,9 +120,9 @@ class App extends Component{
                   <MyReservationsPage user={this.state.userAccount}/>
               </Route>
 
-              <Route path="/ProducerProfile/:username" component={ProducerProfilePage}>
+              <Route path="/ProducerProfile/:username" render={(props) => (<ProducerProfilePage {...props} user={this.state.userAccount} />)}/>
 
-              </Route>
+
 
               <Route path="/myProfile">
                 <ProfilePage user={this.state.userAccount}/>

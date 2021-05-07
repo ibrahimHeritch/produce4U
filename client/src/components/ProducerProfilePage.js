@@ -23,23 +23,58 @@ class ProducerProfilePage extends Component{
         super(props);
         this.state = {
             user: null,
-            isBan: false
-
+            isBan: false,
+            isFollowing:false
 
 
         };
         this.handleClick = this.handleClick.bind(this);
+        this.handleFollow = this.handleFollow.bind(this);
     }
 
     componentDidMount(){
         fetch("http://localhost:9000/user?username="+this.props.match.params.username)
           .then(res => res.text())
-          .then(res => this.setState({user: JSON.parse(res)}))
-          .catch(err => err);
+          .then(res => this.setState({user: JSON.parse(res)},
+          ()=>{
+            fetch("http://localhost:9000/user/isFollowing?username="+this.props.user.username+"&producer=")
+              .then(res => res.text())
+              .then(res => this.setState({isFollowing: JSON.parse(res)}))
+              .catch(err => err)
+          }
+        ))
+          .catch(err => err)
+
+
+
+
     }
 
     handleClick() {
         this.setState({ isBan: true });
+    }
+
+    handleFollow() {
+        this.setState({ isFollowing: !this.state.isFollowing });
+        if(!this.state.isFollowing){
+          fetch("http://localhost:9000/user/follow", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({username:this.props.user.username,producer:this.state.user.username})
+          }).then(function (response) {
+            console.log(response)
+            return response.json();
+          });
+        }else{
+          fetch("http://localhost:9000/user/unfollow", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({username:this.props.user.username,producer:this.state.user.username})
+          }).then(function (response) {
+            console.log(response)
+            return response.json();
+        })
+      }
     }
 /////TODO: do not display address it is null
     render() {
@@ -59,7 +94,7 @@ class ProducerProfilePage extends Component{
 
 
          <div className="producer-info">
-                <img className="produce4U-producerPhoto" src={this.state.user.profile_picture?this.state.user.profile_picture:profile}/>
+                <img className="produce4U-producerPhoto" src={this.state.user.profile_picture?this.state.user.profile_picture:profile}/><button className="produce4U-green-button" onClick={this.handleFollow}>{this.state.isFollowing?"UnFollow":"Follow"}</button>
                 <p className="produce4U-producerName">{this.state.user.farm_name} <br></br><br></br><span className="produce4U-producerText">{this.state.user.description?this.state.user.description:"No Description"}</span></p>
          </div>
          <div style={{width:"100%"}}>
@@ -84,11 +119,12 @@ class ProducerProfilePage extends Component{
                           </div>
 
                     </div>
-         </div>
                     <div className={"reviews-info"}>
 <p className = "produce4U-producerReviewHeader">Reviews</p>
                         <ScrollReviews producer={this.state.user.username} fetch_by="producer"/>
                     </div>
+         </div>
+
 
                     <div className="producer-products">
                           <p>

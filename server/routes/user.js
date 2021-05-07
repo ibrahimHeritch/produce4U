@@ -33,8 +33,19 @@ router.get("/all", function(req, res, next) {
 router.post("/update/producerInfo", function(req, res, next) {
     var query = "UPDATE producer SET farm_name = '"+req.body.farm_name+"', description ='"+req.body.description+"' WHERE username = '"+req.body.username+"';"
     database.executeQuery(query)
+    .then(value => {
+      res.json(value)
+    })
 
 
+});
+
+router.get("/isFollowing", function(req, res, next) {
+    var query = "SELECT * FROM follow WHERE username='"+req.query.username+"'AND producer='"+req.query.producer+"';"
+    database.executeQuery(query)
+    .then(value =>{
+      res.json(value.results.length>0)
+    })
 
 });
 
@@ -42,7 +53,12 @@ router.post("/follow", function(req, res, next) {
     var query = "INSERT INTO follow (username,producer) VALUES ('"+req.body.username+"','"+req.body.producer+"');"
     database.executeQuery(query)
 
+});
 
+router.post("/unfollow", function(req, res, next) {
+    `DELETE FROM reservation WHERE id=`+req.body.id+`;`
+    var query = "DELETE FROM follow WHERE username='"+req.body.username+"'AND producer='"+req.body.producer+"';"
+    database.executeQuery(query)
 
 });
 
