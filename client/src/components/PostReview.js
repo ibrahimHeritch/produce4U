@@ -9,10 +9,10 @@ class PostReview extends Component{
         super(props)
         this.state = {
             author_username: this.props.user.username,
-            picture: this.props.user.profile_picture,
+            picture: null,
             text: "",
-            product_id: this.props.product.id,
-            rating: 5.0
+            product_id: this.props.match.params.id,
+            rating: null
         }
         this.handleChange = this.handleChange.bind(this)
         this.addReview = this.addReview.bind(this);
@@ -25,7 +25,7 @@ class PostReview extends Component{
             this.setState({error: "Must include Text in Your Review"})
             return false;
         }
-        if(this.state.review == '' || isNaN(this.state.quantity) ){
+        if(this.state.rating == '' || isNaN(this.state.rating) ){
             this.setState({error: "Must include Rating as Number"})
             return false;
         }
@@ -61,44 +61,8 @@ class PostReview extends Component{
                         <section className="post-out-border produce4U-tile">
                             <label className="post-top">Write Your Review</label>
                             <br />
-                            <br />
 
-                            <label className="post-info">
-                                <br />
-                                <input
 
-                                    type="text"
-                                    value={this.state.username}
-                                    name="author_username"
-                                    placeholder="Author Username"
-                                    onChange={this.handleChange}
-                                    className="post-border"
-                                />
-                            </label>
-                            <br />
-                            <label className="post-info">
-                                <br />
-                                <input
-
-                                    type="image"
-                                    value={this.state.user.profile_picture}
-                                    name="picture"
-                                    onChange={this.handleChange}
-                                    className="post-border"
-                                />
-                            </label>
-<br/>
-                            <label className="post-info">
-                                <br />
-                                <input
-
-                                    type="number"
-                                    value={this.state.product.product.id}
-                                    name="product_id"
-                                    onChange={this.handleChange}
-                                    className="post-border"
-                                />
-                            </label>
                             <br/>
                             <label className="post-info"> What do you want to say?:
                                 <br />
@@ -161,4 +125,3 @@ class PostReview extends Component{
 
 
 export default PostReview;
-
