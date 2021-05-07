@@ -18,7 +18,23 @@ router.get("/", function(req, res, next) {
 
     if(req.query.latitude && req.query.latitude!="null" && req.query.longitude!="null"){
       console.log(req.query.latitude, req.query.longitude)
-      var query = `SELECT *
+      var query = `SELECT
+                         id,
+                         ( 3959
+                          * acos( cos(radians(${req.query.latitude}))
+                          * cos(  radians( latitude )   )
+                          * cos(  radians( longitude ) - radians(${req.query.longitude}) )
+                          + sin( radians(${req.query.latitude}) )
+                          * sin( radians( latitude ) )
+                    )
+                   )
+                   AS distance
+                   FROM product
+                   HAVING distance < 25
+                   ORDER BY distance
+                   LIMIT 0 , 20;
+                   FROM (
+                   SELECT *
                    FROM product
                    INNER JOIN user
                    ON product.owner_username = user.username
