@@ -91,9 +91,7 @@ class EditReview extends Component {
     }
 
     render() {
-        if(this.props.user.type != "PRODUCER"){
-            return <p>This Page is for Producers Only</p>
-        }
+    
         return (
             <div className="App">
                 <form action="http://localhost:3000/" onSubmit={this.addReview}>

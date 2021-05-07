@@ -19,7 +19,7 @@ router.get("/", function(req, res, next) {
     if(req.query.latitude && req.query.latitude!="null" && req.query.longitude!="null"){
       console.log(req.query.latitude, req.query.longitude)
       var query = `SELECT
-                         id,
+                         *,
                          ( 3959
                           * acos( cos(radians(${req.query.latitude}))
                           * cos(  radians( latitude )   )
@@ -29,20 +29,18 @@ router.get("/", function(req, res, next) {
                     )
                    )
                    AS distance
-                   FROM product
+                   FROM (
+                   SELECT p.*, a.latitude, a.longitude
+                   FROM (`+query+`) as p
+                   INNER JOIN user as u
+                   ON p.owner_username = u.username
+                   INNER JOIN address as a
+                   ON u.address_id = a.id) as c
                    HAVING distance < 25
                    ORDER BY distance
                    LIMIT 0 , 20;
-                   FROM (
-                   SELECT *
-                   FROM product
-                   INNER JOIN user
-                   ON product.owner_username = user.username
-                   INNER JOIN address
-                   ON user.address_id = address.id`
-      ///TODO: make this get the products near the abouve cordinates, but first you'd
-      ////have to edit the first query to join product table with user and address since
-      //// the product doesn't have cordinates by default.
+                   `
+
     }
     database.executeQuery(query).then(value => {res.json(value);});
 });

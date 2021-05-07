@@ -24,9 +24,10 @@ function ProduceCard(props){
     <p className="product-title">{props.product.name}</p>
     <div className="quantity-form-item">
       <p>${props.product.price.toFixed(2)}{" Per "}{props.product.pricing_type} </p>
-      <p>{props.product.distance}22 miles away</p>
+      <p>Stars: {props.product.rating}</p>
     </div>
-    <p>Stars: {props.product.rating}</p>
+    <p>{props.product.distance && props.product.distance.toFixed(1)+" miles away"}</p>
+
     { props.onAdd?
        <a className="product-producer" onClick={()=>{props.onAdd(props.product)}}><p className="produce4U-producer product-producer" >Add</p></a>:
        <a className="product-producer" href={"/ProducerProfile/"+props.product.owner_username}><p className="produce4U-producer product-producer" >{props.product.owner_username}</p></a>
