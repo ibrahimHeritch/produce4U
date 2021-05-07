@@ -28,6 +28,7 @@ class ProducerProfilePage extends Component{
 
 
         };
+        this.state = { isToggleOn: true };
         this.handleClick = this.handleClick.bind(this);
     }
 
@@ -40,6 +41,9 @@ class ProducerProfilePage extends Component{
 
     handleClick() {
         this.setState({ isBan: true });
+        this.setState(prevState => ({
+            isToggleOn: !prevState.isToggleOn
+        }));
     }
 /////TODO: do not display address it is null
     render() {
@@ -54,7 +58,7 @@ class ProducerProfilePage extends Component{
             </div>
 
               { this.state.isBan &&
-                    <button className="produce4U-red-button" onClick={this.props.onClick}>Block</button>
+                    <button className="produce4U-red-button" onClick={this.props.onClick}>{this.state.isToggleOn ? 'Block' : 'Blocked'}</button>
                 }
 
 
