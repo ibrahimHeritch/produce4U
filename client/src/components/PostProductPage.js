@@ -126,7 +126,7 @@ class PostProductPage extends Component {
                                 rows={10}
                                 cols={53}
                                 name="description"
-                                placeholder="Descripe Your Product"
+                                placeholder="Describe Your Product"
                                 className="post-border"
                     />
                     </label>

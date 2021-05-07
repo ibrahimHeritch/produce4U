@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import '../styles/product.css';
 import ScrollReviews from '../components/ScrollReviews'
+import PostReview from '../components/PostReview'
+
 
 /////TODO: make this get information from database
 class ProductPage extends Component{
@@ -19,6 +21,15 @@ class ProductPage extends Component{
         .then(res => res.text())
         .then(res => this.setState({error:JSON.parse(res).error,product: JSON.parse(res).result}))
         .catch(err => err);
+      this.fetchReviews()
+
+  }
+
+  fetchReviews(){
+      fetch("http://localhost:9000/review/post"+this.props.match.params.id)
+          .then(res => res.text())
+          .then(res => this.setState({error:JSON.parse(res).error,product: JSON.parse(res).result}))
+          .catch(err => err);
   }
 
   render() {
@@ -64,7 +75,16 @@ class ProductPage extends Component{
             </div>
             <div className="review">
                 <ScrollReviews fetch_by="product_id"/>
+
+
+                    <button type = "button" className="produce4U-green-button" onClick = {this.PostReview()} >
+                        Leave A Review
+                    </button>
+
             </div>
+
+
+
 
         </div>
     );

@@ -16,24 +16,10 @@ const upload = multer({ storage: storage }).single('file')
 router.post("/", function (req, res, next) {
     var state = req.body
     database.executeQuery(
-        `INSERT INTO review ( author_username, text, producer_reply, product_id, rating, picture)
-            value('`+ state.author_username + `', '` + state.text + `', '` + state.producer_reply + `', ` +
-        state.product_id + `,  `+state.rating+`, '`+state.picture_url+`')`
+        `INSERT INTO review ( author_username, text, product_id, rating, picture)
+            value('`+ state.user.username + `', '` + state.text + `', '` + state.producer_reply + `', ` +
+        state.product.product_id + `,  `+state.rating+`, '`+state.user.profile_picture+`')`
     );
-
-
-});
-
-router.post("/uploadImg", function (req, res, next) {
-
-
-    upload(req, res, (err) => {
-        if (err) {
-            res.sendStatus(500);
-        }
-        res.send(req.file);
-    });
-
 
 
 });
