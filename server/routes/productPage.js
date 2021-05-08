@@ -18,7 +18,7 @@ router.post('/edit', (req, res) => {
 
 //Deleting THIS WON'T work until we drop the database and re init it.
 router.post('/delete', (req, res) => {
-    database.executeQuery("DELETE FROM products WHERE id="+req.body.id+";")
+    database.executeQuery("DELETE FROM product WHERE id="+req.body.id+";")
 })
 
 router.post('/add', (req, res) => {

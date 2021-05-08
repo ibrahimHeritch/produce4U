@@ -35,7 +35,6 @@ class PostReview extends Component{
 
     addReview(event) {
         if (this.isValidInput()) {
-          event.preventDefault()
             fetch("http://localhost:9000/review", {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
