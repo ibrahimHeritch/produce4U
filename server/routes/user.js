@@ -44,7 +44,7 @@ router.get("/isFollowing", function(req, res, next) {
     var query = "SELECT * FROM follow WHERE username='"+req.query.username+"'AND producer='"+req.query.producer+"';"
     database.executeQuery(query)
     .then(value =>{
-      res.json(value.results.length>0)
+      res.json(value.result.length>0)
     })
 
 });

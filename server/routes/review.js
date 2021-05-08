@@ -19,17 +19,17 @@ router.post("/", function (req, res, next) {
     var state = req.body
     database.executeQuery(
         `INSERT INTO review ( author_username, text, product_id, rating, picture)
-            value('`+ state.user.username + `', '` + state.text + `', '` + state.producer_reply + `', ` +
-        state.product.product_id + `,  `+state.rating+`, '`+state.user.profile_picture+`')`
+            value('`+ state.author_username + `', '` + state.text + `', '` + state.producer_reply + `', ` +
+        state.product_id + `,  `+state.rating+`, '`+state.picture+`')`
     );
 
     database.executeQuery(
-      "SELECT * FROM product WHERE id = '"+state.product.product_id+"';"
+      "SELECT * FROM product WHERE id = '"+state.product_id+"';"
     ).then(
       value =>{
         value.result.map(
           (item)=>{
-            sendNotification(item.owner_username,{title:"New Review Avialable",text:state.user.username+" Posted a new review about: "+item.product_title, tag:"New Product"})
+            sendNotification(item.owner_username,{title:"New Review Avialable",text:state.author_username+" Posted a new review about: "+item.product_title, tag:"New Product"})
           }
         )
       }
