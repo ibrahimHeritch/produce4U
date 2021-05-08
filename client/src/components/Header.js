@@ -161,7 +161,7 @@ class Header extends Component{
               <a href="/Home" className="header-item">
                 <p>Home</p>
               </a>
-              <a className="header-item" href="/MyProduct">
+              <a className="header-item" href="/users">
                     <p>Users</p>
               </a>
               <a className="header-item" href="/reports">

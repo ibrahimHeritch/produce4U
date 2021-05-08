@@ -35,8 +35,8 @@ router.post("/", function(req, res, next) {
 });
 
 router.post("/delete", function(req, res, next) {
-  sendNotification(req.body.reserver,{title:"Reservation Deleted",text:"You unreserved Product:"+req.body.name, tag:"Reservation"})
-  sendNotification(req.body.producer_name,{title:"Reservation Confirmed",text:"A customer reserved Product:"+req.body.name+" for "+req.body.date, image:req.body.picture, tag:"Reservation"})
+  sendNotification(req.body.reserver,{title:"Reservation Deleted",text:"Reservation Id:"+req.body.id, tag:"Reservation"})
+  sendNotification(req.body.producer_name,{title:"Reservation Deleted",text:"Reservation Id:"+req.body.id, tag:"Reservation"})
     //console.log("recived: "+req.body.name);
     database.executeQuery(
       `DELETE FROM reservation WHERE id=`+req.body.id+`;`

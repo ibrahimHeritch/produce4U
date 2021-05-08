@@ -18,7 +18,7 @@ const upload = multer({ storage: storage }).single('file')
 router.post("/", function (req, res, next) {
     var state = req.body
     database.executeQuery(
-        `INSERT INTO review ( author_username, text, product_id, rating, picture)
+        `INSERT INTO review ( author_username, text, producer_reply, product_id, rating, picture)
             value('`+ state.author_username + `', '` + state.text + `', '` + state.producer_reply + `', ` +
         state.product_id + `,  `+state.rating+`, '`+state.picture+`')`
     );
@@ -29,7 +29,7 @@ router.post("/", function (req, res, next) {
       value =>{
         value.result.map(
           (item)=>{
-            sendNotification(item.owner_username,{title:"New Review Avialable",text:state.author_username+" Posted a new review about: "+item.product_title, tag:"New Product"})
+            sendNotification(item.owner_username,{title:"New Review Avialable",text:state.author_username+" Posted a new review about: "+item.name, tag:"New Product"})
           }
         )
       }
