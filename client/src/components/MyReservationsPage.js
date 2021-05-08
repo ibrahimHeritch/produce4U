@@ -44,7 +44,7 @@ class MyReservationsPage extends Component{
                <div className="table-actions">
                     <a href="/confirmation"><p className="produce4U-bluetext table-row-product">View</p></a>
                     <a href="/reserve"><button className="produce4U-green-button table-edit">Edit</button></a>
-                    <a><button
+                    <button
                     className=" table-delete produce4U-red-button"
                     onClick={()=>{
                       this.state.reservations = this.state.reservations.filter(r => r.id != item.id)
@@ -57,7 +57,7 @@ class MyReservationsPage extends Component{
                           return response.json();
                         });
                     }}
-                    >Delete</button></a>
+                    >Delete</button>
                </div>]))
 
       )
