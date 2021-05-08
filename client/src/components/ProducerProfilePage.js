@@ -86,11 +86,14 @@ class ProducerProfilePage extends Component{
         if(this.state.user==null) return <p>Producer Doesn't exist</p>
         return(
 
-                <div>
+<div>
             <div>
             <h1 className="produce4U-producerWelcome">Know<span className="produce4U-blacktext"> Your Farmer</span></h1>
              <h2 className="produce4U-producerWelcome"> Love<span className="produce4U-blacktext"> Your Food</span><br></br></h2>
             </div>
+
+
+
 
               { this.state.isBan &&
                     <button className="produce4U-red-button" onClick={this.props.onClick}>{this.state.isToggleOn ? 'Block' : 'Blocked'}</button>
@@ -98,10 +101,11 @@ class ProducerProfilePage extends Component{
 
 
          <div className="producer-info">
-                <img className="produce4U-producerPhoto" src={this.state.user.profile_picture?this.state.user.profile_picture:profile}/><button className="produce4U-green-button" onClick={this.handleFollow}>{this.state.isFollowing?"UnFollow":"Follow"}</button>
-                <p className="produce4U-producerName">{this.state.user.farm_name} <br></br><br></br><span className="produce4U-producerText">{this.state.user.description?this.state.user.description:"No Description"}</span></p>
+                <img className="produce4U-producerPhoto" src={this.state.user.profile_picture?this.state.user.profile_picture:profile}/>
+                <p className="produce4U-producerName">{this.state.user.farm_name}   &nbsp;    <button className="produce4U-green-button" onClick={this.handleFollow}>{this.state.isFollowing?"UnFollow":"Follow"}</button><br/><span className="produce4U-producerText">{this.state.user.description?this.state.user.description:"No Description"}</span></p>
          </div>
-         <div style={{width:"100%"}}>
+
+
                   <div className="location-info" >
                         <p className= "produce4U-producerLocation"> Location</p>
                         <p className="produce4U-locationText">{this.state.user.farm_name} is located at {this.state.user.address_line_one+" "+this.state.user.address_line_two+" "+this.state.user.city+" "+this.state.user.state+" "+this.state.user.country+" "+this.state.user.zip_code}</p>
@@ -123,12 +127,10 @@ class ProducerProfilePage extends Component{
                           </div>
 
                     </div>
-                    <div className={"reviews-info"}>
+                    <div className={"reviews-info"} >
 <p className = "produce4U-producerReviewHeader">Reviews</p>
                         <ScrollReviews producer={this.state.user.username} fetch_by="producer"/>
                     </div>
-         </div>
-
 
                     <div className="producer-products">
                           <p>
@@ -138,9 +140,10 @@ class ProducerProfilePage extends Component{
                           <ScrollableProduce username={this.state.user.username} />
                     </div>
 
-                </div>
 
 
+
+</div>
 
 
 
