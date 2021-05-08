@@ -28,3 +28,9 @@
     color: #78B244;
     padding: 20px;
 }
+
+.review-div{
+  color: #78B244;
+  width: 100%;
+  border-bottom: 1px solid #E5E5E5;
+}

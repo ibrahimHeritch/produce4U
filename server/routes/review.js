@@ -2,6 +2,8 @@ var express = require("express");
 var router = express.Router();
 var database = require("../database/database.js");
 const multer = require('multer')
+var sendNotification = require("../notificationService.js");
+
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'public')
@@ -21,7 +23,18 @@ router.post("/", function (req, res, next) {
         state.product.product_id + `,  `+state.rating+`, '`+state.user.profile_picture+`')`
     );
 
+    database.executeQuery(
+      "SELECT * FROM product WHERE id = '"+state.product.product_id+"';"
+    ).then(
+      value =>{
+        value.result.map(
+          (item)=>{
+            sendNotification(item.owner_username,{title:"New Review Avialable",text:state.user.username+" Posted a new review about: "+item.product_title, tag:"New Product"})
+          }
+        )
+      }
 
+    )
 });
 
 

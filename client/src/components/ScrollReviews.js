@@ -17,9 +17,12 @@ function ScrollReviews(props){
         return(<p>Hmmm, It seems this producer has no {props.exclude && "other"} reviews at this time.</p>)
     }
     return (
-        <div className="produce-horizontal-scrollmenu">
+        <div>
             {review.map(item => {
-                return <p>{item.text}</p>
+                return <div className="review-div" style={{width:"100%"}}>
+                          <p>{item.author_username}:</p><span>{item.text}</span>
+                          <p>Stars:{item.rating}</p>
+                      </div>
             })
             }
         </div>
