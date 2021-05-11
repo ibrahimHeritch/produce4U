@@ -42,6 +42,7 @@ import {
 
 
 class App extends Component{
+  
   constructor(props){
     super(props);
     this.state = { userAccount:JSON.parse(localStorage.getItem('user'))};
