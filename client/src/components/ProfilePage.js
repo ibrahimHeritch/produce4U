@@ -80,7 +80,7 @@ class ProfilePage extends Component{
       }
       console.log(this.state.user)
       if(changed){
-        Geocode.setApiKey('AIzaSyDiAVMs1DJpi5C8bkFHY2WZ6DTDq7K0pU0');
+        Geocode.setApiKey('GOOGLE_KEY_GOES_HERE CHANGE THIS BEFORE RUNNING');
         Geocode.fromAddress(this.state.user.address_line_one+" "+this.state.user.address_line_two+" "+this.state.user.city+" "+this.state.user.state+" "+this.state.user.country+" "+this.state.user.zip_code).then(
             (response) => {
               const { lat, lng } = response.results[0].geometry.location;

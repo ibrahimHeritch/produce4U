@@ -46,7 +46,7 @@ class HomePage extends Component{
   }
   handleChange(event) {
       if(event.target.name == "location"){
-        Geocode.setApiKey('AIzaSyDiAVMs1DJpi5C8bkFHY2WZ6DTDq7K0pU0');
+        Geocode.setApiKey('GOOGLE_KEY_GOES_HERE CHANGE THIS BEFORE RUNNING');
         Geocode.fromAddress(event.target.value).then(
             (response) => {
               const { lat, lng } = response.results[0].geometry.location;

@@ -2,9 +2,9 @@ const mysql = require('mysql');
 const util = require('util');
 const tables = require('./tables.js')
 const conn = mysql.createConnection({
-  host: "database-1.cwsrx6jlceko.us-east-1.rds.amazonaws.com",
-  user: "producedev",
-  password: "freshtomatoes"
+  host: "HOST_NAME_HERE", //CHANGE THIS BEFORE RUNNING
+  user: "USERNAME_HERE",
+  password: "PASSWPORD_HERE"
 });
 
 

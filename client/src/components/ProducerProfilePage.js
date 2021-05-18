@@ -111,7 +111,7 @@ class ProducerProfilePage extends Component{
                         <p className="produce4U-locationText">{this.state.user.farm_name} is located at {this.state.user.address_line_one+" "+this.state.user.address_line_two+" "+this.state.user.city+" "+this.state.user.state+" "+this.state.user.country+" "+this.state.user.zip_code}</p>
                         <div style={{ height: '600px', width: '90%', margin:"auto"}}>
                           <GoogleMapReact
-                              bootstrapURLKeys={{key:'AIzaSyDiAVMs1DJpi5C8bkFHY2WZ6DTDq7K0pU0', language: 'en', region: 'US'}}
+                              bootstrapURLKeys={{key:'GOOGLE_KEY_GOES_HERE CHANGE THIS BEFORE RUNNING', language: 'en', region: 'US'}} 
                               defaultCenter={{lat: this.state.user.latitude, lng: this.state.user.longitude}}
                               defaultZoom={this.props.zoom}
                               onChildMouseEnter={this.onChildMouseEnter}
